@@ -1,0 +1,63 @@
+---
+const { title, buttonText, buttonLink, imageSrc, imageAlt, reverse } = Astro.props;
+---
+
+<div class={`content-with-image ${reverse ? "reverse" : ""}`}>
+    <div class="text-content">
+        <h2>{title}</h2>
+        <slot></slot> <!-- Dette vil plassere det dynamiske innholdet fra JSX her -->
+        <a href={buttonLink} class="button">
+            {buttonText} &rsaquo;
+        </a>
+    </div>
+    <div class="image-content">
+        <img src={imageSrc} alt={imageAlt} />
+    </div>
+</div>
+
+<style>
+    .content-with-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 200px;
+        gap: 10%;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 25px;
+    }
+
+    .content-with-image.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .text-content {
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+    }
+
+    .image-content {
+        width: 50%;
+    }
+
+    .image-content img {
+        width: 80%;
+        height: auto;
+    }
+
+    .button {
+        margin-top: 20px;
+        background-color: none;
+        color: black;
+        text-decoration: none;
+    }
+
+    .button:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+</style>
