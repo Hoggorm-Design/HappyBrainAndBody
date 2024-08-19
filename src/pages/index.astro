@@ -1,9 +1,11 @@
 ---
 import ImageWithText from "../components/ImageWithText.astro";
 import ContentWithImage from "../components/ContentWithImage.astro";
-import foredragImg from '../assets/images/foredrag.jpg';
-import eqImg from '../assets/images/eq-terapi.png';
-import backgroundImg from '../assets/images/background.jpg';
+import Biography from "../components/Biography.astro";
+import foredragImg from "../assets/images/foredrag.jpg";
+import eqImg from "../assets/images/eq-terapi.png";
+import backgroundImg from "../assets/images/background.jpg";
+import profilePic from "../assets/images/pp.png";
 ---
 
 <html lang="en">
@@ -13,97 +15,146 @@ import backgroundImg from '../assets/images/background.jpg';
 		<title>Document</title>
 	</head>
 	<body>
-		<ImageWithText />
+		<ImageWithText button1Link="#foredrag" button2Link="#eq-terapi" />
 		<main>
 			<section class="content-with-image-container">
-			    <ContentWithImage 
-			        title="Foredrag" 
-			        buttonText="Min fagbakgrunn"
-			        buttonLink="#"
-			        imageSrc={foredragImg.src} 
-			        imageAlt="foredrag" 
-			        reverse={false} 
-			    >
-			        <p>Norge har ett av verdens beste helsevesen. Likevel går hundretusener av pasienter rundt og lider, 
-			        av kroniske "folkesykdommer", tross iverksatt behandling. «Driver vi egentlig med symptomatisk overflatebehandling, 
-			        og lar pasientene løpe på en ytrestyrt offer-tredemølle på jakt etter helse?» spør overlege PhD spesialist i klinisk 
-			        farmakologi Merete Vevelstad. Hun anbefaler at pasienter får lære enkel og virkningsfull selvhjelp, som kan gjøre dem i 
-			        stand til selv å varig bedre både sin fysiske og psykiske helse, og sine relasjoner.</p>
+				<ContentWithImage
+					title="Foredrag"
+					buttonText="Min fagbakgrunn"
+					buttonLink="#biography"
+					imageSrc={foredragImg.src}
+					imageAlt="foredrag"
+					reverse={false}
+					id="foredrag"
+				>
+					<p>
+						Norge har ett av verdens beste helsevesen. Likevel går
+						hundretusener av pasienter rundt og lider, av kroniske
+						"folkesykdommer", tross iverksatt behandling. «Driver vi
+						egentlig med symptomatisk overflatebehandling, og lar
+						pasientene løpe på en ytrestyrt offer-tredemølle på jakt
+						etter helse?» spør overlege PhD spesialist i klinisk
+						farmakologi Merete Vevelstad. Hun anbefaler at pasienter
+						får lære enkel og virkningsfull selvhjelp, som kan gjøre
+						dem i stand til selv å varig bedre både sin fysiske og
+						psykiske helse, og sine relasjoner.
+					</p>
 
-			        <p>I mitt oversiktsforedrag "Fornøyd hjerne og kropp - hvordan hjelpe deg selv", gis en 
-			        forskningsbasert og allment forståelig oversikt over hvor genialt hjernen og kroppens 
-			        følelser/sanser samarbeider, for å bevare din helse, energi og livsglede. Og hvordan kroppen 
-			        viser veien til det du trenger. Og hvordan du selv kan bedre dette samarbeidet. Selvhjelpen er gratis, 
-			        uten bivirkninger, har god effekt, er lett å lære, kan gjøres hvor som helst, og det er aldri for sent.</p>
-			    </ContentWithImage>
-				<ContentWithImage 
-			        title="EQ-terapi" 
-			        buttonText="Hva er EQ?"
-			        buttonLink="#"
-			        imageSrc={eqImg.src} 
-			        imageAlt="eq-terapi" 
-			        reverse={true} 
-			    >
-			        <ul>
+					<p>
+						I mitt oversiktsforedrag "Fornøyd hjerne og kropp -
+						hvordan hjelpe deg selv", gis en forskningsbasert og
+						allment forståelig oversikt over hvor genialt hjernen og
+						kroppens følelser/sanser samarbeider, for å bevare din
+						helse, energi og livsglede. Og hvordan kroppen viser
+						veien til det du trenger. Og hvordan du selv kan bedre
+						dette samarbeidet. Selvhjelpen er gratis, uten
+						bivirkninger, har god effekt, er lett å lære, kan gjøres
+						hvor som helst, og det er aldri for sent.
+					</p>
+				</ContentWithImage>
+				<ContentWithImage
+					title="EQ-terapi"
+					buttonText="Hva er EQ?"
+					buttonLink="#hva-er-eq"
+					imageSrc={eqImg.src}
+					imageAlt="eq-terapi"
+					reverse={true}
+					id="eq-terapi"
+				>
+					<ul>
+						<li>Er du ubetinget glad i deg selv?</li>
+						<li>Er du der for deg selv når du trenger det?</li>
 						<li>
-							Er du ubetinget glad i deg selv?
+							Lengter du etter å ha det godt inni deg? Akkurat
+							slik du er?
 						</li>
 						<li>
-							Er du der for deg selv når du trenger det?
-						</li>
-						<li>
-							Lengter du etter å ha det godt inni deg? Akkurat slik du er?
-						</li>
-						<li>
-							Raskere finne tilbake til energi, indre balanse og helse, når livet byr på vonde hendelser?
+							Raskere finne tilbake til energi, indre balanse og
+							helse, når livet byr på vonde hendelser?
 						</li>
 					</ul>
 
-			        <p>Ved EQ-terapi møter du en trygg empatisk EQ-terapeut som møter deg der du er. 
-						Som støtter deg mens du flytter oppmerksomheten fra hodet (tanker, de gjetter ofte feil) 
-						til kroppen (sanser og følelser, dine fakta). Som lytter, uten å gi råd. Som ubetinget støtter deg, 
-						mens du finner din vei. Du får øve på å skille kroppslige sensasjoner/følelser fra tanker, og lærer å 
-						stille bedre spørsmål om hva kroppen din prøver å fortelle deg. </p>
-			    </ContentWithImage>
-				<ContentWithImage 
-			        title="Hva er EQ?" 
-			        buttonText="EQ-terapi"
-			        buttonLink="#"
-			        imageSrc={backgroundImg.src} 
-			        imageAlt="hva er eq?" 
-			        reverse={false} 
-			    >
-			        <p>
-						Visste du at de fleste handlinger styres av dine sanser/følelser, og hjernens gjetting av betydning? Og at hjernens hovedoppgave er å bevare din energi og helse? Hvordan klarer hjernen å gjette hva du trenger, når den ligger inni hodeskallen? Nettopp! Hjernen trenger godt samarbeid med kroppens sanser/følelser. 
+					<p>
+						Ved EQ-terapi møter du en trygg empatisk EQ-terapeut som
+						møter deg der du er. Som støtter deg mens du flytter
+						oppmerksomheten fra hodet (tanker, de gjetter ofte feil)
+						til kroppen (sanser og følelser, dine fakta). Som
+						lytter, uten å gi råd. Som ubetinget støtter deg, mens
+						du finner din vei. Du får øve på å skille kroppslige
+						sensasjoner/følelser fra tanker, og lærer å stille bedre
+						spørsmål om hva kroppen din prøver å fortelle deg.
 					</p>
-						<p>
-Godt hjerne-kropp-samarbeid kalles emosjonell intelligens, EQ. Forskning og erfaring viser at grad av EQ er avgjørende (og kanskje viktigere enn IQ) for hvordan det går med oss i livet. 
-						</p>
-						<p>
-Det er lett å øke din EQ. Og aldri for sent. Hvis du vil.
-						</p>
-						<p> 
-Visste du at kronisk emosjonelt stress er en viktig underliggende årsak til mange kroniske folkesykdommer? Og at Verdens Helseorganisasjon har definert dette som vår tids helseepidemi?
+				</ContentWithImage>
+				<ContentWithImage
+					title="Hva er EQ?"
+					buttonText="EQ-terapi"
+					buttonLink="#eq-terapi"
+					imageSrc={backgroundImg.src}
+					imageAlt="hva er eq?"
+					reverse={false}
+					id="hva-er-eq"
+				>
+					<p>
+						Visste du at de fleste handlinger styres av dine
+						sanser/følelser, og hjernens gjetting av betydning? Og
+						at hjernens hovedoppgave er å bevare din energi og
+						helse? Hvordan klarer hjernen å gjette hva du trenger,
+						når den ligger inni hodeskallen? Nettopp! Hjernen
+						trenger godt samarbeid med kroppens sanser/følelser.
 					</p>
-						
-			    </ContentWithImage>
+					<p>
+						Godt hjerne-kropp-samarbeid kalles emosjonell
+						intelligens, EQ. Forskning og erfaring viser at grad av
+						EQ er avgjørende (og kanskje viktigere enn IQ) for
+						hvordan det går med oss i livet.
+					</p>
+					<p>
+						Det er lett å øke din EQ. Og aldri for sent. Hvis du
+						vil.
+					</p>
+					<p>
+						Visste du at kronisk emosjonelt stress er en viktig
+						underliggende årsak til mange kroniske folkesykdommer?
+						Og at Verdens Helseorganisasjon har definert dette som
+						vår tids helseepidemi?
+					</p>
+				</ContentWithImage>
+			</section>
+			<section class="biography-container" id="biography">
+				<Biography
+					title="Vår lege, EQ-terapeut og foredragsholder"
+					name="Merete Vevelstad"
+					degree="Overlege, PhD"
+					info=`Merete Vevelstad er overlege, PhD, spesialist i klinisk farmakologi, med doktorgrad om risikofaktorer for dødelig rusmiddelforgiftning. Utdannet lege i 1993 ved Universitetet i Oslo. Sykehuslege frem til 1998,
+					har siden jobbet fulltid som rus-, forgiftnings- og påvirkningsekspert for rettssystemet, og med undervisning og veiledning. Stor interesse for hjernen, bevissthet, følelser, relasjoner og mindfulness/meditasjon.`
+					imageSrc={profilePic.src}
+					imageAlt="Merete Vevelstad"
+					buttonText="Godkjente EQ-terapeuter i Oslo"
+					buttonLink="https://eqterapeuter.no/eq-terapeuter-oslo/"
+				/>
 			</section>
 		</main>
 
 		<style>
-			body, html {
+			body,
+			html {
 				width: 100%;
 				margin: 0;
 				padding: 0;
+				font-family: Arial, Helvetica, sans-serif;
+				line-height: 25px;
+				scroll-behavior: smooth;
 			}
 
 			main {
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				flex-direction: column;
 			}
 
-			.content-with-image-container {
+			.content-with-image-container,
+			.biography-container {
 				width: 80%;
 			}
 		</style>
