@@ -3,6 +3,7 @@ import ImageWithText from "../components/ImageWithText.astro";
 import ContentWithImage from "../components/ContentWithImage.astro";
 import Biography from "../components/Biography.astro";
 import Example from "../components/Example.astro";
+import Contact from "../components/Contact.astro";
 
 import foredragImg from "../assets/images/foredrag.jpg";
 import eqImg from "../assets/images/eq-terapi.png";
@@ -16,6 +17,7 @@ import foredragSkoyen from "../assets/images/foredrag-skoyen.png";
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<title>Happybrainandbody</title>
+		<link rel="icon" href="public/favicon.svg" />
 	</head>
 	<body>
 		<ImageWithText button1Link="#foredrag" button2Link="#eq-terapi" />
@@ -189,6 +191,7 @@ import foredragSkoyen from "../assets/images/foredrag-skoyen.png";
 					/>
 				</div>
 			</section>
+			<Contact />
 			<section class="iframe-container">
 				<iframe
 					title="google maps"
@@ -235,8 +238,6 @@ import foredragSkoyen from "../assets/images/foredrag-skoyen.png";
 				width: 100%;
 				height: 100%;
 				border: none;
-				margin: 0;
-				padding: 0;
 			}
 
 			.iframe-container {
