@@ -2,17 +2,20 @@
 import ImageWithText from "../components/ImageWithText.astro";
 import ContentWithImage from "../components/ContentWithImage.astro";
 import Biography from "../components/Biography.astro";
+import Example from "../components/Example.astro";
+
 import foredragImg from "../assets/images/foredrag.jpg";
 import eqImg from "../assets/images/eq-terapi.png";
 import backgroundImg from "../assets/images/background.jpg";
 import profilePic from "../assets/images/pp.png";
+import foredragSkoyen from "../assets/images/foredrag-skoyen.png";
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<title>Document</title>
+		<title>Happybrainandbody</title>
 	</head>
 	<body>
 		<ImageWithText button1Link="#foredrag" button2Link="#eq-terapi" />
@@ -133,17 +136,80 @@ import profilePic from "../assets/images/pp.png";
 					buttonLink="https://eqterapeuter.no/eq-terapeuter-oslo/"
 				/>
 			</section>
+			<section class="examples-container">
+				<h2>Eksempler</h2>
+				<div class="examples-cards-container">
+					<Example
+						title="Foredrag Skøyen atrium 2024"
+						imageSrc={foredragSkoyen.src}
+						imageAlt="Foredrag Skøyen"
+						info=`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce 
+					consequat laoreet orci ut aliquam. Donec dolor ipsum, pretium id erat id, 
+					porttitor pharetra sapien. Duis laoreet ut nisi eu scelerisque. Morbi non blandit nibh. Aliquam erat volutpat. 
+					Vestibulum et nunc at elit commodo posuere non ut dolor. Integer nec quam ut ex blandit ultrices eu nec lorem. 
+					Praesent aliquet et erat non vestibulum. Integer non libero consequat, finibus elit nec, tempor neque.`
+						buttonText="Se mer"
+						buttonLink="#"
+					/>
+					<Example
+						title="Webinar 2023"
+						imageSrc={foredragSkoyen.src}
+						imageAlt="Foredrag Skøyen"
+						info=`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce 
+					consequat laoreet orci ut aliquam. Donec dolor ipsum, pretium id erat id, 
+					porttitor pharetra sapien. Duis laoreet ut nisi eu scelerisque. Morbi non blandit nibh. Aliquam erat volutpat. 
+					Vestibulum et nunc at elit commodo posuere non ut dolor. Integer nec quam ut ex blandit ultrices eu nec lorem. 
+					Praesent aliquet et erat non vestibulum. Integer non libero consequat, finibus elit nec, tempor neque.`
+						buttonText="Se mer"
+						buttonLink="#"
+					/>
+					<Example
+						title="Blogginnlegg Ekspertsykehuset Oslo universitetssykehus 2022"
+						imageSrc={foredragSkoyen.src}
+						imageAlt="Foredrag Skøyen"
+						info=`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce 
+					consequat laoreet orci ut aliquam. Donec dolor ipsum, pretium id erat id, 
+					porttitor pharetra sapien. Duis laoreet ut nisi eu scelerisque. Morbi non blandit nibh. Aliquam erat volutpat. 
+					Vestibulum et nunc at elit commodo posuere non ut dolor. Integer nec quam ut ex blandit ultrices eu nec lorem. 
+					Praesent aliquet et erat non vestibulum. Integer non libero consequat, finibus elit nec, tempor neque.`
+						buttonText="Se mer"
+						buttonLink="#"
+					/>
+					<Example
+						title="Gjest hos Raushetspodden ved Tore Petterson"
+						imageSrc={foredragSkoyen.src}
+						imageAlt="Foredrag Skøyen"
+						info=`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce 
+					consequat laoreet orci ut aliquam. Donec dolor ipsum, pretium id erat id, 
+					porttitor pharetra sapien. Duis laoreet ut nisi eu scelerisque. Morbi non blandit nibh. Aliquam erat volutpat. 
+					Vestibulum et nunc at elit commodo posuere non ut dolor. Integer nec quam ut ex blandit ultrices eu nec lorem. 
+					Praesent aliquet et erat non vestibulum. Integer non libero consequat, finibus elit nec, tempor neque.`
+						buttonText="Se mer"
+						buttonLink="#"
+					/>
+				</div>
+			</section>
+			<section class="iframe-container">
+				<iframe
+					title="google maps"
+					class="iframe"
+					loading="lazy"
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1997.216299624201!2d10.7607863772032!3d59.96173546023999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464171e334986e47%3A0xd49a34f3aeb5e59!2sKorsvoll%20Terrasse%201B%2C%200881%20Oslo!5e0!3m2!1sno!2sno!4v1724175755045!5m2!1sno!2sno"
+				></iframe>
+			</section>
 		</main>
 
 		<style>
-			body,
-			html {
-				width: 100%;
+			body {
 				margin: 0;
 				padding: 0;
 				font-family: Arial, Helvetica, sans-serif;
 				line-height: 25px;
 				scroll-behavior: smooth;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				width: 100%;
 			}
 
 			main {
@@ -151,11 +217,32 @@ import profilePic from "../assets/images/pp.png";
 				justify-content: center;
 				align-items: center;
 				flex-direction: column;
+				max-width: 80%;
 			}
 
-			.content-with-image-container,
-			.biography-container {
-				width: 80%;
+			.examples-container {
+				margin-top: 200px;
+			}
+
+			.examples-cards-container {
+				margin-top: 50px;
+				display: flex;
+				gap: 150px;
+				flex-wrap: wrap;
+			}
+
+			.iframe {
+				width: 100%;
+				height: 100%;
+				border: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			.iframe-container {
+				margin-top: 200px;
+				width: 100%;
+				height: 50vh;
 			}
 		</style>
 	</body>
