@@ -1,4 +1,5 @@
 ---
+import "../styles/global.css";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -87,5 +88,16 @@ import { Icon } from "astro-icon/components";
     [data-icon] {
         font-size: 30px;
         margin: 12px 10px 0px 0px;
+    }
+
+    @media (max-width: 900px) {
+        .container {
+            flex-direction: column;
+        }
+
+        .contact-section:nth-child(2),
+        .contact-section:nth-child(3) {
+            justify-content: left;
+        }
     }
 </style>

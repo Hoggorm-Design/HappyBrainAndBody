@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+
 const {
     title,
     buttonText,
@@ -23,7 +25,7 @@ const {
             <p>{info}</p>
         </div>
     </div>
-    <a href="https://eqterapeuter.no/eq-terapeuter-oslo/" target="_blank">
+    <a href={buttonLink} target="_blank">
         <button>{buttonText}</button>
     </a>
 </div>
@@ -57,5 +59,14 @@ const {
     button:hover {
         cursor: pointer;
         background-color: #e8e8e8;
+    }
+
+    @media (max-width: 768px) {
+        .gray-background-container {
+            background-color: #ffffff;
+            flex-direction: column;
+            gap: 0;
+            padding: 0;
+        }
     }
 </style>
