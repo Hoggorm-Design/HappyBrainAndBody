@@ -3,9 +3,15 @@
 
 p, h1, h2, h3, button, a, li {
     font-family: "Poppins", sans-serif;
+    font-display: swap;
     font-style: normal;
     line-height: 30px;
 }
+
+h1 {
+    line-height: 50px;
+}
+
 p {
     font-size: 16px;
 }
@@ -14,16 +20,24 @@ h1 {
     font-size: 50px;
 }
 
+img {
+    object-fit: cover;
+}
+
 @media (max-width: 768px) {
-    p, a, li {
+    p, a, li, button {
         font-size: 14px;
+    }
+    
+    h1 {
+        font-size: 35px;
     }
 
     h2 {
         font-size: 20px;
     }
-    
-    h1 {
-        font-size: 35px;
+
+    h3 {
+        font-size: 16px;
     }
 }

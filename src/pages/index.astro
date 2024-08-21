@@ -14,7 +14,6 @@ import backgroundImg from "../assets/images/background.jpg";
 import profilePic from "../assets/images/pp.png";
 import foredragSkoyen from "../assets/images/foredrag-skoyen.png";
 import Spotify from "../components/Spotify.astro";
-
 ---
 
 <html lang="en">
@@ -32,7 +31,7 @@ import Spotify from "../components/Spotify.astro";
 					title="Foredrag"
 					buttonText="Min fagbakgrunn"
 					buttonLink="#biography"
-					imageSrc={foredragImg.src}
+					imageSrc={foredragImg}
 					imageAlt="foredrag"
 					reverse={false}
 					id="foredrag"
@@ -66,7 +65,7 @@ import Spotify from "../components/Spotify.astro";
 					title="EQ-terapi"
 					buttonText="Hva er EQ?"
 					buttonLink="#hva-er-eq"
-					imageSrc={eqImg.src}
+					imageSrc={eqImg}
 					imageAlt="eq-terapi"
 					reverse={true}
 					id="eq-terapi"
@@ -99,7 +98,7 @@ import Spotify from "../components/Spotify.astro";
 					title="Hva er EQ?"
 					buttonText="EQ-terapi"
 					buttonLink="#eq-terapi"
-					imageSrc={backgroundImg.src}
+					imageSrc={backgroundImg}
 					imageAlt="hva er eq?"
 					reverse={false}
 					id="hva-er-eq"
@@ -137,7 +136,7 @@ import Spotify from "../components/Spotify.astro";
 					degree="Overlege, PhD"
 					info=`Merete Vevelstad er overlege, PhD, spesialist i klinisk farmakologi, med doktorgrad om risikofaktorer for dødelig rusmiddelforgiftning. Utdannet lege i 1993 ved Universitetet i Oslo. Sykehuslege frem til 1998,
 					har siden jobbet fulltid som rus-, forgiftnings- og påvirkningsekspert for rettssystemet, og med undervisning og veiledning. Stor interesse for hjernen, bevissthet, følelser, relasjoner og mindfulness/meditasjon.`
-					imageSrc={profilePic.src}
+					imageSrc={profilePic}
 					imageAlt="Merete Vevelstad"
 					buttonText="Godkjente EQ-terapeuter i Oslo"
 					buttonLink="https://eqterapeuter.no/eq-terapeuter-oslo/"
@@ -148,7 +147,7 @@ import Spotify from "../components/Spotify.astro";
 				<div class="examples-cards-container">
 					<Example
 						title="Foredrag Skøyen atrium 2024"
-						imageSrc={foredragSkoyen.src}
+						imageSrc={foredragSkoyen}
 						imageAlt="Foredrag Skøyen"
 						info=`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce 
 					consequat laoreet orci ut aliquam. Donec dolor ipsum, pretium id erat id, 
@@ -160,7 +159,7 @@ import Spotify from "../components/Spotify.astro";
 					/>
 					<Example
 						title="Webinar 2023"
-						imageSrc={foredragSkoyen.src}
+						imageSrc={foredragSkoyen}
 						imageAlt="Foredrag Skøyen"
 						info=`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce 
 					consequat laoreet orci ut aliquam. Donec dolor ipsum, pretium id erat id, 
@@ -172,7 +171,7 @@ import Spotify from "../components/Spotify.astro";
 					/>
 					<Example
 						title="Blogginnlegg Ekspertsykehuset Oslo universitetssykehus 2022"
-						imageSrc={foredragSkoyen.src}
+						imageSrc={foredragSkoyen}
 						imageAlt="Foredrag Skøyen"
 						info=`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce 
 					consequat laoreet orci ut aliquam. Donec dolor ipsum, pretium id erat id, 
@@ -204,8 +203,7 @@ import Spotify from "../components/Spotify.astro";
 				></iframe>
 			</section>
 		</main>
-	<Footer/>
-		
+		<Footer />
 
 		<style>
 			html {
@@ -235,9 +233,10 @@ import Spotify from "../components/Spotify.astro";
 
 			.examples-cards-container {
 				margin-top: 50px;
-				display: flex;
+				display: grid;
 				gap: 150px;
-				flex-wrap: wrap;
+				grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+				width: 100%;
 			}
 
 			.iframe {
@@ -250,6 +249,17 @@ import Spotify from "../components/Spotify.astro";
 				margin-top: 200px;
 				width: 100%;
 				height: 50vh;
+			}
+
+			@media (max-width: 1250px) {
+				.examples-cards-container {
+					display: flex;
+					flex-direction: column;
+				}
+
+				.iframe-container {
+					margin-top: 100px;
+				}
 			}
 		</style>
 	</body>
