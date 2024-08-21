@@ -4,7 +4,13 @@ const { title, buttonText, buttonLink, info } = Astro.props;
 
 <div class="container">
     <div class="spotify-container">
-        <iframe src="https://open.spotify.com/embed/episode/0Jis0INFCA33ffLmTxBwm8?utm_source=generator" width="100%" height="352"  allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe
+            src="https://open.spotify.com/embed/episode/0Jis0INFCA33ffLmTxBwm8?utm_source=generator"
+            title="Raushetspodden"
+            width="100%"
+            height="352"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
     </div>
     <div class="text-container">
         <h3>{title}</h3>
@@ -36,14 +42,23 @@ const { title, buttonText, buttonLink, info } = Astro.props;
         height: 350px;
     }
 
-    .spotify-container iframe{
+    .spotify-container iframe {
         border: none;
-        border-radius: 0%;
-
     }
-    
 
     .container {
         flex: 1;
+    }
+
+    @media (max-width: 650px) {
+        .spotify-container iframe {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .spotify-container {
+            height: 250px;
+        }
     }
 </style>

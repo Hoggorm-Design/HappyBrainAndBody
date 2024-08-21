@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import { Image } from "astro:assets";
+
 const { title, buttonText, buttonLink, imageSrc, imageAlt, reverse, id } =
     Astro.props;
 ---
@@ -13,7 +15,7 @@ const { title, buttonText, buttonLink, imageSrc, imageAlt, reverse, id } =
         </a>
     </div>
     <div class="image-content">
-        <img src={imageSrc} alt={imageAlt} loading="lazy" />
+        <Image src={imageSrc} alt={imageAlt} />
     </div>
 </div>
 
