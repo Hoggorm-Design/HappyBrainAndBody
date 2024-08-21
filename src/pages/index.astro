@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+
 import ImageWithText from "../components/ImageWithText.astro";
 import ContentWithImage from "../components/ContentWithImage.astro";
 import Biography from "../components/Biography.astro";
@@ -206,12 +208,13 @@ import Spotify from "../components/Spotify.astro";
 		
 
 		<style>
+			html {
+				scroll-behavior: smooth;
+			}
+
 			body {
 				margin: 0;
 				padding: 0;
-				font-family: Arial, Helvetica, sans-serif;
-				line-height: 25px;
-				scroll-behavior: smooth;
 				display: flex;
 				flex-direction: column;
 				align-items: center;

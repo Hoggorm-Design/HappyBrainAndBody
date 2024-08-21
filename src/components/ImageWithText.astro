@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+
 const { button1Link, button2Link } = Astro.props;
 ---
 
@@ -6,7 +8,7 @@ const { button1Link, button2Link } = Astro.props;
     <div class="overlay">
         <div class="text-container">
             <p><strong>FORNØYD HJERNE OG KROPP</strong></p>
-            <h2>Hvordan hjelpe deg selv</h2>
+            <h1>Hvordan hjelpe deg selv</h1>
             <p>
                 Strever du? Føler deg kronisk feil, redd, avvist, utenfor? Indre
                 smerte? Kanskje føler du deg syk? Eller flat? Jakter på
@@ -66,14 +68,6 @@ const { button1Link, button2Link } = Astro.props;
         margin-left: 20px;
     }
 
-    p {
-        font-size: 15pt;
-    }
-
-    h2 {
-        font-size: 50pt;
-    }
-
     button {
         background-color: #5daad7;
         border: none;
@@ -82,7 +76,7 @@ const { button1Link, button2Link } = Astro.props;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 15pt;
+        font-size: 18px;
     }
 
     button:hover {
