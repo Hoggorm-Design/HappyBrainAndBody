@@ -7,13 +7,17 @@ import Biography from "../components/Biography.astro";
 import Example from "../components/Example.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
+import Spotify from "../components/Spotify.astro";
 
 import foredragImg from "../assets/images/foredrag.jpg";
 import eqImg from "../assets/images/eq-terapi.png";
 import backgroundImg from "../assets/images/background.jpg";
 import profilePic from "../assets/images/pp.png";
 import foredragSkoyen from "../assets/images/foredrag-skoyen.png";
-import Spotify from "../components/Spotify.astro";
+import tittelFoto from "../assets/images/tittelfoto_vevelstad.webp";
+
+
+
 ---
 
 <html lang="en">
@@ -171,15 +175,11 @@ import Spotify from "../components/Spotify.astro";
 					/>
 					<Example
 						title="Blogginnlegg Ekspertsykehuset Oslo universitetssykehus 2022"
-						imageSrc={foredragSkoyen}
-						imageAlt="Foredrag Skøyen"
-						info=`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce 
-					consequat laoreet orci ut aliquam. Donec dolor ipsum, pretium id erat id, 
-					porttitor pharetra sapien. Duis laoreet ut nisi eu scelerisque. Morbi non blandit nibh. Aliquam erat volutpat. 
-					Vestibulum et nunc at elit commodo posuere non ut dolor. Integer nec quam ut ex blandit ultrices eu nec lorem. 
-					Praesent aliquet et erat non vestibulum. Integer non libero consequat, finibus elit nec, tempor neque.`
-						buttonText="Se mer"
-						buttonLink="#"
+						imageSrc={tittelFoto.src}
+						imageAlt="Blå hjerne som løfter en tung vekt"
+						info=`I følge nyere forskning er kronisk emosjonelt stress en viktig underliggende årsak til svært mange kroniske lidelser. Typisk er en langvarig følelse av mistrivsel, utilstrekkelighet, uro, skam og/eller frykt. Slikt kronisk følelsesmessig stress har ofte sitt utgangspunkt i negativt indre selvsnakk, knyttet til forestillinger vi har om fortid eller fremtid, og ikke til her-og-nå. Stresset er altså noe vi ubevisst påfører oss selv, og er ofte knyttet til lav egenkjærlighet.`
+						buttonText="Les mer"
+						buttonLink="https://www.oslo-universitetssykehus.no/avdelinger/klinikk-for-laboratoriemedisin/avdeling-for-rettsmedisinske-fag/kroniske-helseplager-kan-enkel-hjernetrening-mot-stress-vere-en-missing-link/"
 					/>
 					<Spotify
 						title="Gjest hos Raushetspodden ved Tore Petterson"
@@ -188,8 +188,8 @@ import Spotify from "../components/Spotify.astro";
 					porttitor pharetra sapien. Duis laoreet ut nisi eu scelerisque. Morbi non blandit nibh. Aliquam erat volutpat. 
 					Vestibulum et nunc at elit commodo posuere non ut dolor. Integer nec quam ut ex blandit ultrices eu nec lorem. 
 					Praesent aliquet et erat non vestibulum. Integer non libero consequat, finibus elit nec, tempor neque.`
-						buttonText="Se mer"
-						buttonLink="#"
+						buttonText="Hør mer"
+						buttonLink="https://open.spotify.com/episode/0Jis0INFCA33ffLmTxBwm8?si=wpmUTWrAT1-wOAQLcI_2lw"
 					/>
 				</div>
 			</section>
