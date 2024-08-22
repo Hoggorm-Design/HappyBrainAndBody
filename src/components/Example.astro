@@ -11,7 +11,7 @@ const { title, buttonText, buttonLink, imageSrc, imageAlt, info } = Astro.props;
     <div class="text-container">
         <h3>{title}</h3>
         <p>{info}</p>
-        <a href={buttonLink} class="button">
+        <a href={buttonLink} class="button" target="_blank">
             {buttonText} &rsaquo;
         </a>
     </div>

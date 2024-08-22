@@ -15,7 +15,7 @@ const { title, buttonText, buttonLink, info } = Astro.props;
     <div class="text-container">
         <h3>{title}</h3>
         <p>{info}</p>
-        <a href={buttonLink} class="button">
+        <a href={buttonLink} class="button" target="_blank">
             {buttonText} &rsaquo;
         </a>
     </div>
@@ -40,10 +40,15 @@ const { title, buttonText, buttonLink, info } = Astro.props;
         align-items: center;
         overflow: hidden;
         height: 350px;
+        
     }
 
     .spotify-container iframe {
         border: none;
+        border-radius: 0%;
+        min-width: 50%;
+        min-height: 50%;
+
     }
 
     .container {
