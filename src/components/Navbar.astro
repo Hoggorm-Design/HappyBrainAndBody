@@ -1,7 +1,5 @@
 ---
 
-
-
 ---
 
 <nav class="navbar-container">
@@ -13,8 +11,29 @@
                     <li><a href="">Publikasjonsliste</a></li>
                     <li><a href="">Bok</a></li>
                 </ul>
+                <div class="button-nav">
+                    <button class="foredrag navbar-button">
+                        Foredrag
+                    </button>
+                    <button class="eq-terapi navbar-button">
+                        EQ-terapi
+                    </button>
+                </div>
             </div>
 </nav>
+
+<script>
+    /*
+    Eksempel kode, vet ikke helt hva denne knappen skal gjøre
+    const foredragButton = document.querySelector('.foredrag');
+    if (foredragButton !== null) {
+        foredragButton.addEventListener('click', () => {
+            window.location.href = "https://www.vg.no"
+        });
+    }
+
+*/
+</script>
 
 <style>
     .navbar-container {
@@ -44,8 +63,34 @@
 
     }
     .navbar-items {
+        display: flex;
         position: relative;
         left: 25rem;
+        gap: 2rem;
+
+    }
+    .button-nav {
+        display: flex;
+        gap: 1rem;
+    }
+    .navbar-button {
+        border: var(--secondary-accent) solid 1px;
+        background-color: var(--primary-accent);
+        padding: 1rem;
+        color: var(--secondary-accent);
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .navbar-button:hover {
+        background-color: var(--primary-accent);
+        filter: brightness(80%);
+        cursor: pointer;
+
+    }
+    .navbar-button:active {
+        filter: brightness(70%);
+        transform: translateY(2px);
+        box-shadow: 0 0 1px var(--secondary-accent);
+
     }
 
 </style>
