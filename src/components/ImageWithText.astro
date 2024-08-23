@@ -87,7 +87,7 @@ const { button1Link, button2Link } = Astro.props;
 
     .overlay {
         color: white;
-        width: 60%;
+        width: 50%;
         height: 80%;
         margin: 0px 0px 0px 100px;
         display: flex;
@@ -117,12 +117,18 @@ const { button1Link, button2Link } = Astro.props;
 
     p {
         font-size: 20px;
+        line-height: 35px;
     }
 
-    @media (max-width: 1030px) {
+    @media (max-width: 1300px) {
         .overlay {
+            height: 100%;
             width: 100%;
             margin: 0px 50px 0px 50px;
+        }
+
+        p {
+            font-size: 17px;
         }
     }
 
