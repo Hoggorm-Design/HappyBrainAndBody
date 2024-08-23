@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
 import Navbar from "../components/Navbar.astro";
 import "../styles/global.css";
 
@@ -11,7 +10,6 @@ import Example from "../components/Example.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
 import Spotify from "../components/Spotify.astro";
-import HorizontalLine from "../components/HorizontalLine.astro";
 
 import foredragImg from "../assets/images/foredrag.jpg";
 import eqImg from "../assets/images/eq-terapi.png";
@@ -24,14 +22,7 @@ import tittelFoto from "../assets/images/tittelfoto_vevelstad.webp";
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Happybrainandbody</title>
-		<link rel="icon" href="public/favicon.svg" />
-	</head>
-	<body>
+	<Layout title="HappyBrainAndBody">
 		<ImageWithText button1Link="#foredrag" button2Link="#eq-terapi" />
 		<main>
 			<section class="content-with-image-container">
@@ -209,7 +200,7 @@ import tittelFoto from "../assets/images/tittelfoto_vevelstad.webp";
 			<Contact />
 			<div class = horizontalLine></div>
 
-<<<<<<< HEAD
+
 			<section class="iframe-container">
 				<iframe
 					title="google maps"
@@ -219,7 +210,8 @@ import tittelFoto from "../assets/images/tittelfoto_vevelstad.webp";
 				></iframe>
 			</section>
 		</main>
-		<Footer />
+	</Layout>
+		
 
 		<style>
 			html {
@@ -286,10 +278,4 @@ import tittelFoto from "../assets/images/tittelfoto_vevelstad.webp";
 				}
 			}
 		</style>
-	</body>
-</html>
-=======
-
-</Layout>
-<style></style>
->>>>>>> c4c3ae1 (feat: finished mockup of navbar)
+	

@@ -1,4 +1,6 @@
 ---
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 interface Props {
 	title: string;
 }
@@ -6,7 +8,6 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -17,13 +18,16 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+		<Navbar/>
 		<slot />
+		<Footer/>
 	</body>
 </html>
 <style is:global>
 	:root {
 		--primary-accent: #5DAAD7;
 		--secondary-accent: white;
+		--third-accent: black;
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;
 		--accent-dark: 49, 10, 101;
@@ -37,7 +41,6 @@ const { title } = Astro.props;
 	html, body {
 		margin: 0;
 		padding: 0;
-		font-family: Roboto, sans-serif;
 	}
 
 </style>

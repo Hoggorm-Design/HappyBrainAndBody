@@ -6,10 +6,10 @@
         <h2 class="title">happybrainandbody.com</h2>
             <div class="navbar-items">
                 <ul class="navbar-links">
-                    <li><a href="">Kontakt</a></li>
-                    <li><a href="">Hva er EQ?</a></li>
-                    <li><a href="">Publikasjonsliste</a></li>
-                    <li><a href="">Bok</a></li>
+                    <li><button class="button-no-style-nav">Kontakt</button></li>
+                    <li><button class="button-no-style-nav">Hva er EQ?</button></li>
+                    <li><a href="https://www.ous-research.no/home/rgda/Group+members/20105" target="_blank" >Publikasjonsliste</a></li>
+                    <li><button class="button-no-style-nav">Bok</button></li>
                 </ul>
                 <div class="button-nav">
                     <button class="foredrag navbar-button">
@@ -23,21 +23,14 @@
 </nav>
 
 <script>
-    /*
-    Eksempel kode, vet ikke helt hva denne knappen skal gjøre
-    const foredragButton = document.querySelector('.foredrag');
-    if (foredragButton !== null) {
-        foredragButton.addEventListener('click', () => {
-            window.location.href = "https://www.vg.no"
-        });
-    }
 
-*/
+
 </script>
 
 <style>
     .navbar-container {
         background-color: var(--primary-accent);
+        width: 100%;
     }
     .title {
         color: var(--secondary-accent);
@@ -48,8 +41,13 @@
         list-style-type: none;
     }
     li a {
-        color: white;
+        color: var(--secondary-accent);
         text-decoration: none;
+    }
+
+    li a:hover {
+        color: var(--third-accent);
+        text-decoration: underline;
     }
     .navbar-container {
         display: flex;
@@ -59,15 +57,27 @@
     }
     .navbar-links {
         display: flex;
-        gap: 1rem;
+        gap: 4rem;
 
     }
     .navbar-items {
         display: flex;
         position: relative;
         left: 25rem;
-        gap: 2rem;
+        gap: 3rem;
 
+    }
+    .button-no-style-nav {
+        background: none;
+        color: var(--secondary-accent);
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    }
+    .button-no-style-nav:hover {
+        color: var(--third-accent);
     }
     .button-nav {
         display: flex;
