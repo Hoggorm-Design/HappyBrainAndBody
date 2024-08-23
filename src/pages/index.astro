@@ -8,6 +8,7 @@ import Example from "../components/Example.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
 import Spotify from "../components/Spotify.astro";
+import HorizontalLine from "../components/HorizontalLine.astro";
 
 import foredragImg from "../assets/images/foredrag.jpg";
 import eqImg from "../assets/images/eq-terapi.png";
@@ -65,6 +66,9 @@ import tittelFoto from "../assets/images/tittelfoto_vevelstad.webp";
 						hvor som helst, og det er aldri for sent.
 					</p>
 				</ContentWithImage>
+			</section>
+			<div class = horizontalLine></div>
+			<section class="content-with-image-container">
 				<ContentWithImage
 					title="EQ-terapi"
 					buttonText="Hva er EQ?"
@@ -98,6 +102,9 @@ import tittelFoto from "../assets/images/tittelfoto_vevelstad.webp";
 						spørsmål om hva kroppen din prøver å fortelle deg.
 					</p>
 				</ContentWithImage>
+			</section>
+			<div class = horizontalLine></div>
+			<section class="content-with-image-container">
 				<ContentWithImage
 					title="Hva er EQ?"
 					buttonText="EQ-terapi"
@@ -133,6 +140,7 @@ import tittelFoto from "../assets/images/tittelfoto_vevelstad.webp";
 					</p>
 				</ContentWithImage>
 			</section>
+			<div class = horizontalLine></div>
 			<section class="biography-container" id="biography">
 				<Biography
 					title="Vår lege, EQ-terapeut og foredragsholder"
@@ -146,6 +154,7 @@ import tittelFoto from "../assets/images/tittelfoto_vevelstad.webp";
 					buttonLink="https://eqterapeuter.no/eq-terapeuter-oslo/"
 				/>
 			</section>
+			<div class = horizontalLine></div>
 			<section class="examples-container">
 				<h2>Eksempler</h2>
 				<div class="examples-cards-container">
@@ -193,7 +202,10 @@ import tittelFoto from "../assets/images/tittelfoto_vevelstad.webp";
 					/>
 				</div>
 			</section>
+			<div class = horizontalLine></div>
 			<Contact />
+			<div class = horizontalLine></div>
+			
 			<section class="iframe-container">
 				<iframe
 					title="google maps"
@@ -225,6 +237,14 @@ import tittelFoto from "../assets/images/tittelfoto_vevelstad.webp";
 				align-items: center;
 				flex-direction: column;
 				max-width: 80%;
+			}
+			.horizontalLine{
+				width: 100vw; 
+            	height: 2px; 
+            	background-color: #E8E8E8;
+            	border: none; 
+            	margin-top: 5% ; 
+				
 			}
 
 			.examples-container {
