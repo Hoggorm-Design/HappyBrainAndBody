@@ -1,8 +1,9 @@
+// astro.config.mjs
 import { defineConfig } from 'astro/config';
+import icons from 'astro-icon';
 
-import icon from "astro-icon";
-
-// https://astro.build/config
 export default defineConfig({
-  integrations: [icon()]
+  integrations: [
+    icons()
+  ]
 });

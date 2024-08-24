@@ -1,44 +1,91 @@
 ---
+import { Icon } from "astro-icon/components"
 
+const props = Astro.props
 ---
 
+
+<header class="header">
+
 <nav class="navbar-container">
-        <h2 class="title">happybrainandbody.com</h2>
-            <div class="navbar-items">
-                <ul class="navbar-links">
-                    <li><button class="button-no-style-nav">Kontakt</button></li>
-                    <li><button class="button-no-style-nav">Hva er EQ?</button></li>
-                    <li><a href="https://www.ous-research.no/home/rgda/Group+members/20105" target="_blank" >Publikasjonsliste</a></li>
-                    <li><button class="button-no-style-nav">Bok</button></li>
-                </ul>
-                <div class="button-nav">
-                    <button class="foredrag navbar-button">
-                        Foredrag
-                    </button>
-                    <button class="eq-terapi navbar-button">
-                        EQ-terapi
-                    </button>
-                </div>
-            </div>
+    <h2 class="title">happybrainandbody.com</h2>
+        <div class="navbar-items">
+            <ul class="navbar-links">
+                <li><button class="button-no-style-nav">Kontakt</button></li>
+                <li><button class="button-no-style-nav">Hva er EQ?</button></li>
+                <li><a href="https://www.ous-research.no/home/rgda/Group+members/20105" target="_blank" >Publikasjonsliste</a></li>
+                <li><button class="button-no-style-nav">Bok</button></li>
+            </ul>
+            <button class="foredrag navbar-button">
+                Foredrag
+            </button>
+            <button class="eq-terapi navbar-button">
+                EQ-terapi
+            </button>
+            <Icon name="hamburger" color="#fff" size={45} />
+        </div>
+
 </nav>
 
+</header>
+
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
 
-
+        // Check if both elements are found
+        if (hamburger && dropdownMenu) {
+            hamburger.addEventListener('click', () => {
+                dropdownMenu.classList.toggle('show');
+            });
+        }
+    });
 </script>
 
 <style>
-    .navbar-container {
-        background-color: var(--primary-accent);
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
+        padding: 1.3rem 10%;
+        background-color: var(--primary-accent);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+
     }
+    .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 4rem;
+    }
+    .navbar-items {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+
+
+    }
+    .mobile-header {
+        position: relative;
+        display: flex;
+        gap: 0;
+    }
+
     .title {
         color: var(--secondary-accent);
         position: relative;
-        left: 2rem;
+        margin: 0;
     }
     li {
         list-style-type: none;
+        width: min-content;
+        white-space: nowrap;
     }
     li a {
         color: var(--secondary-accent);
@@ -49,24 +96,13 @@
         color: var(--third-accent);
         text-decoration: underline;
     }
-    .navbar-container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 0.5rem;
-    }
+
     .navbar-links {
         display: flex;
+        font-weight: 500;
         gap: 4rem;
-
     }
-    .navbar-items {
-        display: flex;
-        position: relative;
-        left: 25rem;
-        gap: 3rem;
 
-    }
     .button-no-style-nav {
         background: none;
         color: var(--secondary-accent);
@@ -102,5 +138,24 @@
         box-shadow: 0 0 1px var(--secondary-accent);
 
     }
+
+    .hamburger {
+        display: none;
+    }
+
+    @media screen and (max-width: 1300px) {
+        .navbar-links {
+            gap: 1rem;
+        }
+        .title {
+            font-size: medium;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+
+
+    }
+
 
 </style>
