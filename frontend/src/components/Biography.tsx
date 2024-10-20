@@ -6,10 +6,10 @@ export default function Biography() {
 
     return (
         <>
-            <section className={"flex flex-col 2xl:flex-row gap-10 xl:gap-16 items-center justify-around bg-gradient-to-b from-custom-teal  to-white h-full w-full p-[50px] 2xl:px-[100px] pt-20"}>
+            <section className={"flex flex-col 2xl:flex-row gap-10 items-center justify-around bg-gradient-to-b from-custom-teal  to-white h-full w-full p-[50px] 2xl:px-[100px] pt-20"}>
             {/* Image div */}
-                <div className={"w-3/4 2xl:1/5 h-2/5 2xl:h-full flex justify-start items-center"}>
-                <img src={pb} alt={"pb"} />
+                <div className={"w-full 2xl:w-auto flex justify-start items-center"}>
+                <img src={pb} alt={"pb"} className="w-[30vw] max-w-[300px]"/>
                 </div>
 
                 {/* text flex wrapper div */}
@@ -22,7 +22,7 @@ export default function Biography() {
 
 
                     {/* Info div */}
-                    <div className={"mt-5 text "}>
+                    <div className={"mt-5 text"}>
                         <p> Merete Vevelstad er overlege, PhD, spesialist i klinisk farmakologi,
                             med doktorgrad om risikofaktorer for dødelig
                             rusmiddelforgiftning. Utdannet lege i 1993 ved Universitetet i Oslo.

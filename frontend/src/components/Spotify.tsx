@@ -17,7 +17,8 @@ const Spotify = ({title, buttonText, buttonLink, info}: SpotifyProps) => {
                     width="100%"
                     height="352"
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"></iframe>
+                    loading="lazy">
+                </iframe>
             </div>
             <div className="text-container">
                 <h3 className={"sub-header font-bold mb-1"}>{title}</h3>
