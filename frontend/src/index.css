@@ -1,0 +1,64 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;700&display=swap');
+
+p, h1, h2, h3, button, a, li {
+    font-display: swap;
+    font-style: normal;
+    line-height: 30px;
+}
+
+h1 {
+    line-height: 50px;
+}
+
+p {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 50px;
+    font-family:"Lora", serif;
+}
+h2, h3, h4, h5, h6 {
+    font-family: 'Lora', serif;
+}
+
+button {
+    font-family:"Lora", serif;
+}
+
+li {
+    font-family:'Source Sans 3', sans-serif;
+
+}
+a{
+    font-family:'Source Sans 3', sans-serif;
+
+}
+img {
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    p, a, li, button {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 35px;
+        font-family:"Lora", serif;
+    }
+
+    h2 {
+        font-size: 20px;
+        font-family:"Lora", serif;
+    }
+
+    h3 {
+        font-size: 16px;
+        font-family:"Lora", serif;
+    }
+}
