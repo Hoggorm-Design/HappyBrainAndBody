@@ -6,8 +6,9 @@ import event from './event'
 import post2 from './post2'
 import post3 from './post3'
 import post4 from './post4'
-import textOverImageTop from './textOverImageTop';
-import textOverImageBottom from './textOverImageBottom';
+import textOverImageTop from './textOverImageTop'
+import textOverImageBottom from './textOverImageBottom'
+import contact from './contact'
 
 export const schemaTypes = [
   post,
@@ -19,5 +20,6 @@ export const schemaTypes = [
   post3,
   post4,
   textOverImageTop,
-  textOverImageBottom
+  textOverImageBottom,
+  contact,
 ]

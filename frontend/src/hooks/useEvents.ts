@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import sanityClient from '../client.ts';
-import { Post } from './useBiography.ts';
 
 export interface Event {
   header: string;
@@ -24,24 +23,25 @@ const useEvents = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchBiography = async () => {
+    const fetchEvents = async () => {
       try {
         const data: Event[] = await sanityClient.fetch(
           `*[_type=="event"]{
                         title,
                         slug,
-                        mainImage{
+                        textContent,
+                        image{
                             asset->{
                                 _id,
                                 url
                             },
                             alt
                         },
-                        profession,
-                        body 
+                        link
+                  
                     }`,
         );
-        setPostData(data);
+        setEventsData(data);
       } catch (err) {
         setError('Failed to fetch data');
         console.error(err);
@@ -50,10 +50,10 @@ const useEvents = () => {
       }
     };
 
-    fetchBiography();
+    fetchEvents();
   }, []);
 
-  return { postData, loading, error };
+  return { eventsData, loading, error };
 };
 
-export default useBiography;
+export default useEvents;
