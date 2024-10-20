@@ -5,17 +5,19 @@ import hvaEqImg from "./assets/hvaeq.jpg";
 import eqTerapiImg from "./assets/eqterapi.svg"
 import foredragImg from "./assets/foredrag.jpg"
 import logo from "./assets/logo.png";
+import placeholderImg from "./assets/placeholder.png";
 import Example from "./components/Example.tsx";
 import Spotify from "./components/Spotify.tsx";
 import Contact from "./components/Contact.tsx";
+import OverlayTextBox from "./components/OverlayTextBox.tsx";
 
 function App() {
 
 
   return (
       <>
-      <main className="relative top-[-5px]">
-          <header className="bg-hero bg-cover h-[200vh]">
+      <main className="relative top-[-5px] w-screen">
+          <header className="bg-hero bg-cover w-screen">
               <div className="relative">
                   <nav className="relative flex items-center justify-start p-4 w-full z-10">
                       <div className="absolute inset-0 bg-black opacity-50 h-full w-full z-0"></div>
@@ -26,8 +28,38 @@ function App() {
                             </span>
                       </div>
                   </nav>
+                  <div className="flex flex-col gap-24 md:gap-32 p-8 md:p-16">
+                  <OverlayTextBox heading={"Strever du?"}
+                                  text={"Føler deg kronisk feil, redd, avvist, utenfor? Indre smerte? Kanskje føler du deg syk? Eller flat? Jakter på løsninger? Ingen som skjønner? Been there!"}
+                                  slideFrom={'left'}
+                                  bgColor={"bg-white"}
+                                  textColor={"text-black"}
+                                  textShadowColor={"white"}
+                                  width="w-full xl:w-1/2 4xl:w-1/4"
+                                  textCenter={true}/>
+                      <div className="flex w-full justify-end">
+                      <OverlayTextBox heading={"Hvordan hjelpe deg selv"}
+                                      text={"Ved EQ-terapi møter du en trygg empatisk EQ-terapeut som møter deg der du er. Som støtter deg mens du flytter oppmerksomheten fra hodet til kroppen."}
+                                      slideFrom={'right'}
+                                      textShadowColor={"black"}
+                                      width="w-full xl:w-1/2 4xl:w-1/4"
+                                      textCenter={true}/>
+                      </div>
+                  <OverlayTextBox text={"Jeg er lege og EQ-terapeut, som tilbyr foredrag, EQ-terapi, og skriver selvhjelpsboka jeg skulle ønske fantes da jeg var ung. Utad «flink og vellykket», men inni føltes det vondt og skamfullt å være meg. Gjennom tre års EQ-terapistudier lærte jeg noe viktig, som verken medisinstudiet, legespesialisering,  doktorgrad, 31 års legeekspertise, eller min livserfaring kunne hjelpe for. Noe som ga et astronomisk løft i min livskvalitet, evne til selvhjelp, og legekompetanse. Dette ønsker jeg å lære videre. " +
+                      "Jeg er spesialist i klinisk farmakologi (rus- og legemidler) og jobber til daglig ved Oslo universitetssykehus som overlege, rettstoksikolog (rus- og forgiftningsekspert for rettssystemet) og forsker. "}
+                                  slideFrom={'left'}
+                                  textShadowColor={"black"}
+                                  width="w-full xl:w-3/5 4xl:w-3/4"
+                                  className="hidden md:block"/>
+                  </div>
               </div>
           </header>
+          <section className="px-[30px] py-[80px] 2xl:px-[100px] block md:hidden ">
+              <p className="text">
+                  <span className="font-bold">Jeg er lege og EQ-terapeut</span>, som tilbyr foredrag, EQ-terapi, og skriver selvhjelpsboka jeg skulle ønske fantes da jeg var ung. Utad «flink og vellykket», men inni føltes det vondt og skamfullt å være meg. Gjennom tre års EQ-terapistudier lærte jeg noe viktig, som verken medisinstudiet, legespesialisering,  doktorgrad, 31 års legeekspertise, eller min livserfaring kunne hjelpe for. Noe som ga et astronomisk løft i min livskvalitet, evne til selvhjelp, og legekompetanse. Dette ønsker jeg å lære videre.
+                  Jeg er spesialist i klinisk farmakologi (rus- og legemidler) og jobber til daglig ved Oslo universitetssykehus som overlege, rettstoksikolog (rus- og forgiftningsekspert for rettssystemet) og forsker.
+              </p>
+          </section>
           <Biography/>
           <ContentWithImage title={"Hva er EQ?"} imageSrc={hvaEqImg} imageAlt={"Hva er eq?"} reverse={false}
                             bgColour={"white"}>
@@ -78,12 +110,12 @@ function App() {
                   uten bivirkninger, har god effekt, er lett å lære, kan gjøres hvor som helst, og det er aldri for
                   sent. </p>
           </ContentWithImage>
-          <section className={"px-[50px] py-[80px] 2xl:px-[100px] bg-[#F3F7F9]"}>
+          <section className={"px-[30px] py-[80px] 2xl:px-[100px] bg-[#F3F7F9]"}>
               <h2 className="header font-bold mb-7">Eksempler</h2>
               <div className="grid 2xl:grid-cols-2 gap-20 grid-cols-1 ">
                   <Example
                       title="Foredrag Skøyen atrium 2024"
-                      imageSrc={foredragImg}
+                      imageSrc={placeholderImg}
                       imageAlt="Foredrag Skøyen"
                       info="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                           consequat laoreet orci ut aliquam. Donec dolor ipsum, pretium id erat id,
@@ -98,7 +130,7 @@ function App() {
                   />
                   <Example
                       title="Foredrag Skøyen atrium 2024"
-                      imageSrc={eqTerapiImg}
+                      imageSrc={placeholderImg}
                       imageAlt="Foredrag Skøyen"
                       info="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                           consequat laoreet orci ut aliquam. Donec dolor ipsum, pretium id erat id,
@@ -113,7 +145,7 @@ function App() {
                   />
                   <Example
                       title="Foredrag Skøyen atrium 2024"
-                      imageSrc={foredragImg}
+                      imageSrc={placeholderImg}
                       imageAlt="Foredrag Skøyen"
                       info="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                           consequat laoreet orci ut aliquam. Donec dolor ipsum, pretium id erat id,
@@ -142,7 +174,7 @@ function App() {
               </div>
           </section>
           <Contact />
-          <section className="w-100 h-[50vh] p-[50px] 2xl:px-[100px]">
+          <section className="w-100 h-[50vh] p-[30px] 2xl:px-[100px]">
               <iframe
                   title="google maps"
                   className="w-full h-full border-none"

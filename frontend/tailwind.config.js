@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -30,12 +32,28 @@ export default {
       colors: {
         'custom-teal': '#5D92A8',
       },
+      textShadow: {
+        sm: '0 1px 2px var(--tw-shadow-color)',   // Small shadow
+        DEFAULT: '0 2px 4px var(--tw-shadow-color)', // Default shadow
+        lg: '0 8px 16px var(--tw-shadow-color)', // Large shadow
+      },
       backgroundImage: {
         hero: "url('./assets/hero.png')",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+          {
+            'text-shadow': (value) => ({
+              textShadow: value,
+            }),
+          },
+          { values: theme('textShadow') }
+      );
+    }),
+  ],
 };
 
 

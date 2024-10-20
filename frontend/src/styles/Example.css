@@ -26,3 +26,9 @@
 .container {
     flex: 1;
 }
+
+@media (max-width: 450px) {
+    .img-container {
+        height: 250px;
+    }
+}

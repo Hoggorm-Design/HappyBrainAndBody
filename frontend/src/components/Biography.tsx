@@ -6,7 +6,7 @@ export default function Biography() {
 
     return (
         <>
-            <section className={"flex flex-col 2xl:flex-row gap-10 items-center justify-around bg-gradient-to-b from-custom-teal  to-white h-full w-full p-[50px] 2xl:px-[100px] pt-20"}>
+            <section className={"flex flex-col 2xl:flex-row gap-10 items-center justify-around bg-gradient-to-b from-custom-teal  to-white h-full w-full p-[30px] 2xl:px-[100px] pt-20"}>
             {/* Image div */}
                 <div className={"w-full 2xl:w-auto flex justify-start items-center"}>
                 <img src={pb} alt={"pb"} className="w-[30vw] max-w-[300px]"/>
