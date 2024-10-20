@@ -1,6 +1,8 @@
 import React from 'react';
+import useContentWithImage3 from '../hooks/useContentWithImage3.ts';
 
 interface ContentWithImageProps {
+  //Need to edit
   title: string;
   buttonText: string;
   buttonLink: string;
@@ -12,28 +14,38 @@ interface ContentWithImageProps {
 }
 
 const ContentWithImage3 = ({
-  title,
   buttonText,
   buttonLink,
-  imageSrc,
-  imageAlt,
   reverse,
-  id,
 }: ContentWithImageProps) => {
+  const { postData, loading, error } = useContentWithImage3(); // Use the custom hook
+
+  if (loading) {
+    return <p>Loading posts...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
   return (
     <>
-      <div id={id} className={`content-with-image ${reverse ? 'reverse' : ''}`}>
-        <div className='text-content'>
-          <h2>{title}</h2>
-          <slot />
-          <a href={buttonLink} className='button'>
-            {buttonText} &rsaquo;
-          </a>
+      {postData.map(post => (
+        <div
+          key={post.slug.current}
+          className={`content-with-image ${reverse ? 'reverse' : ''}`}
+        >
+          <div className='text-content'>
+            <h2>{post.title}</h2>
+            <slot />
+            <a href={buttonLink} className='button'>
+              {buttonText} &rsaquo;
+            </a>
+          </div>
+          <div className='image-content'>
+            <img src={post.mainImage.asset.url} alt={post.mainImage.alt} />
+          </div>
         </div>
-        <div className='image-content'>
-          <img src={imageSrc} alt={imageAlt} />
-        </div>
-      </div>
+      ))}
     </>
   );
 };

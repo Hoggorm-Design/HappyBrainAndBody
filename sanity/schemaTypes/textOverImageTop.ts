@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'textOverImage',
-  title: 'TextOverImage',
+  name: 'textOverImageTop',
+  title: 'TextOverImageTop',
   type: 'document',
   fields: [
     defineField({

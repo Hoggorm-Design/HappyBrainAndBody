@@ -1,4 +1,4 @@
-// import "../styles/contentwithimage.css"
+
 import React from 'react';
 
 interface ContentWithImageProps {
