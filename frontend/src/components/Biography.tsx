@@ -1,5 +1,4 @@
 import useBiography from '../hooks/useBiography.ts';
-import { useState } from 'react'; // Import the custom hook
 
 export default function Biography() {
   const { postData, loading, error } = useBiography(); // Use the custom hook

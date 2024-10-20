@@ -1,5 +1,5 @@
-// import "../styles/contentwithimage.css"
 import React from 'react';
+import useBiography from '../hooks/useBiography.ts';
 
 interface ContentWithImageProps {
   title: string;
@@ -11,8 +11,17 @@ interface ContentWithImageProps {
   id: string;
   children?: React.ReactNode;
 }
+const { postData, loading, error } = useBiography(); // Use the custom hook
 
-const ContentWithImage = ({
+if (loading) {
+  return <p>Loading posts...</p>;
+}
+
+if (error) {
+  return <p>{error}</p>;
+}
+
+const ContentWithImage2 = ({
   title,
   buttonText,
   buttonLink,
@@ -38,4 +47,4 @@ const ContentWithImage = ({
     </>
   );
 };
-export default ContentWithImage;
+export default ContentWithImage2;

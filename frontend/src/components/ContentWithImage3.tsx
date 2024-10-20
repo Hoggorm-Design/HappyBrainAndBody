@@ -1,4 +1,3 @@
-// import "../styles/contentwithimage.css"
 import React from 'react';
 
 interface ContentWithImageProps {
@@ -12,7 +11,7 @@ interface ContentWithImageProps {
   children?: React.ReactNode;
 }
 
-const ContentWithImage = ({
+const ContentWithImage3 = ({
   title,
   buttonText,
   buttonLink,
@@ -38,4 +37,4 @@ const ContentWithImage = ({
     </>
   );
 };
-export default ContentWithImage;
+export default ContentWithImage3;
