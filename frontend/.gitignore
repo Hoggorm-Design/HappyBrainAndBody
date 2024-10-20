@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Ignorer Vite byggefiler
+.vite/
+
+# Ignorer Node-moduler
+node_modules/
