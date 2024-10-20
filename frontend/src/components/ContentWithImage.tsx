@@ -1,32 +1,27 @@
-// import "../styles/contentwithimage.css"
 import React from "react";
+import "../styles/ContentWithImage.css";
 
 interface ContentWithImageProps {
     title: string;
-    buttonText: string;
-    buttonLink: string;
     imageSrc: string;
     imageAlt: string;
     reverse: boolean;
-    id: string;
+    bgColour: string;
     children?: React.ReactNode;
 }
 
 
 
-const ContentWithImage = ({title, buttonText, buttonLink, imageSrc, imageAlt, reverse, id}: ContentWithImageProps) => {
+const ContentWithImage = ({title, imageSrc, imageAlt, reverse, bgColour, children}: ContentWithImageProps) => {
     return(
         <>
-            <div id={id} className={`content-with-image ${reverse ? "reverse" : ""}`}>
+            <div className={`content-with-image ${reverse ? "reverse" : ""}`} style={{backgroundColor: bgColour}}>
                 <div className="text-content">
-                    <h2>{title}</h2>
-                    <slot />
-                    <a href={buttonLink} className="button">
-                        {buttonText} &rsaquo;
-                    </a>
+                    <h2 className="header font-bold mb-5">{title}</h2>
+                    {children}
                 </div>
-                <div className="image-content">
-                    <img src={imageSrc} alt={imageAlt} />
+                <div className="image-content" style={{justifyContent: reverse ? "start" : "end"}}>
+                    <img src={imageSrc} alt={imageAlt}/>
                 </div>
             </div>
         </>

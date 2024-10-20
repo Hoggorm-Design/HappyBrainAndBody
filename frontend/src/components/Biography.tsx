@@ -1,37 +1,41 @@
-
-import useBiography from "../hooks/useBiography.ts"; // Import the custom hook
+import pb from '../assets/pb.png';
 
 
 export default function Biography() {
-    const { postData, loading, error } = useBiography(); // Use the custom hook
 
-    if (loading) {
-        return <p>Loading posts...</p>;
-    }
-
-    if (error) {
-        return <p>{error}</p>;
-    }
 
     return (
-        <div className="container">
-            {postData.map((post) => (
-                <div className="gray-background-container" key={post.slug.current}>
-                    <div className="image-text-container">
-                        <div className="image-container">
-                            <img src={post.mainImage.asset.url} alt={post.mainImage.alt} />
-                        </div>
-                        <div className="text-container">
-                            <h3>{post.title}</h3>
-                            <p style={{ marginTop: "-20px" }}>{post.mainImage.alt}</p>
-                            <p>{post.profession}</p>
-                        </div>
-                    </div>
-                    <div className="post-body">
-                        <p>{post.body}</p>
-                    </div>
+        <>
+            <section className={"flex flex-col 2xl:flex-row gap-10 items-center justify-around bg-gradient-to-b from-custom-teal  to-white h-full w-full p-[30px] 2xl:px-[100px] pt-20"}>
+            {/* Image div */}
+                <div className={"w-full 2xl:w-auto flex justify-start items-center"}>
+                <img src={pb} alt={"pb"} className="w-[30vw] max-w-[300px]"/>
                 </div>
-            ))}
-        </div>
-    );
+
+                {/* text flex wrapper div */}
+                <div className={"flex flex-col justify-center gap-5  h-3/5 xl:h-full "}>
+                    <div>
+                        {/* author div */}
+                        <h2 className={"header font-bold"}>Merete Vevelstad </h2>
+                        <h3 className="sub-header">Overlege, PhD</h3>
+                    </div>
+
+
+                    {/* Info div */}
+                    <div className={"mt-5 text"}>
+                        <p> Merete Vevelstad er overlege, PhD, spesialist i klinisk farmakologi,
+                            med doktorgrad om risikofaktorer for dødelig
+                            rusmiddelforgiftning. Utdannet lege i 1993 ved Universitetet i Oslo.
+                            </p>
+                        <p> Sykehuslege frem til 1998,
+                            har siden jobbet fulltid som rus-, forgiftnings- og påvirkningsekspert for
+                            rettssystemet, og med undervisning og veiledning. Stor interesse for hjernen,
+                            bevissthet, følelser, relasjoner og mindfulness/meditasjon.</p>
+                    </div>
+
+                </div>
+            </section>
+
+        </>
+    )
 }
