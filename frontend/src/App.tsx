@@ -77,7 +77,7 @@ function App() {
                   uten bivirkninger, har god effekt, er lett å lære, kan gjøres hvor som helst, og det er aldri for
                   sent. </p>
           </ContentWithImage>
-          <section className={"p-[50px] 2xl:px-[100px]"}>
+          <section className={"p-[50px] 2xl:px-[100px] bg-[#F3F7F9]"}>
               <h2 className="header font-bold mb-5">Eksempler</h2>
               <div className="grid 2xl:grid-cols-2 gap-20 grid-cols-1 ">
                   <Example
