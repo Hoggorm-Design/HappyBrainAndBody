@@ -1,8 +1,7 @@
-// useBiography.ts
 import { useState, useEffect } from 'react';
 import sanityClient from '../client.ts';
 
-export interface Post {
+export interface Post2 {
   title: string;
   slug: {
     current: string;
@@ -18,15 +17,15 @@ export interface Post {
   body: string;
 }
 
-const useBiography = () => {
-  const [postData, setPostData] = useState<Post[]>([]);
+const useContentWithImage2 = () => {
+  const [postData, setPostData] = useState<Post2[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchBiography = async () => {
+    const fetchContentWithImage2 = async () => {
       try {
-        const data: Post[] = await sanityClient.fetch(
+        const data: Post2[] = await sanityClient.fetch(
           `*[_type=="post"]{
                         title,
                         slug,
@@ -50,10 +49,10 @@ const useBiography = () => {
       }
     };
 
-    fetchBiography();
+    fetchContentWithImage2();
   }, []);
 
   return { postData, loading, error };
 };
 
-export default useBiography;
+export default useContentWithImage2;

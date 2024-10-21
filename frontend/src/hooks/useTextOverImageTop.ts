@@ -1,8 +1,7 @@
-// useBiography.ts
 import { useState, useEffect } from 'react';
 import sanityClient from '../client.ts';
 
-export interface Post {
+export interface TextOverImageTop {
   title: string;
   slug: {
     current: string;
@@ -18,25 +17,18 @@ export interface Post {
   body: string;
 }
 
-const useBiography = () => {
-  const [postData, setPostData] = useState<Post[]>([]);
+const useTextOverImageTop = () => {
+  const [postData, setPostData] = useState<TextOverImageTop[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchBiography = async () => {
+    const fetchTextOverImageTop = async () => {
       try {
-        const data: Post[] = await sanityClient.fetch(
+        const data: TextOverImageTop[] = await sanityClient.fetch(
           `*[_type=="post"]{
                         title,
                         slug,
-                        mainImage{
-                            asset->{
-                                _id,
-                                url
-                            },
-                            alt
-                        },
                         profession,
                         body 
                     }`,
@@ -50,10 +42,10 @@ const useBiography = () => {
       }
     };
 
-    fetchBiography();
+    fetchTextOverImageTop();
   }, []);
 
   return { postData, loading, error };
 };
 
-export default useBiography;
+export default useTextOverImageTop;

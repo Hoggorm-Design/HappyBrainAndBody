@@ -1,47 +1,47 @@
-// useBiography.ts
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import sanityClient from '../client.ts';
 
-export interface Post {
-  title: string;
+export interface Event {
+  header: string;
   slug: {
     current: string;
   };
-  mainImage: {
+  textContent: string;
+  image: {
     asset: {
       url: string;
       _id: string;
     };
     alt: string;
   };
-  profession: string;
-  body: string;
+  link: string;
 }
 
-const useBiography = () => {
-  const [postData, setPostData] = useState<Post[]>([]);
+const useEvents = () => {
+  const [eventsData, setEventsData] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchBiography = async () => {
+    const fetchEvents = async () => {
       try {
-        const data: Post[] = await sanityClient.fetch(
-          `*[_type=="post"]{
+        const data: Event[] = await sanityClient.fetch(
+          `*[_type=="event"]{
                         title,
                         slug,
-                        mainImage{
+                        textContent,
+                        image{
                             asset->{
                                 _id,
                                 url
                             },
                             alt
                         },
-                        profession,
-                        body 
+                        link
+                  
                     }`,
         );
-        setPostData(data);
+        setEventsData(data);
       } catch (err) {
         setError('Failed to fetch data');
         console.error(err);
@@ -50,10 +50,10 @@ const useBiography = () => {
       }
     };
 
-    fetchBiography();
+    fetchEvents();
   }, []);
 
-  return { postData, loading, error };
+  return { eventsData, loading, error };
 };
 
-export default useBiography;
+export default useEvents;
