@@ -20,6 +20,16 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'website1link',
+      title: 'Website 1 link',
+      type: 'string',
+    }),
+    defineField({
+      name: 'website2link',
+      title: 'Website 2 link',
+      type: 'string',
+    }),
+    defineField({
       name: 'phonenumber',
       title: 'Phonenumber',
       type: 'string',

@@ -6,6 +6,8 @@ export interface Contact {
   slug: {
     current: string;
   };
+  website1link: string;
+  website2link: string;
   phonenumber: string;
 }
 
@@ -21,6 +23,8 @@ const useContact = () => {
           `*[_type=="contact"]{
                         header,
                         slug,
+                        website1link,
+                        website2link,
                         phonenumber,
                   
                     }`,

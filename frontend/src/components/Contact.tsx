@@ -15,6 +15,10 @@ export default function Contact() {
           {contactData.map(contact => (
             <div key={contact.slug.current}>
               <h2>{contact.header}</h2>
+              <div className='website-section'>
+                <p>{contact.website1link}</p>
+                <p>{contact.website2link}</p>
+              </div>
 
               <div className='contact-section'>
                 <div className='icon-container'>
