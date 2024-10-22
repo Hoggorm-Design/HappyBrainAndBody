@@ -34,7 +34,7 @@ const OverlayTextBox: React.FC<OverlayTextBoxProps> = ({
         <motion.div
             className={`${bgColor} ${textColor} ${className} ${width} bg-opacity-50 rounded-xl p-8 shadow-lg ${textCenter ? "text-center" : ""}`} // Use Tailwind classes for width
             initial="hidden"
-            whileInView="visible" // Animation triggers when in view
+            whileInView="visible"
             exit="hidden"
             variants={variants}
             transition={{ duration: 1 }} // Animation duration
