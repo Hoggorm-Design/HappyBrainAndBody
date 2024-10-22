@@ -28,28 +28,28 @@ function App() {
                             </span>
                       </div>
                   </nav>
-                  <div className="flex flex-col gap-24 md:gap-32 p-8 md:p-16">
+                  <div className="flex flex-col gap-24 md:gap-32 2xl:gap-[50vh] p-8 md:p-16">
                   <OverlayTextBox heading={"Strever du?"}
                                   text={"Føler deg kronisk feil, redd, avvist, utenfor? Indre smerte? Kanskje føler du deg syk? Eller flat? Jakter på løsninger? Ingen som skjønner? Been there!"}
                                   slideFrom={'left'}
                                   bgColor={"bg-white"}
                                   textColor={"text-black"}
                                   textShadowColor={"white"}
-                                  width="w-full xl:w-1/2 4xl:w-1/4"
+                                  width="w-full xl:w-1/2 2xl:w-2/5"
                                   textCenter={true}/>
                       <div className="flex w-full justify-end">
                       <OverlayTextBox heading={"Hvordan hjelpe deg selv"}
                                       text={"Ved EQ-terapi møter du en trygg empatisk EQ-terapeut som møter deg der du er. Som støtter deg mens du flytter oppmerksomheten fra hodet til kroppen."}
                                       slideFrom={'right'}
                                       textShadowColor={"black"}
-                                      width="w-full xl:w-1/2 4xl:w-1/4"
+                                      width="w-full xl:w-1/2 2xl:w-2/5"
                                       textCenter={true}/>
                       </div>
                   <OverlayTextBox text={"Jeg er lege og EQ-terapeut, som tilbyr foredrag, EQ-terapi, og skriver selvhjelpsboka jeg skulle ønske fantes da jeg var ung. Utad «flink og vellykket», men inni føltes det vondt og skamfullt å være meg. Gjennom tre års EQ-terapistudier lærte jeg noe viktig, som verken medisinstudiet, legespesialisering,  doktorgrad, 31 års legeekspertise, eller min livserfaring kunne hjelpe for. Noe som ga et astronomisk løft i min livskvalitet, evne til selvhjelp, og legekompetanse. Dette ønsker jeg å lære videre. " +
                       "Jeg er spesialist i klinisk farmakologi (rus- og legemidler) og jobber til daglig ved Oslo universitetssykehus som overlege, rettstoksikolog (rus- og forgiftningsekspert for rettssystemet) og forsker. "}
                                   slideFrom={'left'}
                                   textShadowColor={"black"}
-                                  width="w-full xl:w-3/5 4xl:w-3/4"
+                                  width="w-full xl:w-3/5 4xl:w-4/5"
                                   className="hidden md:block"/>
                   </div>
               </div>
