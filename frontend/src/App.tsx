@@ -22,10 +22,10 @@ function App() {
                   <nav className="relative flex items-center justify-start p-4 w-full z-10">
                       <div className="absolute inset-0 bg-black opacity-50 h-full w-full z-0"></div>
                       <div className="relative z-10 flex items-center">
-                          <img src={logo} alt="Logo" className="h-20 w-20 mr-3"/>
-                          <span className="sub-header font-semibold text-white">
-                                happybrainandbody.com
-                            </span>
+                          <img src={logo} alt="Logo" className="h-auto w-20 mr-3"/>
+                          <h1 className="sub-header font-semibold text-white">
+                                happybrainandbody
+                            </h1>
                       </div>
                   </nav>
                   <div className="flex flex-col gap-24 md:gap-32 2xl:gap-[50vh] p-8 md:p-16">
@@ -56,7 +56,7 @@ function App() {
           </header>
           <section className="px-[30px] py-[80px] 2xl:px-[100px] block md:hidden ">
               <p className="text">
-                  <span className="font-bold">Jeg er lege og EQ-terapeut</span>, som tilbyr foredrag, EQ-terapi, og skriver selvhjelpsboka jeg skulle ønske fantes da jeg var ung. Utad «flink og vellykket», men inni føltes det vondt og skamfullt å være meg. Gjennom tre års EQ-terapistudier lærte jeg noe viktig, som verken medisinstudiet, legespesialisering,  doktorgrad, 31 års legeekspertise, eller min livserfaring kunne hjelpe for. Noe som ga et astronomisk løft i min livskvalitet, evne til selvhjelp, og legekompetanse. Dette ønsker jeg å lære videre.
+                  <span className="font-bold">Jeg er lege og EQ-terapeut</span>, som tilbyr foredrag, EQ-terapi, og skriver selvhjelpsboka jeg skulle ønske fantes da jeg var ung. Utad «flink og vellykket», men inni føltes det vondt og skamfullt å være meg. Gjennom tre års EQ-terapistudier lærte jeg noe viktig, som verken medisinstudiet, legespesialisering, doktorgrad, 31 års legeekspertise, eller min livserfaring kunne hjelpe for. Noe som ga et astronomisk løft i min livskvalitet, evne til selvhjelp, og legekompetanse. Dette ønsker jeg å lære videre.
                   Jeg er spesialist i klinisk farmakologi (rus- og legemidler) og jobber til daglig ved Oslo universitetssykehus som overlege, rettstoksikolog (rus- og forgiftningsekspert for rettssystemet) og forsker.
               </p>
           </section>
