@@ -38,7 +38,7 @@ export default {
         lg: '0 8px 16px var(--tw-shadow-color)', // Large shadow
       },
       backgroundImage: {
-        hero: "url('./assets/hero.png')",
+        hero: "url('./assets/hero2.jpeg')",
       },
     },
   },

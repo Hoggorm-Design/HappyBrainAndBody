@@ -43,7 +43,7 @@ const OverlayTextBox: React.FC<OverlayTextBoxProps> = ({
             {/* Optional heading */}
             {heading && (
                 <h2
-                    className="header 2xl:text-3xl font-bold mb-4"
+                    className="header sm mb-4"
                     style={{ textShadow: `1px 1px 3px ${textShadowColor}` }} // Applying custom text shadow
                 >
                     {heading}
@@ -51,7 +51,7 @@ const OverlayTextBox: React.FC<OverlayTextBoxProps> = ({
             )}
             {/* Text */}
             <p
-                className="text xl:text-[1.75vw]"
+                className="text sm"
                 style={{ textShadow: `1px 1px 2px ${textShadowColor}` }} // Applying custom text shadow
             >
                 {text}
