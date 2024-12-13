@@ -1,21 +1,29 @@
 import './index.css';
 import Biography from "./components/Biography.tsx";
 import ContentWithImage from "./components/ContentWithImage.tsx";
-import eqTerapiImg from "./assets/eqterapi.svg";
-import foredragImg from "./assets/foredrag.jpg";
 import placeholderImg from "./assets/placeholder.png";
 import AMaleri from "./assets/AMaleri.jpg";
 import Example from "./components/Example.tsx";
 import Spotify from "./components/Spotify.tsx";
 import Contact from "./components/Contact.tsx";
-import usePost2 from "./hooks/useContent1.ts"; // Use the usePost2 hook
+import usePost2 from "./hooks/useContent1.ts";
+import usePost3 from "./hooks/useContent2.ts";
+import useEvent from "./hooks/useEvent.ts";
+import usePost4 from "./hooks/useContent3.ts";
 
 function App() {
-    const { postData, loading, error } = usePost2(); // Fetch post data using the usePost2 hook
+    const { postData: post2Data } = usePost2();
+    const { postData: post3Data } = usePost3();
+    const { eventData } = useEvent();
+    const { postData: post4Data } = usePost4();
 
+    const firstPost = post2Data[0];
+    const secondPost = post3Data;
+    const fourthPost = post4Data;
 
-    const firstPost = postData[0];
-    console.log(firstPost)
+    console.log(firstPost);
+    console.log(secondPost);
+    console.log(fourthPost);
 
     return (
         <>
@@ -51,50 +59,51 @@ function App() {
                         <p className="text">{firstPost.body}</p>
                     </ContentWithImage>
                 )}
-                <ContentWithImage title={"EQ-terapi"} imageSrc={eqTerapiImg} imageAlt={"EQ-terapi"} reverse={true} bgColour={"#F3F7F9"}>
-                    <ul className="list-disc ml-5 mb-4 space-y-2 font-bold">
-                        <li className={"text"}>Er du ubetinget glad i deg selv?</li>
-                        <li className={"text"}>Er du der for deg selv når du trenger det?</li>
-                        <li className={"text"}>Lengter du etter å ha det godt inni deg? Akkurat slik du er?</li>
-                        <li className={"text"}>Raskere finne tilbake til energi, indre balanse og helse, når livet byr på
-                            vonde hendelser?
-                        </li>
-                    </ul>
 
-                    <p className={"text"}> Ved EQ-terapi møter du en trygg empatisk EQ-terapeut som møter deg der du er.
-                        Som støtter deg mens du flytter oppmerksomheten fra hodet (tanker, de gjetter ofte feil) til
-                        kroppen (sanser og følelser, dine fakta). Som lytter, uten å gi råd. Som ubetinget støtter deg,
-                        mens du finner din vei. Du får øve på å skille kroppslige sensasjoner/følelser fra tanker, og
-                        lærer å stille bedre spørsmål om hva kroppen din prøver å fortelle deg. </p>
-                </ContentWithImage>
+                {/* Static content with dynamic data from post3 */}
+                {secondPost && (
+                    <ContentWithImage
+                        title={secondPost.title}
+                        imageSrc={secondPost.mainImage?.asset?.url || placeholderImg}
+                        imageAlt={secondPost.title}
+                        reverse={true}
+                        bgColour={"#F3F7F9"}
+                    >
+                        <ul className="list-disc ml-5 mb-4 space-y-2 font-bold">
+                            <li className="text">Er du ubetinget glad i deg selv?</li>
+                            <li className="text">Er du der for deg selv når du trenger det?</li>
+                            <li className="text">Lengter du etter å ha det godt inni deg? Akkurat slik du er?</li>
+                            <li className="text">Raskere finne tilbake til energi, indre balanse og helse, når livet byr på vonde hendelser?</li>
+                        </ul>
 
-                <ContentWithImage title={"Foredrag"} imageSrc={foredragImg} imageAlt={"Foredrag"} reverse={false} bgColour={"white"}>
-                    <p className={"text"}>Norge har ett av verdens beste helsevesen. Likevel går hundretusener av
-                        pasienter rundt og lider, av kroniske "folkesykdommer" (se Figur 1), tross iverksatt behandling.
-                        «Driver vi egentlig med symptomatisk overflatebehandling, og lar pasientene løpe på en ytrestyrt
-                        offer-tredemølle på jakt etter helse?» spør overlege PhD spesialist i klinisk farmakologi Merete
-                        Vevelstad. Hun anbefaler at pasienter får lære enkel og virkningsfull selvhjelp, som kan gjøre dem
-                        i stand til selv å varig bedre både sin fysiske og psykiske helse, og sine relasjoner.</p>
-                    <p className={"text"}> I mitt oversiktsforedrag "Fornøyd hjerne og kropp - hvordan hjelpe deg selv",
-                        gis en forskningsbasert og allment forståelig oversikt over hvor genialt hjernen og kroppens
-                        følelser/sanser samarbeider, for å bevare din helse, energi og livsglede. Og hvordan kroppen viser
-                        veien til det du trenger. Og hvordan du selv kan bedre dette samarbeidet. Selvhjelpen er gratis,
-                        uten bivirkninger, har god effekt, er lett å lære, kan gjøres hvor som helst, og det er aldri for
-                        sent. </p>
-                </ContentWithImage>
+                        <p className="text">{secondPost.body}</p>
+                    </ContentWithImage>
+                )}
+
+
+                {fourthPost && (
+                    <ContentWithImage
+                        title={fourthPost.title}
+                        imageSrc={fourthPost.mainImage?.asset?.url }
+                        imageAlt={fourthPost.title}
+                        reverse={false}
+                        bgColour={"white"}
+                    >
+                        <p className="text">{fourthPost.body}</p>
+                    </ContentWithImage>
+                )}
 
                 <section className={"px-[30px] py-[80px] 2xl:px-[100px] bg-[#F3F7F9]"}>
                     <h2 className="header font-bold mb-7">Eksempler</h2>
                     <div className="grid 2xl:grid-cols-2 gap-20 grid-cols-1">
-                        {loading && <p>Loading posts...</p>}
-                        {error && <p>Error loading posts: {error}</p>}
-                        {!loading && !error && postData.map((post) => (
+
+                        {eventData.map((post) => (
                             <Example
                                 key={post.slug.current}
                                 title={post.title}
-                                imageSrc={post.mainImage?.asset?.url || placeholderImg}
+                                imageSrc={post.image?.asset?.url || placeholderImg}
                                 imageAlt={post.title}
-                                info={post.body || "No content available."}
+                                info={post.textContent || "No content available."}
                                 buttonText="Se mer"
                                 buttonLink={post.slug.current || "#"}
                             />
