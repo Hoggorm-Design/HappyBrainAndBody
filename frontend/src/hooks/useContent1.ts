@@ -6,53 +6,47 @@ interface Post {
     slug: {
         current: string;
     };
+    body: string;
     mainImage: {
         asset: {
             url: string;
-            _id: string;
         };
-        alt: string;
     };
-    profession: string;
-    body: string;
 }
 
-const useBiography = () => {
+const usePost2 = () => {
     const [postData, setPostData] = useState<Post[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchBiography = async () => {
+        const fetchPosts = async () => {
             try {
                 const data: Post[] = await sanityClient.fetch(
-                    `*[_type=="post"]{
+                    `*[_type == "post2"]{
                         title,
                         slug,
+                        body,
                         mainImage{
                             asset->{
-                                _id,
                                 url
-                            },
-                            alt
-                        },
-                        profession,
-                        body 
+                            }
+                        }
                     }`
                 );
                 setPostData(data);
             } catch (err) {
-                setError("Failed to fetch data");
                 console.error(err);
+                setError('Failed to fetch posts');
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchBiography();
+        fetchPosts();
     }, []);
 
     return { postData, loading, error };
 };
 
-export default useBiography;
+export default usePost2;

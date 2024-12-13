@@ -1,7 +1,10 @@
+import { createClient } from '@sanity/client';
 
-import sanityClient from "@sanity/client"
-
-export default sanityClient({
+const sanityClient = createClient({
     projectId: 'ns4mcpeo',
     dataset: 'production',
-})
+    apiVersion: 'v2022-03-07',
+    useCdn: true,
+});
+
+export default sanityClient;

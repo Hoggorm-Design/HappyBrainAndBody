@@ -1,58 +1,52 @@
 import { useState, useEffect } from 'react';
 import sanityClient from '../client.ts';
 
-interface Post {
+interface Post3 {
     title: string;
     slug: {
         current: string;
     };
+    body: string;
     mainImage: {
         asset: {
             url: string;
-            _id: string;
         };
-        alt: string;
     };
-    profession: string;
-    body: string;
 }
 
-const useBiography = () => {
-    const [postData, setPostData] = useState<Post[]>([]);
+const usePost3 = () => {
+    const [postData, setPostData] = useState<Post3 | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchBiography = async () => {
+        const fetchPostData = async () => {
             try {
-                const data: Post[] = await sanityClient.fetch(
-                    `*[_type=="post"]{
+                const data: Post3 = await sanityClient.fetch(
+                    `*[_type == "post3"]{
                         title,
                         slug,
+                        body,
                         mainImage{
                             asset->{
-                                _id,
                                 url
-                            },
-                            alt
-                        },
-                        profession,
-                        body 
-                    }`
+                            }
+                        }
+                    }[0]`
                 );
                 setPostData(data);
             } catch (err) {
-                setError("Failed to fetch data");
                 console.error(err);
+                setError('Failed to fetch post data');
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchBiography();
+        fetchPostData();
     }, []);
 
     return { postData, loading, error };
 };
 
-export default useBiography;
+export default usePost3;

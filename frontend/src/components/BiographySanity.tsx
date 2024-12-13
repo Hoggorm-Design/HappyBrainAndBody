@@ -1,4 +1,3 @@
-
 import useBiography from "../hooks/useBiography.ts"; // Import the custom hook
 
 
