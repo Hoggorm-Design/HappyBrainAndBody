@@ -1,12 +1,11 @@
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
-    const navigate = useNavigate(); // Hook to navigate programmatically
+    const navigate = useNavigate();
 
     return (
-        <nav className="fixed top-0 right-0 w-full bg-transparent z-50 px-6 py-4 flex justify-end items-center">
-            <div className="flex space-x-4">
-                {/* Home Button */}
+        <nav className="fixed top-0 left-0 right-0 w-full bg-transparent z-50 px-6 py-4 flex justify-between items-center">
+            <div className="ml-auto flex space-x-4">
                 <button
                     onClick={() => navigate('/')}
                     className="px-4 py-2 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition"
@@ -27,5 +26,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-

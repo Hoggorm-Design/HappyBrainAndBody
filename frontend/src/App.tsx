@@ -13,6 +13,8 @@ import usePost4 from "./hooks/useContent3.ts";
 import Navbar from "./components/Navbar.tsx";
 import { Route, Routes } from "react-router-dom";
 import Blog from "./components/Blog.tsx";
+import Header from "./components/Header.tsx";
+import logo from "./assets/logo.png"
 
 function App() {
     const { postData: post2Data } = usePost2();
@@ -31,15 +33,13 @@ function App() {
     return (
         <>
             <main className="relative top-[-5px] w-screen">
+                <Header logoSrc={logo} title="Happy Brain And Body" />
                 <Navbar />
                 <Routes>
-                    {/* Route for Blog page */}
                     <Route path="/blog" element={<Blog />} />
 
-                    {/* Default route, renders everything except Blog */}
                     <Route path="/" element={
                         <div>
-                            {/* Default Content */}
                             <section className="flex items-center justify-between px-[30px] py-[80px] 2xl:px-[100px] bg-white">
                                 <div className="w-full md:w-1/2">
                                     <img src={AMaleri} alt="Hva er EQ?" className="w-full h-auto object-cover rounded-lg" />
