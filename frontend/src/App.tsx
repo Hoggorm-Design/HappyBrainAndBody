@@ -5,7 +5,6 @@ import placeholderImg from "./assets/placeholder.png";
 import AMaleri from "./assets/AMaleri.jpg";
 import Example from "./components/Example.tsx";
 import Spotify from "./components/Spotify.tsx";
-import Contact from "./components/Contact.tsx";
 import usePost2 from "./hooks/useContent1.ts";
 import usePost3 from "./hooks/useContent2.ts";
 import useEvent from "./hooks/useEvent.ts";
@@ -15,6 +14,7 @@ import { Route, Routes } from "react-router-dom";
 import Blog from "./components/Blog.tsx";
 import Header from "./components/Header.tsx";
 import logo from "./assets/logo.png"
+import Contact from "./components/Contact.tsx";
 
 function App() {
     const { postData: post2Data } = usePost2();
@@ -25,10 +25,6 @@ function App() {
     const firstPost = post2Data[0];
     const secondPost = post3Data;
     const fourthPost = post4Data;
-
-    console.log(firstPost);
-    console.log(secondPost);
-    console.log(fourthPost);
 
     return (
         <>
@@ -70,7 +66,6 @@ function App() {
                                 </ContentWithImage>
                             )}
 
-                            {/* Static content with dynamic data from post3 */}
                             {secondPost && (
                                 <ContentWithImage
                                     title={secondPost.title}
@@ -79,12 +74,6 @@ function App() {
                                     reverse={true}
                                     bgColour={"#F3F7F9"}
                                 >
-                                    <ul className="list-disc ml-5 mb-4 space-y-2 font-bold">
-                                        <li className="text">Er du ubetinget glad i deg selv?</li>
-                                        <li className="text">Er du der for deg selv når du trenger det?</li>
-                                        <li className="text">Lengter du etter å ha det godt inni deg?</li>
-                                        <li className="text">Raskere finne tilbake til energi...</li>
-                                    </ul>
                                     <p className="text">{secondPost.body}</p>
                                 </ContentWithImage>
                             )}
@@ -112,7 +101,7 @@ function App() {
                                             imageAlt={post.title}
                                             info={post.textContent || "No content available."}
                                             buttonText="Se mer"
-                                            buttonLink={post.slug.current || "#"}
+                                            buttonLink={post.link || "#"}
                                         />
                                     ))}
                                     <Spotify
@@ -123,7 +112,7 @@ function App() {
                                     />
                                 </div>
                             </section>
-                            <Contact />
+                            <Contact></Contact>
                         </div>
                     } />
                 </Routes>
