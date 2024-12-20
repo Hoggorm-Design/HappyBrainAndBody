@@ -13,12 +13,12 @@ export default defineType({
         defineField({
             name: 'website1Link',
             title: 'Website 1 Link ',
-            type: 'url',
+            type: 'string',
         }),
         defineField({
             name: 'website2link',
             title: 'Website 2 Link',
-            type: 'url',
+            type: 'string',
         }),
         defineField({
             name: 'phonenumber',

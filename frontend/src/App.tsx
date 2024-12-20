@@ -2,7 +2,6 @@ import './index.css';
 import Biography from "./components/Biography.tsx";
 import ContentWithImage from "./components/ContentWithImage.tsx";
 import placeholderImg from "./assets/placeholder.png";
-import AMaleri from "./assets/AMaleri.jpg";
 import Example from "./components/Example.tsx";
 import Spotify from "./components/Spotify.tsx";
 import usePost2 from "./hooks/useContent1.ts";
@@ -15,12 +14,15 @@ import Blog from "./components/Blog.tsx";
 import Header from "./components/Header.tsx";
 import logo from "./assets/logo.png"
 import Contact from "./components/Contact.tsx";
+import useLanding from "./hooks/useLanding.ts";
 
 function App() {
     const { postData: post2Data } = usePost2();
     const { postData: post3Data } = usePost3();
+    const { landingData } = useLanding();
     const { eventData } = useEvent();
     const { postData: post4Data } = usePost4();
+
 
     const firstPost = post2Data[0];
     const secondPost = post3Data;
@@ -36,24 +38,25 @@ function App() {
 
                     <Route path="/" element={
                         <div>
+                            {landingData && (
                             <section className="flex items-center justify-between px-[30px] py-[80px] 2xl:px-[100px] bg-white">
                                 <div className="w-full md:w-1/2">
-                                    <img src={AMaleri} alt="Hva er EQ?" className="w-full h-auto object-cover rounded-lg" />
+                                    <img src={landingData.image?.asset?.url || placeholderImg} alt="Maleri" className="w-full h-auto object-cover rounded-lg" />
                                 </div>
                                 <div className="w-full md:w-1/2 pl-[30px]">
-                                    <h2 className="text-xl font-bold mb-4">FORNØYD HJERNE & KROPP Hvordan hjelpe deg selv</h2>
+                                    <h2 className="text-xl font-bold mb-4">{landingData.header}</h2>
                                     <p className="text-md">
-                                        Strever du? Føler deg kronisk feil, redd, avvist, utenfor? Indre smerte? Kanskje føler du deg syk? Eller flat? Jakter på løsninger? Ingen som skjønner? Been there!
-                                        <br />
-                                        <br />
-                                        Jeg er lege og EQ-terapeut...
+                                        {landingData.introText}
                                     </p>
+                                    <br />
+                                    <br />
                                     <p className="text-md">
-                                        Jeg er spesialist i klinisk farmakologi...
+                                        {landingData.additionalText}
                                     </p>
                                 </div>
                             </section>
-                            <Biography />
+                            )}
+                            <Biography/>
                             {firstPost && (
                                 <ContentWithImage
                                     title={firstPost.title}
@@ -99,7 +102,7 @@ function App() {
                                             title={post.title}
                                             imageSrc={post.image?.asset?.url || placeholderImg}
                                             imageAlt={post.title}
-                                            info={post.textContent || "No content available."}
+                                            info={post.body || "No content available."}
                                             buttonText="Se mer"
                                             buttonLink={post.link || "#"}
                                         />

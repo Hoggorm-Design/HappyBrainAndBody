@@ -7,8 +7,8 @@ import author from './author';
 import blockContent from './blockContent';
 import event from './event';
 import contact from "./contact";
-
+import landing from './landing';
 
 export const schemaTypes = [
-    post, post3, post4, author, blockContent, event, post2, blog, contact
+    post, post3, post4, author, blockContent, event, post2, blog, contact, landing
 ];

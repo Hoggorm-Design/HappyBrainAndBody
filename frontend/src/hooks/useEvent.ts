@@ -6,7 +6,7 @@ interface Event {
     slug: {
         current: string;
     };
-    textContent: string;
+    body: string;
     image: {
         asset: {
             url: string;
@@ -27,7 +27,7 @@ const useEvent = () => {
                     `*[_type == "event"]{
             title,
             slug,
-            textContent,
+            body,
             image{
               asset->{
                 url
