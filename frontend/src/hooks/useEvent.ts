@@ -13,7 +13,7 @@ interface Event {
         };
     };
     link: string;
-    alt: string;
+    alt:string;
 }
 
 const useEvent = () => {
@@ -27,6 +27,7 @@ const useEvent = () => {
                 const data: Event[] = await sanityClient.fetch(
                     `*[_type == "event"]{
             title,
+            slug,
             body,
             image{
               asset->{

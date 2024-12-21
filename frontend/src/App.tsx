@@ -98,6 +98,7 @@ function App() {
                                 <div className="grid 2xl:grid-cols-2 gap-20 grid-cols-1">
                                     {eventData.map((post) => (
                                         <Example
+                                            key={post.slug.current}
                                             title={post.title}
                                             imageSrc={post.image?.asset?.url || placeholderImg}
                                             imageAlt={post.alt}

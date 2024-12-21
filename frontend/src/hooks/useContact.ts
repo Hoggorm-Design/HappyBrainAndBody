@@ -3,7 +3,7 @@ import sanityClient from '../client.ts';
 
 interface Contact {
     header: string;
-    website1link: string;
+    website1link?: string;
     website2link?: string;
     phonenumber: number;
 }
