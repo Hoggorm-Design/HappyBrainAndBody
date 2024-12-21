@@ -41,7 +41,7 @@ function App() {
                             {landingData && (
                             <section className="flex items-center justify-between px-[30px] py-[80px] 2xl:px-[100px] bg-white">
                                 <div className="w-full md:w-1/2">
-                                    <img src={landingData.image?.asset?.url || placeholderImg} alt="Maleri" className="w-full h-auto object-cover rounded-lg" />
+                                    <img src={landingData.image?.asset?.url || placeholderImg} alt={landingData.alt} className="w-full h-auto object-cover rounded-lg" />
                                 </div>
                                 <div className="w-full md:w-1/2 pl-[30px]">
                                     <h2 className="text-xl font-bold mb-4">{landingData.header}</h2>
@@ -61,7 +61,7 @@ function App() {
                                 <ContentWithImage
                                     title={firstPost.title}
                                     imageSrc={firstPost.mainImage?.asset?.url || placeholderImg}
-                                    imageAlt={firstPost.title}
+                                    imageAlt={firstPost.alt}
                                     reverse={false}
                                     bgColour={"white"}
                                 >
@@ -73,7 +73,7 @@ function App() {
                                 <ContentWithImage
                                     title={secondPost.title}
                                     imageSrc={secondPost.mainImage?.asset?.url || placeholderImg}
-                                    imageAlt={secondPost.title}
+                                    imageAlt={secondPost.alt}
                                     reverse={true}
                                     bgColour={"#F3F7F9"}
                                 >
@@ -85,7 +85,7 @@ function App() {
                                 <ContentWithImage
                                     title={fourthPost.title}
                                     imageSrc={fourthPost.mainImage?.asset?.url}
-                                    imageAlt={fourthPost.title}
+                                    imageAlt={fourthPost.alt}
                                     reverse={false}
                                     bgColour={"white"}
                                 >
@@ -98,10 +98,9 @@ function App() {
                                 <div className="grid 2xl:grid-cols-2 gap-20 grid-cols-1">
                                     {eventData.map((post) => (
                                         <Example
-                                            key={post.slug.current}
                                             title={post.title}
                                             imageSrc={post.image?.asset?.url || placeholderImg}
-                                            imageAlt={post.title}
+                                            imageAlt={post.alt}
                                             info={post.body || "No content available."}
                                             buttonText="Se mer"
                                             buttonLink={post.link || "#"}

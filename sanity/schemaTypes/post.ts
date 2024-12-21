@@ -11,21 +11,6 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-      },
-    }),
-    defineField({
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: {type: 'author'},
-    }),
-    defineField({
       name: 'mainImage',
       title: 'Main image',
       type: 'image',
@@ -34,14 +19,15 @@ export default defineType({
       },
     }),
     defineField({
+      name: "alt",
+      title: "Alt Text",
+      type: "string",
+      description: "Provide a short description of the image for accessibility.",
+    }),
+    defineField({
       name: 'profession',
       title: 'Profession',
       type: "string",
-    }),
-    defineField({
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'datetime',
     }),
     defineField({
       name: 'body',

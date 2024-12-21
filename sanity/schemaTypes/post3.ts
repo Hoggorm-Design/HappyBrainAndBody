@@ -11,21 +11,18 @@ export default defineType({
             type: 'string',
         }),
         defineField({
-            name: 'slug',
-            title: 'Slug',
-            type: 'slug',
-            options: {
-                source: 'title',
-                maxLength: 96,
-            },
-        }),
-        defineField({
             name: 'mainImage',
             title: 'Main Image',
             type: 'image',
             options: {
                 hotspot: true,
             },
+        }),
+        defineField({
+            name: "alt",
+            title: "Alt Text",
+            type: "string",
+            description: "Provide a short description of the image for accessibility.",
         }),
         defineField({
             name: 'body',

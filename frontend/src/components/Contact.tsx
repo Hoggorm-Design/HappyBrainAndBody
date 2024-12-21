@@ -4,7 +4,7 @@ import useContact from '../hooks/useContact';
 const Contact = () => {
     const { contactData } = useContact();
 
-
+    console.log(contactData);
     return (
         <section className="flex flex-col justify-center p-[50px] 2xl:px-[100px] h-[80vh] lg:h-[35vh]">
             <h2 className="header font-bold mb-8 text-2xl">{contactData?.header || 'Contact'}</h2>

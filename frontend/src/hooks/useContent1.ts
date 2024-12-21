@@ -12,6 +12,7 @@ interface Post {
             url: string;
         };
     };
+    alt: string;
 }
 
 const usePost2 = () => {
@@ -24,14 +25,14 @@ const usePost2 = () => {
             try {
                 const data: Post[] = await sanityClient.fetch(
                     `*[_type == "post2"]{
-                        title,
-                        slug,
+                        title,                       
                         body,
                         mainImage{
                             asset->{
                                 url
                             }
-                        }
+                        },
+                        alt
                     }`
                 );
                 setPostData(data);

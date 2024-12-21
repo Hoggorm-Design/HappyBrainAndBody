@@ -3,18 +3,15 @@ import sanityClient from '../client.ts';
 
 interface Post {
     title: string;
-    slug: {
-        current: string;
-    };
     mainImage: {
         asset: {
             url: string;
             _id: string;
         };
-        alt: string;
     };
     profession: string;
     body: string;
+    alt: string;
 }
 
 const useBiography = () => {
@@ -28,7 +25,6 @@ const useBiography = () => {
                 const data: Post[] = await sanityClient.fetch(
                     `*[_type=="post"]{
                         title,
-                        slug,
                         mainImage{
                             asset->{
                                 _id,

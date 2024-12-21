@@ -24,6 +24,12 @@ export default defineType({
             },
         }),
         defineField({
+            name: "alt",
+            title: "Alt Text",
+            type: "string",
+            description: "Provide a short description of the image for accessibility.",
+        }),
+        defineField({
             name: "link",
             title: "Link",
             type: "url",

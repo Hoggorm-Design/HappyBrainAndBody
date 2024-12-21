@@ -10,6 +10,7 @@ interface BlogPost {
         }
         };
     link: string;
+    alt: string;
 }
 
 const useBlogPosts = () => {
@@ -30,7 +31,8 @@ const useBlogPosts = () => {
                 url
               }
             },
-            link
+            link,
+            alt
           }`
                 );
                 setBlogPosts(data);

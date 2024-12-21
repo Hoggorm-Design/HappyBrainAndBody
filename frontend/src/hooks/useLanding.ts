@@ -10,6 +10,7 @@ interface LandingData {
             url: string;
         }
     }
+    alt: string;
 }
 
 const useLanding = () => {
@@ -30,7 +31,8 @@ const useLanding = () => {
                 _id,
                 url
               }
-            }
+            },
+            alt
           }`
                 );
                 setLandingData(data[0] || null);
