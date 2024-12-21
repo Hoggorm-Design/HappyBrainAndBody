@@ -5,23 +5,22 @@ const Blog = () => {
     const { blogPosts, loading, error } = useBlogPosts();
     console.log(blogPosts);
 
-
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="w-screen h-screen flex justify-center items-center">Laster...</div>;
     }
 
     if (error) {
-        return <div>Error: {error}</div>;
+        return <div className="w-screen h-screen flex justify-center items-center">Error: {error}</div>;
     }
 
     return (
-        <section className="flex flex-col items-center justify-center min-h-screen space-y-8">
+        <section className="flex flex-col items-center justify-center min-h-screen space-y-12 my-36 px-6">
             <div className="text-center">
-                <h1 className="text-2xl font-bold">Meretes Blog</h1>
+                <h1 className="header font-bold">Meretes Blog</h1>
 
             </div>
 
-            <div className="w-full flex flex-wrap justify-center items-center flex-col gap-8">
+            <div className="w-full flex flex-wrap justify-center items-center flex-col gap-20">
                 {blogPosts?.map((post) => (
                     <Card
                         key={post.header}
@@ -31,7 +30,6 @@ const Blog = () => {
                         link={post.link}
 
                     />
-
                 ))}
             </div>
         </section>

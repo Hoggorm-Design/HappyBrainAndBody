@@ -11,8 +11,6 @@ import usePost4 from "./hooks/useContent3.ts";
 import Navbar from "./components/Navbar.tsx";
 import { Route, Routes } from "react-router-dom";
 import Blog from "./components/Blog.tsx";
-import Header from "./components/Header.tsx";
-import logo from "./assets/logo.png"
 import Contact from "./components/Contact.tsx";
 import useLanding from "./hooks/useLanding.ts";
 
@@ -31,26 +29,25 @@ function App() {
     return (
         <>
             <main className="relative top-[-5px] w-screen">
-                <Header logoSrc={logo} title="Happy Brain And Body" />
                 <Navbar />
                 <Routes>
                     <Route path="/blog" element={<Blog />} />
 
                     <Route path="/" element={
-                        <div>
+                        <div className="mt-20">
                             {landingData && (
-                            <section className="flex items-center justify-between px-[30px] py-[80px] 2xl:px-[100px] bg-white">
-                                <div className="w-full md:w-1/2">
+                            <section className="flex flex-col xl:flex-row items-center justify-between px-[30px] xl:px-[50px] py-[80px] gap-20">
+                                <div className="w-full xl:w-1/2">
                                     <img src={landingData.image?.asset?.url || placeholderImg} alt={landingData.alt} className="w-full h-auto object-cover rounded-lg" />
                                 </div>
-                                <div className="w-full md:w-1/2 pl-[30px]">
-                                    <h2 className="text-xl font-bold mb-4">{landingData.header}</h2>
-                                    <p className="text-md">
+                                <div className="w-full xl:w-1/2">
+                                    <h2 className="sub-header font-bold mb-4">{landingData.header}</h2>
+                                    <p className="text">
                                         {landingData.introText}
                                     </p>
                                     <br />
                                     <br />
-                                    <p className="text-md">
+                                    <p className="text">
                                         {landingData.additionalText}
                                     </p>
                                 </div>

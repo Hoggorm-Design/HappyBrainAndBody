@@ -18,16 +18,16 @@ export default {
     },
     extend: {
       fontSize: {
-        'xs': '0.75vw',   // Extra small text, smallest
-        'sm': '0.875vw',  // Small text
-        'md': '1vw',    // Base font size
-        'lg': '1.25vw',   // Large text
-        'xl': '1.5vw',    // Extra large text
-        '2xl': '2vw',     // 2x Extra large text
-        '3xl': '2.5vw',   // 3x Extra large text
-        '4xl': '4.5vw',     // 4x Extra large text
-        '5xl': '5.5vw',
-        '6xl': '7vw', // 5x Extra large text, biggest
+        xs: ['0.75rem', { lineHeight: '1rem' }], // 12px
+        sm: ['0.875rem', { lineHeight: '2.5rem' }], // 14px
+        base: ['1rem', { lineHeight: '2.5rem' }], // 16px
+        lg: ['1.125rem', { lineHeight: '2rem' }], // 18px
+        xl: ['1.25rem', { lineHeight: '1.75rem' }], // 20px
+        '2xl': ['1.5rem', { lineHeight: '2rem' }], // 24px
+        '3xl': ['1.875rem', { lineHeight: '2.25rem' }], // 30px
+        '4xl': ['2.25rem', { lineHeight: '2.5rem' }], // 36px
+        '5xl': ['3rem', { lineHeight: '1' }], // 48px
+        '6xl': ['3.75rem', { lineHeight: '1' }], // 60px
       },
       colors: {
         'custom-teal': '#5D92A8',
