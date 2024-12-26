@@ -9,16 +9,19 @@ export default defineType({
             name: "header",
             title: "Header",
             type: "string",
+            description: "Here you can add the title of your blogpost.",
         }),
         defineField({
             name: "text",
             title: "Text",
             type: "text",
+            description: 'Here you can add the text content of your blog post.'
         }),
         defineField({
             name: "image",
             title: "Image",
             type: "image",
+            description: 'Here you can add the image of the blog post.',
             options: {
                 hotspot: true,
             },
@@ -33,6 +36,7 @@ export default defineType({
             name: "link",
             title: "Link",
             type: "url",
+            description: "Here you can add the link of the blog post.",
         }),
     ],
 });

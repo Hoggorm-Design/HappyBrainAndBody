@@ -9,11 +9,13 @@ export default defineType({
             name: 'title',
             title: 'Title',
             type: 'string',
+            description:'Here you can add the title of the event.'
         }),
         defineField({
             name: 'slug',
             title: 'Slug',
             type: 'slug',
+            description:'This is a mandatory key. Do not edit or remove.',
             options: {
                 source: 'title',
                 maxLength: 96,
@@ -23,11 +25,13 @@ export default defineType({
             name: 'body',
             title: 'Body',
             type: 'text',
+            description:'Here you can add the body of the event.'
         }),
         defineField({
             name: 'image',
             title: 'Image',
             type: 'image',
+            description:'Here you can add the image of the event.',
             options: {
                 hotspot: true,
             },
@@ -42,13 +46,7 @@ export default defineType({
             name: 'link',
             title: 'Link',
             type: 'url',
+            description:'Here you can add the link of the event.',
         }),
     ],
-
-    preview: {
-        select: {
-            title: 'title',
-            media: 'image',
-        },
-    },
 });
