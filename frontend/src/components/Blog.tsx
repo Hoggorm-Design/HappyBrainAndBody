@@ -28,6 +28,7 @@ const Blog = () => {
                         header={post.header}
                         text={post.text}
                         link={post.link}
+                        imageDescription={post.alt}
 
                     />
                 ))}

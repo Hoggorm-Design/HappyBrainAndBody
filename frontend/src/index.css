@@ -13,7 +13,7 @@ html, body {
 }
 
 .header {
-  @apply text-2xl md:text-3xl xl:text-4xl;
+  @apply text-xl md:text-3xl xl:text-4xl;
 }
 
 .sub-header {

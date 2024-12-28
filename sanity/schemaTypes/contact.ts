@@ -12,7 +12,7 @@ export default defineType({
             description: 'Here you can add the title of the event.'
         }),
         defineField({
-            name: 'website1Link',
+            name: 'website1link',
             title: 'Website 1 Link ',
             type: 'string',
             description: 'Here you can add the first website link',

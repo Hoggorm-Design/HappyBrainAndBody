@@ -15,15 +15,15 @@ interface ContentWithImageProps {
 const ContentWithImage = ({title, imageSrc, imageAlt, reverse, bgColour, children}: ContentWithImageProps) => {
     return(
         <>
-            <div className={`content-with-image ${reverse ? "reverse" : ""}`} style={{backgroundColor: bgColour}}>
-                <div className="text-content">
-                    <h2 className="header font-bold mb-5">{title}</h2>
+            <section className={`flex content-with-image items-start ${reverse ? "reverse"  : ""}`} style={{backgroundColor: bgColour}}>
+                <div className="text-content flex-1 bg-amber-200">
+                    <h2 className="header font-semibold mb-5">{title}</h2>
                     {children}
                 </div>
-                <div className="image-content" style={{justifyContent: reverse ? "start" : "end"}}>
+                <div className="image-content flex-1 bg-fuchsia" style={{justifyContent: reverse ? "start" : "end"}}>
                     <img src={imageSrc} alt={imageAlt}/>
                 </div>
-            </div>
+            </section>
         </>
 
     )

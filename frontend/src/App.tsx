@@ -36,22 +36,29 @@ function App() {
                     <Route path="/" element={
                         <div className="mt-20">
                             {landingData && (
-                            <section className="flex flex-col xl:flex-row items-center justify-between px-[30px] xl:px-[50px] py-[80px] gap-20">
-                                <div className="w-full xl:w-1/2">
-                                    <img src={landingData.image?.asset?.url || placeholderImg} alt={landingData.alt} className="w-full h-auto object-cover rounded-lg" />
-                                </div>
-                                <div className="w-full xl:w-1/2">
-                                    <h2 className="sub-header font-bold mb-4">{landingData.header}</h2>
-                                    <p className="text">
-                                        {landingData.introText}
-                                    </p>
-                                    <br />
-                                    <br />
-                                    <p className="text">
-                                        {landingData.additionalText}
-                                    </p>
-                                </div>
-                            </section>
+                                <section
+                                    className="flex flex-col xl:flex-row items-start justify-between px-[30px] xl:px-[50px] py-[80px] gap-20">
+                                    {/* Image Section */}
+                                    <div className="w-full xl:w-1/2">
+                                        <img
+                                            src={landingData.image?.asset?.url || placeholderImg}
+                                            alt={landingData.alt}
+                                            className="w-full h-auto object-cover rounded-lg"
+                                        />
+                                    </div>
+
+                                    {/* Text Section */}
+                                    <div className="w-full xl:w-1/2">
+                                        <h1 className="sub-header font-semibold mb-4">{landingData.header}</h1>
+                                        <p className="text">
+                                            {landingData.introText}
+                                        </p>
+                                        <p className="text">
+                                            {landingData.additionalText}
+                                        </p>
+                                    </div>
+                                </section>
+
                             )}
                             <Biography/>
                             {firstPost && (
@@ -72,7 +79,7 @@ function App() {
                                     imageSrc={secondPost.mainImage?.asset?.url || placeholderImg}
                                     imageAlt={secondPost.alt}
                                     reverse={true}
-                                    bgColour={"#F3F7F9"}
+                                    bgColour={"white"}
                                 >
                                     <p className="text">{secondPost.body}</p>
                                 </ContentWithImage>
@@ -90,7 +97,7 @@ function App() {
                                 </ContentWithImage>
                             )}
 
-                            <section className={"px-[30px] py-[80px] 2xl:px-[100px] bg-[#F3F7F9]"}>
+                            <section className={"px-[30px] py-[80px] 2xl:px-[100px] bg-white"}>
                                 <h2 className="header font-bold mb-7">Eksempler</h2>
                                 <div className="grid 2xl:grid-cols-2 gap-20 grid-cols-1">
                                     {eventData.map((post) => (
