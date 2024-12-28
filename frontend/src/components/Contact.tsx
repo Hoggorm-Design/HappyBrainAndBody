@@ -49,12 +49,12 @@ const Contact = () => {
             {/* Google Maps - Right */}
             <article className="flex-1">
                 <iframe
-                    className="w-full h-[500px] lg:h-[500px] rounded-lg shadow-lg p-4 bg-white"
+                    title="Google map"
+                    className="w-full h-[500px] lg:h-[500px] rounded-lg shadow-lg bg-white"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2077.833107439263!2d10.758490393805086!3d59.96173539559648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464171e334986e47%3A0xd49a34f3aeb5e59!2sKorsvoll%20Terrasse%201B%2C%200881%20Oslo%2C%20Norway!5e1!3m2!1sen!2sus!4v1735414657658!5m2!1sen!2sus"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade">
-
+                    loading="lazy">
                 </iframe>
+
             </article>
         </section>
     );

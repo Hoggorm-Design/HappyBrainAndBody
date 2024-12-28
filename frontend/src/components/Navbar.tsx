@@ -8,9 +8,9 @@ function Navbar() {
 
     const isOnBlogPage = location.pathname === '/blog';
     const isOnHomePage = location.pathname === '/';
-
+    //#2587A7
     return (
-        <nav className="fixed top-0 left-0 right-0 w-full bg-[#2587A7] backdrop-blur-lg z-50 px-6 py-4 flex justify-between items-center shadow-md">
+        <nav className="fixed top-0 left-0 right-0 w-full bg-[#1A5673] backdrop-blur-lg z-50 px-6 py-4 flex justify-between items-center shadow-md">
             {/* Logo and Header */}
             <Header title="Happy Brain and Body" logoSrc={logo} />
 
@@ -19,37 +19,37 @@ function Navbar() {
                 <div className="ml-auto flex-1 flex justify-center space-x-6">
                     <a
                         href="#Var-lege"
-                        className="px-4 py-2 sub-header text-white rounded-full hover:text-[#2587A7] hover:bg-white transition"
+                        className="px-4 py-2 sub-header text-[#FFFFFF] rounded-full hover:text-[#2587A7] hover:bg-white transition"
                     >
                         Vår lege
                     </a>
                     <a
                         href="#hva-er-eq"
-                        className="px-4 py-2 sub-header text-white rounded-full hover:text-[#2587A7] hover:bg-white transition"
+                        className="px-4 py-2 sub-header text-[#FFFFFF] rounded-full hover:text-[#2587A7] hover:bg-white transition"
                     >
                         Hva er EQ
                     </a>
                     <a
                         href="#eq-terapi"
-                        className="px-4 py-2 sub-header text-white rounded-full hover:text-[#2587A7] hover:bg-white transition"
+                        className="px-4 py-2 sub-header text-[#FFFFFF] rounded-full hover:text-[#2587A7] hover:bg-white transition"
                     >
                         EQ-terapi
                     </a>
                     <a
                         href="#foredrag"
-                        className="px-4 py-2 sub-header text-white rounded-full hover:text-[#2587A7] hover:bg-white transition"
+                        className="px-4 py-2 sub-header text-[#FFFFFF] rounded-full hover:text-[#2587A7] hover:bg-white transition"
                     >
                         Foredrag
                     </a>
                     <a
                         href="#eksempler"
-                        className="px-4 py-2 sub-header text-white rounded-full hover:text-[#2587A7] hover:bg-white transition"
+                        className="px-4 py-2 sub-header text-[#FFFFFF] rounded-full hover:text-[#2587A7] hover:bg-white transition"
                     >
                         Eksempler
                     </a>
                     <a
                         href="#kontakt"
-                        className="px-4 py-2 sub-header text-white rounded-full hover:text-[#2587A7] hover:bg-white transition"
+                        className="px-4 py-2 sub-header text-[#FFFFFF] rounded-full hover:text-[#2587A7] hover:bg-white transition"
                     >
                         Kontakt
                     </a>
@@ -61,7 +61,7 @@ function Navbar() {
                 {!isOnHomePage && (
                     <button
                         onClick={() => navigate('/')}
-                        className="px-4 py-2 sub-header text-white rounded-full font-medium hover:text-[#2587A7] hover:bg-white transition"
+                        className="px-4 py-2 sub-header text-[#FFFFFF] rounded-full font-medium hover:text-[#2587A7] hover:bg-white transition"
                     >
                         Hjem
                     </button>
@@ -69,7 +69,7 @@ function Navbar() {
                 {!isOnBlogPage && (
                     <button
                         onClick={() => navigate('/blog')}
-                        className="px-4 py-2 sub-header text-white rounded-full hover:text-[#2587A7] font-medium hover:bg-white transition"
+                        className="px-4 py-2 sub-header text-[#FFFFFF] rounded-full hover:text-[#2587A7] font-medium hover:bg-white transition"
                     >
                         Blog
                     </button>

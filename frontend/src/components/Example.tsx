@@ -14,7 +14,7 @@ const Example = ({title, buttonText, buttonLink, imageSrc, imageAlt, info}: Exam
         <>
             <div  className="flex flex-col gap-5">
                 <div className="img-container">
-                    <img className="image" src={imageSrc} alt={imageAlt}/>
+                    <img className="image h-[30vh] w-auto object-contain" src={imageSrc} alt={imageAlt}/>
                 </div>
                 <div className="text-container">
                     <h3 className={"sub-header font-bold mb-1"}>{title}</h3>
