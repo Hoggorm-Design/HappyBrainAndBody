@@ -16,7 +16,7 @@ const Blog = () => {
     return (
         <section className="flex flex-col items-center justify-center min-h-screen space-y-12 my-36 px-6">
             <div className="text-center">
-                <h1 className="header font-bold">Meretes Blog</h1>
+                <h1 className="header font-bold">Meretes Blogg</h1>
 
             </div>
 

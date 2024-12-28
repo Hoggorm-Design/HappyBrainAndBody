@@ -32,7 +32,8 @@ export default function Biography() {
                         <h4 className="sub-header">{post.profession}</h4>
                     </div>
                     <div className="mt-5 text">
-                        <p>{post.body}</p>
+                        <p className="block mt-4 text-left overflow-hidden text-ellipsis break-words">{post.body}</p>
+
                     </div>
                 </div>
             </div>
