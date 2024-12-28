@@ -12,7 +12,7 @@ const Example = ({title, buttonText, buttonLink, imageSrc, imageAlt, info}: Exam
 
     return (
         <>
-            <div className="flex flex-col gap-5">
+            <div  className="flex flex-col gap-5">
                 <div className="img-container">
                     <img className="image" src={imageSrc} alt={imageAlt}/>
                 </div>

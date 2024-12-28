@@ -68,6 +68,7 @@ function App() {
                                     imageAlt={firstPost.alt}
                                     reverse={false}
                                     bgColour={"white"}
+                                    id="hva-er-eq"
                                 >
                                     <p className="text">{firstPost.body}</p>
                                 </ContentWithImage>
@@ -80,6 +81,7 @@ function App() {
                                     imageAlt={secondPost.alt}
                                     reverse={true}
                                     bgColour={"white"}
+                                    id ="eq-terapi"
                                 >
                                     <p className="text">{secondPost.body}</p>
                                 </ContentWithImage>
@@ -92,13 +94,15 @@ function App() {
                                     imageAlt={fourthPost.alt}
                                     reverse={false}
                                     bgColour={"white"}
-                                >
+                                    id="foredrag">
                                     <p className="text">{fourthPost.body}</p>
                                 </ContentWithImage>
                             )}
 
                             <section className={"px-[30px] py-[80px] 2xl:px-[100px] bg-white"}>
-                                <h2 className="header font-bold mb-7">Eksempler</h2>
+                                <div id="eksempler" className="relative -mt-[120px] pt-[120px]">
+                                    <h2 className="header font-bold mb-7">Eksempler</h2>
+                                </div>
                                 <div className="grid 2xl:grid-cols-2 gap-20 grid-cols-1">
                                     {eventData.map((post) => (
                                         <Example
@@ -109,6 +113,7 @@ function App() {
                                             info={post.body || "No content available."}
                                             buttonText="Se mer"
                                             buttonLink={post.link || "#"}
+
                                         />
                                     ))}
                                     <Spotify
@@ -121,7 +126,7 @@ function App() {
                             </section>
                             <Contact></Contact>
                         </div>
-                    } />
+                    }/>
                 </Routes>
             </main>
         </>

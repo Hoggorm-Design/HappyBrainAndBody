@@ -17,7 +17,7 @@ export default function Biography() {
         return <p>No post available</p>;
     }
     return (
-        <section className="flex flex-col 2xl:flex-row gap-10 items-center justify-around bg-white h-full w-full p-[30px] 2xl:px-[100px] pt-20">
+        <section id="Var-lege" className="flex flex-col 2xl:flex-row gap-10 items-center justify-around bg-white h-full w-full p-[30px] 2xl:px-[100px] pt-20">
             <div className="w-full 2xl:w-auto flex justify-start items-center">
                 <img
                     src={post.mainImage?.asset?.url}

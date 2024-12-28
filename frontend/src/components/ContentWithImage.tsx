@@ -8,14 +8,15 @@ interface ContentWithImageProps {
     reverse: boolean;
     bgColour: string;
     children?: React.ReactNode;
+    id: string;
 }
 
 
 
-const ContentWithImage = ({title, imageSrc, imageAlt, reverse, bgColour, children}: ContentWithImageProps) => {
+const ContentWithImage = ({title, imageSrc, imageAlt, reverse, bgColour, children, id}: ContentWithImageProps) => {
     return(
         <>
-            <section className={`flex content-with-image items-start ${reverse ? "reverse"  : ""}`} style={{backgroundColor: bgColour}}>
+            <section id={id} className={`flex content-with-image items-start ${reverse ? "reverse"  : ""}`} style={{backgroundColor: bgColour}}>
                 <div className="text-content flex-1 bg-amber-200">
                     <h2 className="header font-semibold mb-5">{title}</h2>
                     {children}
