@@ -67,7 +67,7 @@ p {
     }
 
     .image-content img {
-        width: 100%; /* Make the image responsive */
-        height: auto;
+        width: auto; /* Make the image responsive */
+        height: 100%;
     }
 }
