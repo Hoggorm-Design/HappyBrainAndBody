@@ -1,19 +1,21 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'post',
-  title: 'Post',
+  name: 'biography',
+  title: 'Biography',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
+      description: 'Here you can write the title  of the biography.'
     }),
     defineField({
       name: 'mainImage',
       title: 'Main image',
       type: 'image',
+      description:'Here you can add the image of the biography.',
       options: {
         hotspot: true,
       },
@@ -28,11 +30,13 @@ export default defineType({
       name: 'profession',
       title: 'Profession',
       type: "string",
+      description:'Here you can add the profession of the biography.',
     }),
     defineField({
       name: 'body',
       title: 'Body',
       type:  'text',
+      description: 'Here you can add the text of the biography.'
     }),
   ],
 

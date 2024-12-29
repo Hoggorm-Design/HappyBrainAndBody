@@ -1,7 +1,7 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-    name: 'post2',
+    name: 'post',
     title: 'Post2',
     type: 'document',
     fields: [
@@ -9,12 +9,7 @@ export default defineType({
             name: 'title',
             title: 'Title',
             type: 'string',
-        }),
-        defineField({
-            name: 'author',
-            title: 'Author',
-            type: 'reference',
-            to: {type: 'author'},
+            description:'Here you can add the title of the post',
         }),
         defineField({
             name: 'mainImage',
@@ -23,6 +18,7 @@ export default defineType({
             options: {
                 hotspot: true,
             },
+            description:'Here you can add the image of the post.',
         }),
         defineField({
             name: "alt",
@@ -34,18 +30,8 @@ export default defineType({
             name: 'body',
             title: 'Body',
             type: 'text',
+            description:'Here you can add the body of the post.',
         }),
     ],
 
-    preview: {
-        select: {
-            title: 'title',
-            author: 'author.name',
-            media: 'mainImage',
-        },
-        prepare(selection) {
-            const {author} = selection
-            return {...selection, subtitle: author && `by ${author}`}
-        },
-    },
 })

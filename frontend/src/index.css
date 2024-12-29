@@ -13,7 +13,7 @@ html, body {
 }
 
 .header {
-  @apply text-2xl md:text-3xl xl:text-4xl;
+  @apply text-xl md:text-3xl xl:text-4xl;
 }
 
 .sub-header {
@@ -23,3 +23,19 @@ html, body {
 .text {
   @apply text-lg;
 }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+}
+

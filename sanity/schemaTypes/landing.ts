@@ -9,6 +9,7 @@ export default defineType({
             name: "image",
             title: "Image",
             type: "image",
+            description:'Here you can add the image of the landing page.',
             options: {
                 hotspot: true,
             },
@@ -23,16 +24,19 @@ export default defineType({
             name: "header",
             title: "Header",
             type: "string",
+            description:'Here you can add the title of the landing page.',
         }),
         defineField({
             name: "introText",
             title: "Intro Text",
             type: "text",
+            description:'Here you can add the first body part of the landing page.'
         }),
         defineField({
             name: "additionalText",
             title: "Additional Text",
             type: "text",
+            description:'Here you can add the second body part of the landing page.',
         }),
     ],
 });

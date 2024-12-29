@@ -23,15 +23,15 @@ const useBiography = () => {
         const fetchBiography = async () => {
             try {
                 const data: Post[] = await sanityClient.fetch(
-                    `*[_type=="post"]{
+                    `*[_type=="biography"]{
                         title,
                         mainImage{
                             asset->{
                                 _id,
                                 url
                             },
-                            alt
                         },
+                        alt,
                         profession,
                         body 
                     }`

@@ -8,16 +8,17 @@ interface ContentWithImageProps {
     reverse: boolean;
     bgColour: string;
     children?: React.ReactNode;
+    id: string;
 }
 
 
 
-const ContentWithImage = ({title, imageSrc, imageAlt, reverse, bgColour, children}: ContentWithImageProps) => {
+const ContentWithImage = ({title, imageSrc, imageAlt, reverse, bgColour, children, id}: ContentWithImageProps) => {
     return(
         <>
-            <div className={`content-with-image ${reverse ? "reverse" : ""} items-start flex justify-center`} style={{backgroundColor: bgColour}}>
-                <div className="text-content h-full py-20">
-                    <h2 className="header font-bold mb-5">{title}</h2>
+            <section id={id} className={`flex content-with-image items-start ${reverse ? "reverse"  : ""} items-start flex justify-center`} style={{backgroundColor: bgColour}}>
+                <div className="text-content flex-1 bg-amber-200 h-full py-20">
+                    <h2 className="header font-semibold mb-5">{title}</h2>
                     {children}
                 </div>
                 <div className="image-content h-full items-start py-20">
@@ -25,7 +26,7 @@ const ContentWithImage = ({title, imageSrc, imageAlt, reverse, bgColour, childre
                         <img src={imageSrc} alt={imageAlt}/>
                     </div>
                 </div>
-            </div>
+            </section>
         </>
 
     )

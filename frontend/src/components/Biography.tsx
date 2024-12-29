@@ -16,25 +16,24 @@ export default function Biography() {
     if (!post) {
         return <p>No post available</p>;
     }
-
     return (
-        <section className="flex flex-col 2xl:flex-row gap-10 items-center justify-around bg-[#F3F7F9] h-full w-full p-[30px] 2xl:px-[100px] pt-20">
+        <section id="Var-lege" className="flex flex-col 2xl:flex-row gap-5 items-center justify-around bg-white h-full w-full p-[30px] 2xl:px-[100px] py-20">
             <div className="w-full 2xl:w-auto flex justify-start items-center">
                 <img
                     src={post.mainImage?.asset?.url}
                     alt={post.alt}
-                    className="w-[30vw] max-w-[300px]"
+                    className="max-h-[400px] max-w-[300px] w-auto h-auto object-contain"
                 />
             </div>
             <div className="flex flex-col justify-center gap-5 h-3/5 xl:h-full">
                 <div>
                     <div>
-                        <h2 className="header font-bold">{post.title}</h2>
+                        <h2 className="header font-semibold">{post.title}</h2>
                         <h3 className="sub-header">{post.profession}</h3>
                     </div>
                     <div className="mt-5 text">
-                        <p>{post.alt}</p>
-                        <p>{post.body}</p>
+                        <p className="block mt-4 text-left overflow-hidden text-ellipsis break-words">{post.body}</p>
+
                     </div>
                 </div>
             </div>
