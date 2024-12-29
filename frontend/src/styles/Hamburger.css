@@ -1,0 +1,26 @@
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 8px;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Rotate and transform animation for hamburger icon */
+.hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 10px);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -10px);
+}

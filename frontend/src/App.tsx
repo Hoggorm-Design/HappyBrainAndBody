@@ -13,7 +13,7 @@ import { Route, Routes } from "react-router-dom";
 import Blog from "./components/Blog.tsx";
 import Contact from "./components/Contact.tsx";
 import useLanding from "./hooks/useLanding.ts";
-import ScrollFadeInSection from "../src/components/FadeIn.tsx"; // Assuming this is your fade-in wrapper
+import ScrollToAnchor from "./components/ScrollToAnchor.tsx"; // Assuming this is your fade-in wrapper
 
 function App() {
     const { postData: post2Data } = usePost2();
@@ -30,13 +30,13 @@ function App() {
         <>
             <main className="relative top-[-5px] w-screen">
                 <Navbar />
+                <ScrollToAnchor />
                 <Routes>
                     <Route path="/blog" element={<Blog />} />
 
                     <Route path="/" element={
                         <div className="mt-20">
                             {landingData && (
-                                <ScrollFadeInSection>
                                     <section
                                         className="flex flex-col xl:flex-row items-start justify-between px-[30px] xl:px-[50px] py-[80px] gap-20">
                                         <div className="w-full xl:w-1/2">
@@ -56,13 +56,11 @@ function App() {
                                             </p>
                                         </div>
                                     </section>
-                                </ScrollFadeInSection>
                             )}
-                            <ScrollFadeInSection>
+
                                 <Biography />
-                            </ScrollFadeInSection>
                             {firstPost && (
-                                <ScrollFadeInSection>
+
                                     <ContentWithImage
                                         title={firstPost.title}
                                         imageSrc={firstPost.mainImage?.asset?.url || placeholderImg}
@@ -73,10 +71,9 @@ function App() {
                                     >
                                         <p className="text">{firstPost.body}</p>
                                     </ContentWithImage>
-                                </ScrollFadeInSection>
                             )}
                             {secondPost && (
-                                <ScrollFadeInSection>
+
                                     <ContentWithImage
                                         title={secondPost.title}
                                         imageSrc={secondPost.mainImage?.asset?.url || placeholderImg}
@@ -87,10 +84,9 @@ function App() {
                                     >
                                         <p className="text">{secondPost.body}</p>
                                     </ContentWithImage>
-                                </ScrollFadeInSection>
                             )}
                             {fourthPost && (
-                                <ScrollFadeInSection>
+
                                     <ContentWithImage
                                         title={fourthPost.title}
                                         imageSrc={fourthPost.mainImage?.asset?.url}
@@ -100,9 +96,8 @@ function App() {
                                         id="foredrag">
                                         <p className="text">{fourthPost.body}</p>
                                     </ContentWithImage>
-                                </ScrollFadeInSection>
                             )}
-                            <ScrollFadeInSection>
+
                                 <section className="px-[30px] py-[80px] 2xl:px-[100px] bg-white">
                                     <div id="eksempler" className="relative -mt-[120px] pt-[120px]">
                                         <h2 className="header font-bold mb-7">Eksempler</h2>
@@ -128,10 +123,8 @@ function App() {
                                         />
                                     </div>
                                 </section>
-                            </ScrollFadeInSection>
-                            <ScrollFadeInSection>
+
                                 <Contact />
-                            </ScrollFadeInSection>
                         </div>
                     } />
                 </Routes>
