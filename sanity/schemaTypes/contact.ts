@@ -29,5 +29,11 @@ export default defineType({
             type: 'string',
             description: 'Here you can add your phone number.'
         }),
+        defineField({
+            name: 'mail',
+            title: 'Mail',
+            type: 'string',
+            description: 'Here you can add your mail-address number.'
+        }),
     ],
 });

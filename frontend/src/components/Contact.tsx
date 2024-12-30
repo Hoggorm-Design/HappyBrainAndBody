@@ -37,10 +37,10 @@ const Contact = () => {
                     </div>
                     <div className="flex items-start">
                         <a
-                            href={`#`}
+                            href={`mailto:${contactData?.mail}`}
                             className="underline text"
                         >
-                            midlertidig uten mail
+                            {contactData?.mail}
                         </a>
                     </div>
                     </div>

@@ -1,13 +1,16 @@
 // import "../styles/spotify.css"
 
-interface SpotifyProps {
-    title: string,
-    buttonText: string,
-    buttonLink: string,
-    info: string,
-}
+import useSpotify from "../hooks/useSpotify.ts";
 
-const Spotify = ({title, buttonText, buttonLink, info}: SpotifyProps) => {
+
+const Spotify = () => {
+    const { spotifyData, loading, error } = useSpotify();
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
+    if (!spotifyData) {
+        return <p>No Spotify data available.</p>;
+    }
     return (
         <div className="flex flex-col gap-5">
             <div className="flex justify-center items-center overflow-hidden">
@@ -21,10 +24,10 @@ const Spotify = ({title, buttonText, buttonLink, info}: SpotifyProps) => {
                 </iframe>
             </div>
             <div className="text-container">
-                <h3 className={"sub-header font-bold mb-1"}>{title}</h3>
-                <p className={"text"}>{info}</p>
-                <a href={buttonLink} className="button" target="_blank">
-                    {buttonText} &rsaquo;
+                <h3 className={"sub-header font-bold mb-1"}>{spotifyData.title}</h3>
+                <p className={"text"}>{spotifyData.body}</p>
+                <a href={spotifyData.link} className="button" target="_blank">
+
                 </a>
             </div>
         </div>

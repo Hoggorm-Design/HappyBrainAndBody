@@ -6,6 +6,7 @@ interface Contact {
     website1link?: string;
     website2link?: string;
     phonenumber: number;
+    mail: string;
 }
 
 const useContact = () => {
@@ -21,7 +22,8 @@ const useContact = () => {
                         header,
                         website1link,
                         website2link,
-                        phonenumber
+                        phonenumber,
+                        mail
                     }`
                 );
                 setContactData(data[0] || null);

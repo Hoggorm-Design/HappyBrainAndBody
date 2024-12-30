@@ -35,6 +35,9 @@ const Navbar: React.FC = () => {
                 <button
                     className={`hamburger ${isMenuOpen ? "open" : ""}`}
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    name="Hamburger-button"
+                    aria-label="Navigation-menu"
+
                 >
                     <span></span>
                     <span></span>
