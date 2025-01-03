@@ -11,11 +11,12 @@ interface BlogPost {
     };
     link: string;
     alt: string;
-    pdf: {
+    pdf?: {
         asset: {
             url: string;
         };
     };
+    publishedAt: string; // Assuming you have this field in your schema
 }
 
 const useBlogPosts = () => {
@@ -26,23 +27,25 @@ const useBlogPosts = () => {
     useEffect(() => {
         const fetchBlogPosts = async () => {
             try {
+                // Modify the query to fetch posts ordered by the publish date in descending order
                 const data: BlogPost[] = await sanityClient.fetch(
-                    `*[_type=="blogPost"]{
+                    `*[_type == "blogPost"] | order(publishedAt desc) {
                         header,
                         text,
-                        image{
-                          asset->{
-                            _id,
-                            url
-                          }
+                        image {
+                            asset->{
+                                _id,
+                                url
+                            }
                         },
                         link,
                         alt,
-                        pdf{
-                          asset->{
-                            url
-                          }
-                        }
+                        pdf {
+                            asset->{
+                                url
+                            }
+                        },
+                        publishedAt
                     }`
                 );
                 setBlogPosts(data);

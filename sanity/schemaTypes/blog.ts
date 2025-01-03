@@ -15,13 +15,13 @@ export default defineType({
             name: "text",
             title: "Text",
             type: "text",
-            description: 'Here you can add the text content of your blog post.'
+            description: 'Here you can add the text content of your blogpost.'
         }),
         defineField({
             name: "image",
             title: "Image",
             type: "image",
-            description: 'Here you can add the image of the blog post.',
+            description: 'Here you can add the image of the blogpost.',
             options: {
                 hotspot: true,
             },
@@ -36,16 +36,22 @@ export default defineType({
             name: "link",
             title: "Link",
             type: "url",
-            description: "Here you can add the link of the blog post.",
+            description: "Here you can add the link of the blogpost.",
         }),
         defineField({
             name: "pdf",
             title: "PDF File",
             type: "file",
-            description: "Upload a PDF file related to the blog post.",
+            description: "Upload a PDF file related to the blogpost.",
             options: {
                 accept: ".pdf",
             },
+        }),
+        defineField({
+            name: "publishedAt",
+            title: "Published At",
+            type: "datetime",
+            description: "The date and time of your blogpost",
         }),
     ],
 });
