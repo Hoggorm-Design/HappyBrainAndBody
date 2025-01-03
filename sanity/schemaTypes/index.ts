@@ -7,7 +7,8 @@ import event from './event';
 import contact from "./contact";
 import landing from './landing';
 import spotify from './spotify';
+import blogPage from "./blogPage";
 
 export const schemaTypes = [
-    post,post2, post3, post4, event, blog, contact, landing, spotify
+    post,post2, post3, post4, event, blog, contact, landing, spotify, blogPage,
 ];

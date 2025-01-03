@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 w-full bg-[#1A5673] backdrop-blur-lg z-50 px-6 py-4 flex justify-between items-center shadow-md">
+        <nav className="fixed top-0 left-0 right-0 w-full bg-[#5286A4] backdrop-blur-lg z-50 px-6 py-4 flex justify-between items-center shadow-md">
             {/* Logo and Header */}
             <Header title="Happy Brain and Body" logoSrc={logo} />
 

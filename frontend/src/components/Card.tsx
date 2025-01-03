@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface CardProps {
-    image: string;
+    image?: string;
     header: string;
     text: string;
     link?: string; // Optional
@@ -12,20 +12,21 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ image, header, text, link, imageDescription, pdfFile }) => {
     return (
         <div
-            className="flex flex-col md:flex-row max-w-screen-lg rounded-lg overflow-hidden shadow-md bg-white border transform transition duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
+            className="flex flex-col md:flex-row w-2/4 rounded-lg overflow-hidden shadow-md bg-white border transform transition duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
         >
+
             {/* Image Section */}
-            <div className="flex-shrink-0 md:w-1/2">
-                <img
-                    className="w-full h-full object-cover"
-                    src={image}
-                    alt={imageDescription || `Image for ${header}`}
-                />
-                <p className="text-gray-500 text-sm text-center px-2 py-1">{header}</p>
-                {imageDescription && (
-                    <p className="text-gray-400 text-xs text-center px-4">{imageDescription}</p>
+
+                {image && (
+                    <div className="flex-shrink-0 md:w-1/2">
+                    <img
+                        className="w-full h-full object-cover"
+                        src={image}
+                        alt={imageDescription || `Image for ${header}`}
+                    />
+                    </div>
                 )}
-            </div>
+
 
             {/* Content Section */}
             <div className="flex flex-col justify-between flex-1 p-6">
@@ -41,7 +42,7 @@ const Card: React.FC<CardProps> = ({ image, header, text, link, imageDescription
                             href={link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                            className="inline-block text-white bg-[#5286A4] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#1A5673]/80 transition duration-300"
                         >
                             Les mer...
                         </a>
@@ -51,11 +52,12 @@ const Card: React.FC<CardProps> = ({ image, header, text, link, imageDescription
                             href={pdfFile}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                            className="inline-block text-white bg-[#5286A4] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#1A5673]/80 transition duration-300"
                         >
                             last ned...
                         </a>
                     )}
+
                 </div>
             </div>
         </div>
