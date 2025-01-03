@@ -38,5 +38,14 @@ export default defineType({
             type: "url",
             description: "Here you can add the link of the blog post.",
         }),
+        defineField({
+            name: "pdf",
+            title: "PDF File",
+            type: "file",
+            description: "Upload a PDF file related to the blog post.",
+            options: {
+                accept: ".pdf",
+            },
+        }),
     ],
 });

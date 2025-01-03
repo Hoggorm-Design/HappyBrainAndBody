@@ -29,6 +29,7 @@ const Blog = () => {
                         text={post.text}
                         link={post.link}
                         imageDescription={post.alt}
+                        pdfFile={post.pdf?.asset?.url}
 
                     />
                 ))}

@@ -7,10 +7,15 @@ interface BlogPost {
     image: {
         asset: {
             url: string;
-        }
         };
+    };
     link: string;
     alt: string;
+    pdf: {
+        asset: {
+            url: string;
+        };
+    };
 }
 
 const useBlogPosts = () => {
@@ -23,17 +28,22 @@ const useBlogPosts = () => {
             try {
                 const data: BlogPost[] = await sanityClient.fetch(
                     `*[_type=="blogPost"]{
-            header,
-            text,
-            image{
-              asset->{
-                _id,
-                url
-              }
-            },
-            link,
-            alt
-          }`
+                        header,
+                        text,
+                        image{
+                          asset->{
+                            _id,
+                            url
+                          }
+                        },
+                        link,
+                        alt,
+                        pdf{
+                          asset->{
+                            url
+                          }
+                        }
+                    }`
                 );
                 setBlogPosts(data);
             } catch (err) {
