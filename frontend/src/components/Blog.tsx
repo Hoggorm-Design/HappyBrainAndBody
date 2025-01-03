@@ -7,10 +7,8 @@ const Blog = () => {
     const { blogPosts, loading, error } = useBlogPosts();
     const { blogPageData } = useBlogPage();
 
-    // Handle case when blogPosts is null or undefined
-    const posts = blogPosts || []; // Default to an empty array if null/undefined
+    const posts = blogPosts || [];
 
-    // State for pagination
     const [currentPage, setCurrentPage] = useState(1);
     const postsPerPage = 5;
 
@@ -31,10 +29,8 @@ const Blog = () => {
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-    // Calculate the number of pages
     const totalPages = Math.ceil(posts.length / postsPerPage);
 
-    // Change page
     const nextPage = () => {
         if (currentPage < totalPages) setCurrentPage(currentPage + 1);
     };
@@ -62,6 +58,7 @@ const Blog = () => {
                         link={post.link}
                         imageDescription={post.alt}
                         pdfFile={post.pdf?.asset?.url || ''}
+                        published={post.publishedAt}
                     />
                 ))}
             </div>

@@ -17,7 +17,7 @@ const ContentWithImage = ({title, imageSrc, imageAlt, reverse, bgColour, childre
     return(
         <>
             <section id={id} className={`flex content-with-image items-start ${reverse ? "reverse"  : ""} items-start flex justify-center`} style={{backgroundColor: bgColour}}>
-                <div className="text-content flex-1 bg-amber-200 h-full py-20">
+                <div className="text-content flex-1 bg-white h-full py-20">
                     <h2 className="header font-semibold mb-5">{title}</h2>
                     {children}
                 </div>

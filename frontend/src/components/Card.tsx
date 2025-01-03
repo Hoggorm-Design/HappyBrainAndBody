@@ -4,9 +4,9 @@ interface CardProps {
     image?: string;
     header: string;
     text: string;
-    link?: string; // Optional
+    link?: string;
     imageDescription?: string;
-    pdfFile?: string; // Optional
+    pdfFile?: string;
 }
 
 const Card: React.FC<CardProps> = ({ image, header, text, link, imageDescription, pdfFile }) => {
@@ -32,7 +32,7 @@ const Card: React.FC<CardProps> = ({ image, header, text, link, imageDescription
             <div className="flex flex-col justify-between flex-1 p-6">
                 <div>
                     <h2 className="font-semibold text-lg mb-3 text-gray-800">{header}</h2>
-                    <p className="text-gray-600 mb-4">{text}</p>
+                    <p className="text mb-4">{text}</p>
                 </div>
 
                 {/* Links Section */}

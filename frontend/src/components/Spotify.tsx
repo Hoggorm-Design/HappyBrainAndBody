@@ -27,7 +27,7 @@ const Spotify = () => {
                 <h3 className={"sub-header font-bold mb-1"}>{spotifyData.title}</h3>
                 <p className={"text"}>{spotifyData.body}</p>
                 <a href={spotifyData.link} className="button" target="_blank">
-
+                    Hør mer &rsaquo;
                 </a>
             </div>
         </div>

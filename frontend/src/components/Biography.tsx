@@ -4,7 +4,7 @@ export default function Biography() {
     const { postData, loading, error } = useBiography();
 
     if (loading) {
-        return <p>Loading posts...</p>;
+        return <p>Laster inn...</p>;
     }
 
     if (error) {
@@ -14,7 +14,7 @@ export default function Biography() {
     const post = postData[0];
 
     if (!post) {
-        return <p>No post available</p>;
+        return <p>Ingen biografi tilgjengelig</p>;
     }
     return (
         <section id="Var-lege" className="flex flex-col 2xl:flex-row gap-5 items-center justify-around bg-white h-full w-full p-[30px] 2xl:px-[100px] py-20">

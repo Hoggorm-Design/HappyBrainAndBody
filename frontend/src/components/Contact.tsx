@@ -1,4 +1,4 @@
-import { FiPhone } from 'react-icons/fi';
+import { FiPhone, FiMail } from 'react-icons/fi';
 import useContact from '../hooks/useContact';
 
 const Contact = () => {
@@ -24,7 +24,6 @@ const Contact = () => {
                         </div>
                     )}
                     <h3 className="font-semibold">Telefon og mail</h3>
-                    <br/>
                     <div className="flex items-start">
                         <FiPhone className="mr-4 mt-0 sub-header"/>
 
@@ -36,6 +35,7 @@ const Contact = () => {
                         </a>
                     </div>
                     <div className="flex items-start">
+                        <FiMail className="mr-4 mt-0 sub-header"/>
                         <a
                             href={`mailto:${contactData?.mail}`}
                             className="underline text"

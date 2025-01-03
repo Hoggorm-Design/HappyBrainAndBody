@@ -47,7 +47,7 @@ function App() {
                                             />
                                         </div>
                                         <div className="w-full xl:w-1/2">
-                                            <h1 className="sub-header font-semibold mb-4">{landingData.header}</h1>
+                                            <h2 className="sub-header font-semibold mb-4">{landingData.header}</h2>
                                             <p className="text">
                                                 {landingData.introText}
                                             </p>
@@ -110,16 +110,13 @@ function App() {
                                                 imageSrc={post.image?.asset?.url || placeholderImg}
                                                 imageAlt={post.alt}
                                                 info={post.body || "No content available."}
-                                                buttonText="Se mer"
+                                                buttonText="Les mer"
                                                 buttonLink={post.link || "#"}
 
                                             />
                                         ))}
                                         <Spotify
-                                            title="Gjest hos Raushetspodden ved Tore Petterson"
-                                            info="Lorem ipsum dolor sit amet..."
-                                            buttonText="Se mer"
-                                            buttonLink="#"
+
                                         />
                                     </div>
                                 </section>

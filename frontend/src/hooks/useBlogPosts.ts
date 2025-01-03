@@ -16,7 +16,7 @@ interface BlogPost {
             url: string;
         };
     };
-    publishedAt: string; // Assuming you have this field in your schema
+    publishedAt: string;
 }
 
 const useBlogPosts = () => {
