@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Card from './Card.tsx';
 import useBlogPosts from '../hooks/useBlogPosts';
 import useBlogPage from "../hooks/useBlogPage.ts";
+import { FiArrowDownCircle } from "react-icons/fi";
 
 const Blog = () => {
     const { blogPosts, loading, error } = useBlogPosts();
@@ -9,11 +10,10 @@ const Blog = () => {
 
     const posts = blogPosts || [];
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const postsPerPage = 5;
+    const [postsToShow, setPostsToShow] = useState(4); // Initially show 4 posts
 
     if (loading) {
-        return <div className="w-screen h-screen flex justify-center items-center">Laster...</div>;
+        return <div className="w-screen h-screen flex justify-center items-center">Loading...</div>;
     }
 
     if (error) {
@@ -21,34 +21,23 @@ const Blog = () => {
     }
 
     if (!blogPageData) {
-        return <div className="w-screen h-screen flex justify-center items-center">Blogg-data er ikke tilgjengelig.</div>;
+        return <div className="w-screen h-screen flex justify-center items-center">Blog data not available.</div>;
     }
 
-    // Calculate the indices for the current page's posts
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts = posts.slice(0, postsToShow);
 
-    const totalPages = Math.ceil(posts.length / postsPerPage);
-
-    const nextPage = () => {
-        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-    };
-
-    const prevPage = () => {
-        if (currentPage > 1) setCurrentPage(currentPage - 1);
+    const handleShowMore = () => {
+        setPostsToShow(postsToShow + 4); // Load 4 more posts on each click
     };
 
     return (
         <section className="flex flex-col items-center justify-center min-h-screen space-y-12 my-36 px-6">
-            {/* Blog Page Header Section */}
             <div className="text-center">
                 <h1 className="header font-bold">{blogPageData.header}</h1>
                 <p>{blogPageData.text}</p>
             </div>
 
-            {/* Blog Posts Section */}
-            <div className="w-full flex flex-wrap justify-center items-center flex-col gap-20">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-12">
                 {currentPosts?.map((post) => (
                     <Card
                         key={post.header}
@@ -58,29 +47,20 @@ const Blog = () => {
                         link={post.link}
                         imageDescription={post.alt}
                         pdfFile={post.pdf?.asset?.url || ''}
-                        published={post.publishedAt}
                     />
                 ))}
             </div>
 
-            {/* Pagination Section */}
-            <div className="flex justify-center gap-4 mt-8">
-                <button
-                    onClick={prevPage}
-                    disabled={currentPage === 1}
-                    className="px-4 py-2 bg-[#5286A4] text-white rounded-full disabled:opacity-50"
-                >
-                    &lt; Previous
-                </button>
-                <span className="text-lg font-semibold">{`${currentPage} / ${totalPages}`}</span>
-                <button
-                    onClick={nextPage}
-                    disabled={currentPage === totalPages}
-                    className="px-4 py-2 bg-[#5286A4] text-white rounded-full disabled:opacity-50"
-                >
-                    Next &gt;
-                </button>
-            </div>
+            {currentPosts.length < posts.length && (
+                <div className="flex justify-center mt-8">
+                    <button
+                        onClick={handleShowMore}
+                        className="flex items-center px-6 py-3 bg-[#5286A4] text-white rounded-full hover:bg-[#396E8A] hover:scale-110 transition-transform duration-200"
+                    >
+                        <span>Show More</span> <FiArrowDownCircle className="ml-2" />
+                    </button>
+                </div>
+            )}
         </section>
     );
 };
