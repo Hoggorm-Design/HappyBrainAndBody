@@ -37,7 +37,7 @@ const Blog = () => {
                 <p>{blogPageData.text}</p>
             </div>
 
-            <div className="w-full grid grid-cols-1 xl:grid-cols-2 gap-y-12 gap-x-4 justify-items-center">
+            <div className="w-full grid grid-cols-1 xl:grid-cols-2 gap-y-10  justify-items-center">
                 {currentPosts?.map((post) => (
                     <Card
                         key={post.header}

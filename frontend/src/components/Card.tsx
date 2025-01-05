@@ -31,8 +31,8 @@ const Card: React.FC<CardProps> = ({ image, header, text, link, imageDescription
             {/* Content Section */}
             <div className="flex flex-col justify-between flex-1 p-6">
                 <div>
-                    <h2 className="font-semibold text-lg mb-3 text-gray-800">{header}</h2>
-                    <p className="text mb-4">{text}</p>
+                    <h2 className="font-bold text-xl mb-3">{header}</h2>
+                    <p className="text-xl mb-4">{text}</p>
                 </div>
 
                 {/* Links Section */}
