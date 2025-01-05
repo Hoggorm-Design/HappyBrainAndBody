@@ -38,7 +38,7 @@ function App() {
                         <div className="mt-20">
                             {landingData && (
                                     <section
-                                        className="flex flex-col xl:flex-row items-start justify-between px-[30px] xl:px-[50px] py-[80px] gap-20">
+                                        className="flex flex-col xl:flex-row items-start justify-between p-[30px] 2xl:px-[100px] pt-[100px] 2xl:pb-16 gap-20">
                                         <div className="w-full xl:w-1/2">
                                             <img
                                                 src={landingData.image?.asset?.url || placeholderImg}
@@ -102,7 +102,7 @@ function App() {
                                     <div id="eksempler" className="relative -mt-[120px] pt-[120px]">
                                         <h2 className="header font-bold mb-7">Eksempler</h2>
                                     </div>
-                                    <div className="grid 2xl:grid-cols-2 gap-20 grid-cols-1">
+                                    <div className="grid xl:grid-cols-2 gap-20 grid-cols-1">
                                         {eventData.map((post) => (
                                             <Example
                                                 key={post.slug.current}

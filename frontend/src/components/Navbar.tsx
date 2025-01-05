@@ -148,7 +148,10 @@ const Navbar: React.FC = () => {
                     </li>
                     <li>
                         <button
-                            onClick={() => navigate("/blog")}
+                            onClick={() => {
+                                setIsMenuOpen(false);
+                                navigate("/blog");
+                            }}
                             className="block text-[#FFFFFF] text-lg"
                         >
                             Blog

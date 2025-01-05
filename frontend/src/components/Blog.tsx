@@ -37,7 +37,7 @@ const Blog = () => {
                 <p>{blogPageData.text}</p>
             </div>
 
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-12">
+            <div className="w-full grid grid-cols-1 xl:grid-cols-2 gap-y-12 gap-x-4 justify-items-center">
                 {currentPosts?.map((post) => (
                     <Card
                         key={post.header}
@@ -57,7 +57,7 @@ const Blog = () => {
                         onClick={handleShowMore}
                         className="flex items-center px-6 py-3 bg-[#5286A4] text-white rounded-full hover:bg-[#396E8A] hover:scale-110 transition-transform duration-200"
                     >
-                        <span>Show More</span> <FiArrowDownCircle className="ml-2" />
+                        <span>Vis mer</span> <FiArrowDownCircle className="ml-2" />
                     </button>
                 </div>
             )}

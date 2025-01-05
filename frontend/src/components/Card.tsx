@@ -12,20 +12,20 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ image, header, text, link, imageDescription, pdfFile }) => {
     return (
         <div
-            className="flex flex-col md:flex-row w-2/4 rounded-lg overflow-hidden shadow-md bg-white border transform transition duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
+            className="min-h-[300px] flex flex-col md:flex-row w-full max-w-lg rounded-lg overflow-hidden shadow-md bg-white border transform transition duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
         >
 
             {/* Image Section */}
 
-                {image && (
-                    <div className="flex-shrink-0 md:w-1/2">
+            {image && (
+                <div className="flex-shrink-0 md:w-1/2">
                     <img
                         className="w-full h-full object-cover"
                         src={image}
                         alt={imageDescription || `Image for ${header}`}
                     />
-                    </div>
-                )}
+                </div>
+            )}
 
 
             {/* Content Section */}
@@ -44,7 +44,7 @@ const Card: React.FC<CardProps> = ({ image, header, text, link, imageDescription
                             rel="noopener noreferrer"
                             className="inline-block text-white bg-[#5286A4] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#1A5673]/80 transition duration-300"
                         >
-                            Les mer...
+                            Les mer
                         </a>
                     )}
                     {pdfFile && (
@@ -54,7 +54,7 @@ const Card: React.FC<CardProps> = ({ image, header, text, link, imageDescription
                             rel="noopener noreferrer"
                             className="inline-block text-white bg-[#5286A4] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#1A5673]/80 transition duration-300"
                         >
-                            last ned...
+                            last ned
                         </a>
                     )}
 

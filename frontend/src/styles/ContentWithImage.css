@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80vh;
-    padding: 0 100px;
+    height: auto;
+    min-height: 500px;
 }
 
 .content-with-image.reverse {
@@ -26,6 +26,7 @@
 .image-content img {
     width: 80%;
     height: auto;
+    max-width: 600px;
 }
 
 .button {
@@ -45,7 +46,7 @@ p {
 }
 
 /* Media query for screens smaller than 1280px (typically tablets/mobile) */
-@media (max-width: 1280px) {
+@media (max-width: 1024px) {
     .content-with-image {
         flex-direction: column;
         height: auto; /* Allow height to adjust based on content */
@@ -67,7 +68,8 @@ p {
     }
 
     .image-content img {
-        width: auto; /* Make the image responsive */
-        height: 100%;
+        width: 100%; /* Make the image responsive */
+        max-width: 500px; /* Restrict max width on smaller screens */
+        height: auto; /* Maintain aspect ratio */
     }
 }

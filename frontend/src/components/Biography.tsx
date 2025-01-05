@@ -17,12 +17,12 @@ export default function Biography() {
         return <p>Ingen biografi tilgjengelig</p>;
     }
     return (
-        <section id="Var-lege" className="flex flex-col 2xl:flex-row gap-5 items-center justify-around bg-white h-full w-full p-[30px] 2xl:px-[100px] py-20">
+        <section id="Var-lege" className="flex flex-col 2xl:flex-row gap-5 items-center justify-around bg-white h-full w-full p-[30px] 2xl:px-[100px] py-36">
             <div className="w-full 2xl:w-auto flex justify-start items-center">
                 <img
                     src={post.mainImage?.asset?.url}
                     alt={post.alt}
-                    className="max-h-[400px] max-w-[300px] w-auto h-auto object-contain"
+                    className="max-h-[200px] max-w-[200px] w-auto h-auto object-contain"
                 />
             </div>
             <div className="flex flex-col justify-center gap-5 h-3/5 xl:h-full">

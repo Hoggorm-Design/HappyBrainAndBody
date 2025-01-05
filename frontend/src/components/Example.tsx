@@ -9,18 +9,19 @@ interface ExampleProps {
 
 const Example = ({ title, buttonText, buttonLink, imageSrc, imageAlt, info }: ExampleProps) => {
     return (
-        <div className="flex flex-col items-center gap-5 text-center md:items-start md:text-left">
+        <div className="flex flex-col items-center gap-5 text-left">
             {/* Image container */}
-            <div className="w-full flex justify-center md:justify-start">
+            <div className="w-full aspect-video overflow-hidden flex justify-center md:justify-start">
                 <img
-                    className="w-auto object-contain"
+                    className="w-full h-full object-cover"
                     src={imageSrc}
                     alt={imageAlt}
                 />
             </div>
 
+
             {/* Text container */}
-            <div>
+            <div className="w-full">
                 <h3 className="sub-header font-bold mb-1">{title}</h3>
                 <p className="text">{info}</p>
                 <a
