@@ -1,6 +1,5 @@
-// import "../styles/spotify.css"
 
-import useSpotify from "../hooks/useSpotify.ts";
+import useSpotify from "../hooks/useSpotify";
 
 
 const Spotify = () => {

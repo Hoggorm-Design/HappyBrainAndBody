@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import sanityClient from '../client.ts';
+import sanityClient from '../client';
 
 interface Contact {
     header: string;
