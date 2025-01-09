@@ -12,10 +12,9 @@ const createServer = async () => {
     const vite = await createViteServer({
         server: { middlewareMode: true },
         appType: "custom",
-        root: resolve(__dirname, '..') // Add this to help Vite find files
+        root: resolve(__dirname, '..')
     });
 
-    // Serve static files
     app.use(express.static(resolve(__dirname, '../public')));
     app.use(vite.middlewares);
 
@@ -23,7 +22,6 @@ const createServer = async () => {
         const url = req.originalUrl;
 
         try {
-            // Make sure we're reading from the correct path
             const template = readFileSync(
                 resolve(__dirname, '../index.html'),
                 'utf-8'
