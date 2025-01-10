@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
+import rateLimit from 'express-rate-limit';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -14,6 +15,14 @@ const createServer = async () => {
         appType: "custom",
         root: resolve(__dirname, '..')
     });
+    // set up rate limiter: maximum of 100 requests per 15 minutes
+    const limiter = rateLimit({
+        windowMs: 15 * 60 * 1000, // 15 minutes
+        max: 100, // max 100 requests per windowMs
+    });
+
+    // apply rate limiter to all requests
+    app.use(limiter);
 
     app.use(express.static(resolve(__dirname, '../public')));
     app.use(vite.middlewares);
