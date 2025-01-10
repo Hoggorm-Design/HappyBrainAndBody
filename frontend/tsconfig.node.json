@@ -9,20 +9,23 @@
     "types": ["node"],
     "skipLibCheck": true,
     "strict": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
     "jsx": "react-jsx",
     "lib": ["ESNext", "DOM"],
-    "resolveJsonModule": true,
     "isolatedModules": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": true
+    "noEmit": true,
+    "typeRoots": ["./node_modules/@types", "./src"],
+    "baseUrl": ".",
+    "paths": {
+      "@server/*": ["dist/server/*"]
+    }
   },
   "include": [
-    "vite.config.ts",
+    "vite.config.mts",
     "src/server.ts",
     "src/entry-server.tsx",
-    "src/App.tsx",
-    "src/**/*.tsx",
-    "src/**/*.ts"
+    "src/**/*.d.ts"
   ],
   "ts-node": {
     "esm": true,

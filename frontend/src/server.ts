@@ -1,5 +1,5 @@
 import express from "express";
-import { createServer as createViteServer } from "vite";
+import { createServer as createViteServer, ViteDevServer } from "vite";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from 'node:url';
@@ -7,39 +7,63 @@ import { dirname } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+interface ServerEntryModule {
+  render: (url: string) => Promise<string>;
+}
+
 const createServer = async () => {
     const app = express();
-    const vite = await createViteServer({
-        server: { middlewareMode: true },
-        appType: "custom",
-        root: resolve(__dirname, '..')
-    });
+    const isProd = process.env.NODE_ENV === 'production';
+    const root = resolve(__dirname, '..');
 
-    app.use(express.static(resolve(__dirname, '../public')));
-    app.use(vite.middlewares);
+    let vite: ViteDevServer | undefined;
+    if (!isProd) {
+        vite = await createViteServer({
+            server: { middlewareMode: true },
+            appType: 'custom',
+            root
+        });
+        app.use(vite.middlewares);
+    }
 
-    app.use("*", async (req, res, next) => {
+    app.use(express.static(resolve(__dirname, '../dist/client')));
+
+    app.use("*", async (req, res) => {
         const url = req.originalUrl;
 
         try {
-            const template = readFileSync(
-                resolve(__dirname, '../index.html'),
+            let template = readFileSync(
+                isProd
+                    ? resolve(__dirname, '../dist/client/index.html')
+                    : resolve(__dirname, '../index.html'),
                 'utf-8'
             );
 
-            const transformedTemplate = await vite.transformIndexHtml(url, template);
-            const { render } = await vite.ssrLoadModule(resolve(__dirname, "./entry-server.tsx"));
+            if (!isProd && vite) {
+                template = await vite.transformIndexHtml(url, template);
+            }
+
+            let render: (url: string) => Promise<string>;
+            if (isProd) {
+                const serverEntry = await import('../dist/server/entry-server.js') as ServerEntryModule;
+                render = serverEntry.render;
+            } else {
+                if (!vite) {
+                    throw new Error('Vite server not initialized in development mode');
+                }
+                // Update this path to be relative to the root
+                const serverEntry = await vite.ssrLoadModule('/src/entry-server.tsx') as ServerEntryModule;
+                render = serverEntry.render;
+            }
+
             const appHtml = await render(url);
-            const html = transformedTemplate.replace(`<!--ssr-outlet-->`, appHtml);
+            const html = template.replace('<!--ssr-outlet-->', appHtml);
 
-            res.status(200)
-                .set({ "Content-Type": "text/html" })
-                .end(html);
-
-        } catch (error) {
-            vite.ssrFixStacktrace(error as Error);
-            console.error('SSR Error:', error);
-            res.status(500).end((error as Error).stack);
+            res.status(200).set({ "Content-Type": "text/html" }).end(html);
+        } catch (error: unknown) {
+            console.error('Render error:', error);
+            const errorMessage = error instanceof Error ? error.stack : 'Unknown error occurred';
+            res.status(500).end(errorMessage);
         }
     });
 
@@ -50,7 +74,7 @@ createServer().then(({ app }) => {
     app.listen(5173, () => {
         console.log('Server running at http://localhost:5173');
     });
-}).catch((error) => {
+}).catch((error: unknown) => {
     console.error('Failed to start server:', error);
     process.exit(1);
 });

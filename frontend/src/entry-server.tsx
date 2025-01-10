@@ -1,19 +1,23 @@
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { StrictMode } from 'react';
+import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
-import App from './App.tsx';
+import App from './App';
+import { SanityProvider } from "./providers/SanityProvider";
+import "./index.css";
 
 export async function render(url: string) {
   try {
-    return ReactDOMServer.renderToString(
-      <React.StrictMode>
+    return renderToString(
+      <StrictMode>
         <StaticRouter location={url}>
-          <App />
+          <SanityProvider>
+            <App />
+          </SanityProvider>
         </StaticRouter>
-      </React.StrictMode>
+      </StrictMode>
     );
   } catch (error) {
     console.error('Render error:', error);
-    throw error;
+    return "";
   }
 }
