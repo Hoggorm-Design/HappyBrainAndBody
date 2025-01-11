@@ -1,5 +1,6 @@
 
 import useSpotify from "../hooks/useSpotify";
+import {ClientOnly} from "./ClientOnly";
 
 
 const Spotify = () => {
@@ -13,14 +14,17 @@ const Spotify = () => {
     return (
         <div className="flex flex-col gap-5">
             <div className="flex justify-center items-center overflow-hidden">
-                <iframe
-                    src="https://open.spotify.com/embed/episode/0Jis0INFCA33ffLmTxBwm8?utm_source=generator"
-                    title="Raushetspodden"
-                    width="100%"
-                    height="352"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy">
-                </iframe>
+                <ClientOnly fallback={<div>Loading podcast...</div>}>
+                    <iframe
+                        src="https://open.spotify.com/embed/episode/0Jis0INFCA33ffLmTxBwm8?utm_source=generator"
+                        title="Raushetspodden"
+                        width="100%"
+                        height="352"
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+                </ClientOnly>
+
             </div>
             <div className="text-container">
                 <h3 className={"sub-header font-bold mb-1"}>{spotifyData.title}</h3>
