@@ -78,19 +78,13 @@ async function createServer() {
         manifestSrc: ["'self'"]
       }
     },
+    frameguard: { action: 'sameorigin' },
     crossOriginEmbedderPolicy: false,
     crossOriginOpenerPolicy: false,
     crossOriginResourcePolicy: { policy: "cross-origin" }
   })
 );
-   app.use(
-    helmet({
-      contentSecurityPolicy: false,
-      crossOriginEmbedderPolicy: false,
-      crossOriginOpenerPolicy: false,
-      crossOriginResourcePolicy: { policy: "cross-origin" }
-    })
-  );
+
 
   let vite: ViteDevServer | undefined;
 
