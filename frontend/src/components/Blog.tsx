@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Card from './Card.tsx';
+import Card from './Card';
 import useBlogPosts from '../hooks/useBlogPosts';
-import useBlogPage from "../hooks/useBlogPage.ts";
+import useBlogPage from "../hooks/useBlogPage";
 import { FiArrowDownCircle } from "react-icons/fi";
 
 const Blog = () => {

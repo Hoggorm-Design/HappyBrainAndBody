@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import sanityClient from '../client.ts';
+import sanityClient from '../client';
 
 export interface BlogPage {
     header: string;

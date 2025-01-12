@@ -1,19 +1,19 @@
 import './index.css';
-import Biography from "./components/Biography.tsx";
-import ContentWithImage from "./components/ContentWithImage.tsx";
+import Biography from "./components/Biography";
+import ContentWithImage from "./components/ContentWithImage";
 import placeholderImg from "./assets/placeholder.png";
-import Example from "./components/Example.tsx";
-import Spotify from "./components/Spotify.tsx";
-import usePost2 from "./hooks/useContent1.ts";
-import usePost3 from "./hooks/useContent2.ts";
-import useEvent from "./hooks/useEvent.ts";
-import usePost4 from "./hooks/useContent3.ts";
-import Navbar from "./components/Navbar.tsx";
+import Example from "./components/Example";
+import Spotify from "./components/Spotify";
+import usePost2 from "./hooks/useContent1";
+import usePost3 from "./hooks/useContent2";
+import useEvent from "./hooks/useEvent";
+import usePost4 from "./hooks/useContent3";
+import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
-import Blog from "./components/Blog.tsx";
-import Contact from "./components/Contact.tsx";
-import useLanding from "./hooks/useLanding.ts";
-import ScrollToAnchor from "./components/ScrollToAnchor.tsx"; // Assuming this is your fade-in wrapper
+import Blog from "./components/Blog";
+import Contact from "./components/Contact";
+import useLanding from "./hooks/useLanding";
+import ScrollToAnchor from "./components/ScrollToAnchor";
 
 function App() {
     const { postData: post2Data } = usePost2();

@@ -1,4 +1,4 @@
-import useBiography from "../hooks/useBiography.ts";
+import useBiography from "../hooks/useBiography";
 
 export default function Biography() {
     const { postData, loading, error } = useBiography();
