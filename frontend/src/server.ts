@@ -89,8 +89,19 @@ async function createServer() {
       referrerPolicy: { policy: "strict-origin-when-cross-origin" },
     }),
   );
+
+  const allowedOrigins = [
+    "http://localhost:5173/",
+    "https://happybrainandbody.netlify.app",
+    "http://localhost:3333",
+  ];
   app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
+    const origin = req.headers.origin;
+
+    if (typeof origin === "string" && allowedOrigins.includes(origin)) {
+      res.setHeader("Access-Control-Allow-Origin", origin);
+    }
+
     res.setHeader(
       "Access-Control-Allow-Methods",
       "GET, POST, OPTIONS, PUT, PATCH, DELETE",
