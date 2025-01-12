@@ -2,14 +2,14 @@ import express from "express";
 import type { ViteDevServer } from "vite";
 import { createServer as createViteServer } from "vite";
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import path, { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { dirname } from "node:path";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import he from "he";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const isProduction = process.env.NODE_ENV === "production";
 const PORT = process.env.PORT || 5173;
 

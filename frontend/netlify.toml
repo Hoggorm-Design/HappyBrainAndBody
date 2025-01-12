@@ -10,15 +10,8 @@
 
 [functions]
   node_bundler = "esbuild"
-  external_node_modules = ["express"]
-
+  external_node_modules = ["express", "vite"]
 
 [build.environment]
   NODE_VERSION = "18"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Methods = "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-    Access-Control-Allow-Headers = "X-Requested-With, Content-Type, Authorization"
+  NODE_ENV = "production"

@@ -1,11 +1,14 @@
-import { createServer } from "../../dist/server/server.js";
-import serverless from "serverless-http";
+const serverless = require("serverless-http");
+const path = require("path");
 
 let serverHandler;
 
 const getHandler = async () => {
   if (!serverHandler) {
     try {
+      const { createServer } = await import(
+        path.join(process.cwd(), "dist/server/server.js")
+      );
       const { app } = await createServer();
       serverHandler = serverless(app, {
         binary: ["*/*"],
@@ -19,7 +22,7 @@ const getHandler = async () => {
   return serverHandler;
 };
 
-export const handler = async (event, context) => {
+exports.handler = async (event, context) => {
   try {
     const handle = await getHandler();
     return await handle(event, context);
