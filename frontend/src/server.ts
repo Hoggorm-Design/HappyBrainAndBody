@@ -6,6 +6,10 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import helmet from "helmet";
+import rateLimit from 'express-rate-limit';
+import he from 'he';
+
+
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const isProduction = process.env.NODE_ENV === 'production';
@@ -91,8 +95,7 @@ async function createServer() {
       crossOriginResourcePolicy: { policy: "cross-origin" }
     })
   );
-
-  let vite: ViteDevServer | undefined;
+   let vite: ViteDevServer | undefined;
 
    app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -106,6 +109,13 @@ async function createServer() {
     }
     next();
   });
+
+   const limiter = rateLimit({
+     windowMs: 15 * 60 * 1000,
+     limit: 100,
+   });
+
+   app.use(limiter);
 
 
   if (!isProduction) {
@@ -172,7 +182,7 @@ async function createServer() {
         vite.ssrFixStacktrace(error as Error);
       }
       console.error('Error processing request:', error);
-      res.status(500).end(error instanceof Error ? error.stack : 'Internal Server Error');
+      res.status(500).end(error instanceof Error ? he.escape(error.stack) : 'Internal Server Error');
     }
   });
 
