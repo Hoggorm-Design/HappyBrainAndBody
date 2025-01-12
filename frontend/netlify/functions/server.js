@@ -1,5 +1,9 @@
-const serverless = require("serverless-http");
-const path = require("path");
+import serverless from "serverless-http";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 let serverHandler;
 
@@ -22,7 +26,7 @@ const getHandler = async () => {
   return serverHandler;
 };
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   try {
     const handle = await getHandler();
     return await handle(event, context);
