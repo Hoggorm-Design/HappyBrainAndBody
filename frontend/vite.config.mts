@@ -5,10 +5,10 @@ export default defineConfig({
   plugins: [react()],
   ssr: {
     noExternal: ["react-router-dom", "tailwindcss"],
+    target: "node",
     optimizeDeps: {
       exclude: ["@sanity/client"],
     },
-    target: "node",
   },
   build: {
     cssCodeSplit: false,
@@ -16,13 +16,21 @@ export default defineConfig({
     rollupOptions: {
       output: {
         format: "esm",
+        entryFileNames: "[name].js",
+        chunkFileNames: "[name]-[hash].js",
         assetFileNames: "assets/[name].[ext]",
       },
     },
     ssrEmitAssets: true,
+    manifest: true,
   },
   optimizeDeps: {
     include: ["react", "react-dom", "react-router-dom"],
     exclude: ["@sanity/client"],
+  },
+  resolve: {
+    alias: {
+      "@": "/src",
+    },
   },
 });

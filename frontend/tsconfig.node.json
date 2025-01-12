@@ -6,29 +6,20 @@
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "types": ["node"],
+    "types": ["node", "vite/client"],
     "skipLibCheck": true,
     "strict": true,
-    "allowJs": true,
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "lib": ["ESNext", "DOM"],
     "isolatedModules": true,
-    "noEmit": true,
-    "typeRoots": ["./node_modules/@types", "./src"],
-    "baseUrl": ".",
-    "paths": {
-      "@server/*": ["dist/server/*"]
-    }
+    "noEmit": false,
+    "outDir": "dist"
   },
   "include": [
-    "vite.config.mts",
+    "vite.config.ts",
     "src/server.ts",
     "src/entry-server.tsx",
-    "src/**/*.d.ts"
-  ],
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node"
-  }
+    "netlify/functions/**/*"
+  ]
 }

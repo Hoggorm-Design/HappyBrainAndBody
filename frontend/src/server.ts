@@ -26,6 +26,7 @@ async function createServer() {
 
   let vite: ViteDevServer | undefined;
 
+  // Updated helmet configuration
   app.use(
     helmet({
       contentSecurityPolicy: {
@@ -58,7 +59,7 @@ async function createServer() {
           ],
           styleSrc: [
             "'self'",
-            "'unsafe-inline'", // Required for styled-components or similar
+            "'unsafe-inline'",
             "https://fonts.googleapis.com",
             "https://maps.googleapis.com",
           ],
@@ -75,42 +76,29 @@ async function createServer() {
           frameAncestors: ["'self'"],
           objectSrc: ["'none'"],
           manifestSrc: ["'self'"],
+          formAction: ["'self'"],
+          upgradeInsecureRequests: [],
         },
       },
-      crossOriginEmbedderPolicy: { policy: "credentialless" },
-      crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
-      crossOriginResourcePolicy: { policy: "cross-origin" },
-      hsts: {
-        maxAge: 31536000,
-        includeSubDomains: true,
-        preload: true,
-      },
+      crossOriginEmbedderPolicy: false,
+      crossOriginOpenerPolicy: false,
+      crossOriginResourcePolicy: false,
       noSniff: true,
       referrerPolicy: { policy: "strict-origin-when-cross-origin" },
     }),
   );
 
-  const allowedOrigins = [
-    "http://localhost:5173/",
-    "https://happybrainandbody.netlify.app",
-    "http://localhost:3333",
-  ];
+  // Simple CORS setup without cookies
   app.use((req, res, next) => {
-    const origin = req.headers.origin;
-
-    if (typeof origin === "string" && allowedOrigins.includes(origin)) {
-      res.setHeader("Access-Control-Allow-Origin", origin);
-    }
-
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
       "Access-Control-Allow-Methods",
       "GET, POST, OPTIONS, PUT, PATCH, DELETE",
     );
     res.setHeader(
       "Access-Control-Allow-Headers",
-      "X-Requested-With, Content-Type, Authorization",
+      "X-Requested-With, Content-Type",
     );
-    res.setHeader("Access-Control-Allow-Credentials", "true");
 
     if (req.method === "OPTIONS") {
       res.sendStatus(200);
@@ -119,17 +107,12 @@ async function createServer() {
     next();
   });
 
-  app.use((req, res, next) => {
-    res.setHeader(
-      "Permissions-Policy",
-      'interest-cohort=(), storage-access=(self "https://*.spotify.com")',
-    );
-    next();
-  });
-
+  // Rate limiting
   const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     limit: 100,
+    standardHeaders: true,
+    legacyHeaders: false,
   });
 
   app.use(limiter);
@@ -144,7 +127,7 @@ async function createServer() {
     app.use(vite.middlewares);
   } else {
     app.use(
-      express.static(resolve(__dirname, "../dist/client"), {
+      express.static(resolve(__dirname, "../client"), {
         index: false,
         immutable: true,
         cacheControl: true,
@@ -159,7 +142,7 @@ async function createServer() {
     try {
       let template = readFileSync(
         isProduction
-          ? resolve(__dirname, "../dist/client/index.html")
+          ? resolve(__dirname, "../client/index.html")
           : resolve(__dirname, "../index.html"),
         "utf-8",
       );
@@ -170,14 +153,10 @@ async function createServer() {
 
       let render: RenderFunction;
       if (isProduction) {
-        // Type assertion for production build
-        const serverEntry = (await import(
-          "../dist/server/entry-server.js"
-        )) as ServerEntry;
+        const serverEntry = (await import("./entry-server.js")) as ServerEntry;
         render = serverEntry.render;
       } else {
         if (!vite) throw new Error("Vite server not initialized");
-        // Type assertion for development build
         const serverEntry = (await vite.ssrLoadModule(
           "/src/entry-server.tsx",
         )) as ServerEntry;
@@ -187,7 +166,16 @@ async function createServer() {
       const appHtml = await render(url);
       const html = template.replace("<!--ssr-outlet-->", appHtml);
 
-      res.status(200).set({ "Content-Type": "text/html" }).end(html);
+      res
+        .status(200)
+        .set({
+          "Content-Type": "text/html",
+          "Cache-Control":
+            "no-store, no-cache, must-revalidate, proxy-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
+        })
+        .end(html);
     } catch (error) {
       if (isProduction) {
         next(error);
@@ -210,6 +198,7 @@ async function createServer() {
     }
   });
 
+  // Error handler
   app.use(
     (
       err: Error,
