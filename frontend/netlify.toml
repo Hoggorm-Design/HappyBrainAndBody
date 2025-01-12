@@ -7,3 +7,18 @@
   from = "/*"
   to = "/.netlify/functions/server"
   status = 200
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["express"]
+
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+    Access-Control-Allow-Headers = "X-Requested-With, Content-Type, Authorization"

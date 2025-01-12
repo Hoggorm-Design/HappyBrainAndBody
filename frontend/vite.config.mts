@@ -6,9 +6,6 @@ export default defineConfig({
   ssr: {
     noExternal: ["react-router-dom", "tailwindcss"],
     target: "node",
-    optimizeDeps: {
-      exclude: ["@sanity/client"],
-    },
   },
   build: {
     cssCodeSplit: false,
@@ -27,10 +24,5 @@ export default defineConfig({
   optimizeDeps: {
     include: ["react", "react-dom", "react-router-dom"],
     exclude: ["@sanity/client"],
-  },
-  resolve: {
-    alias: {
-      "@": "/src",
-    },
   },
 });

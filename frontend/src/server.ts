@@ -26,7 +26,6 @@ async function createServer() {
 
   let vite: ViteDevServer | undefined;
 
-  // Updated helmet configuration
   app.use(
     helmet({
       contentSecurityPolicy: {
@@ -48,6 +47,7 @@ async function createServer() {
             "https://maps.gstatic.com",
             "https://*.sanity.io",
             "https://*.apicdn.sanity.io",
+            "https://*.spotify.com", // Add this
           ].filter(Boolean),
           imgSrc: [
             "'self'",
@@ -56,12 +56,14 @@ async function createServer() {
             "blob:",
             "https://*.sanity.io",
             "https://*.apicdn.sanity.io",
+            "https://*.spotify.com", // Add this
           ],
           styleSrc: [
             "'self'",
             "'unsafe-inline'",
             "https://fonts.googleapis.com",
             "https://maps.googleapis.com",
+            "https://*.spotify.com", // Add this
           ],
           fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
           frameSrc: [
@@ -73,7 +75,7 @@ async function createServer() {
             "https://*.spotify.com",
           ],
           workerSrc: ["'self'", "blob:"],
-          frameAncestors: ["'self'"],
+          frameAncestors: ["'self'", "https://*.spotify.com"], // Add spotify
           objectSrc: ["'none'"],
           manifestSrc: ["'self'"],
           formAction: ["'self'"],
@@ -83,21 +85,28 @@ async function createServer() {
       crossOriginEmbedderPolicy: false,
       crossOriginOpenerPolicy: false,
       crossOriginResourcePolicy: false,
-      noSniff: true,
-      referrerPolicy: { policy: "strict-origin-when-cross-origin" },
     }),
   );
 
-  // Simple CORS setup without cookies
   app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    const origin = req.headers.origin;
+    if (
+      origin &&
+      (origin.includes("spotify.com") || origin === "http://localhost:5173")
+    ) {
+      res.setHeader("Access-Control-Allow-Origin", origin);
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+    } else {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+    }
+
     res.setHeader(
       "Access-Control-Allow-Methods",
       "GET, POST, OPTIONS, PUT, PATCH, DELETE",
     );
     res.setHeader(
       "Access-Control-Allow-Headers",
-      "X-Requested-With, Content-Type",
+      "X-Requested-With, Content-Type, Authorization",
     );
 
     if (req.method === "OPTIONS") {
@@ -107,7 +116,14 @@ async function createServer() {
     next();
   });
 
-  // Rate limiting
+  app.use((req, res, next) => {
+    res.setHeader("Set-Cookie", [
+      "sp_t=; SameSite=None; Secure; Partitioned;",
+      "sp_landing=; SameSite=None; Secure; Partitioned;",
+    ]);
+    next();
+  });
+
   const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     limit: 100,
