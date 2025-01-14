@@ -8,7 +8,10 @@ import contact from "./contact";
 import landing from './landing';
 import spotify from './spotify';
 import blogPage from "./blogPage";
+import pictureBottom from "./pictureBottom";
+import header from "./header"
+
 
 export const schemaTypes = [
-    post,post2, post3, post4, event, blog, contact, landing, spotify, blogPage,
+    post,post2, post3, post4, event, blog, contact, landing, spotify, blogPage, pictureBottom, header
 ];

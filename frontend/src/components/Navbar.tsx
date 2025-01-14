@@ -3,11 +3,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Header from "./Header";
 import "../styles/Hamburger.css";
+import useHeader from "@/hooks/useHeader";
 
 const Navbar: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { headerData } = useHeader();
 
     const handleNavigateToSection = (hash: string) => {
         setIsMenuOpen(false); // Close the menu
@@ -28,7 +30,7 @@ const Navbar: React.FC = () => {
     return (
         <nav className="fixed top-0 left-0 right-0 w-full bg-[#5286A4] backdrop-blur-lg z-50 px-6 py-4 flex justify-between items-center shadow-md">
             {/* Logo and Header */}
-            <Header title="Happy Brain and Body" logoSrc={logo} />
+            <Header title={headerData?.title || "Happy Brain and Body"} logoSrc={logo} />
 
             {/* Hamburger Icon (Visible on small screens) */}
             <div className="2xl:hidden text-white z-50">
