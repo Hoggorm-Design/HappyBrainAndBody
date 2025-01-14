@@ -6,7 +6,6 @@ const Contact = () => {
     const { contactData } = useContact();
     const { imageData } = useImageByContact();
 
-    console.log(contactData);
     return (
         <section className="flex flex-col lg:flex-row justify-between p-[30px] 2xl:px-[100px] py-32 h-auto gap-14">
             {/* Contact Information - Left */}
