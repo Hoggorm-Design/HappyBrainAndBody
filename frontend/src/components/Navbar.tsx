@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
             <div
                 className={`${
                     isMenuOpen ? "max-h-screen" : "max-h-0"
-                } 2xl:hidden absolute top-full left-0 w-full bg-[#1A5673] transition-all duration-300 overflow-hidden`}
+                } 2xl:hidden absolute top-full left-0 w-full bg-[#5286A4] transition-all duration-300 overflow-hidden`}
             >
                 <ul className="flex flex-col space-y-4 px-6 py-4">
                     <li>
