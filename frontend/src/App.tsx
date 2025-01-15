@@ -36,6 +36,7 @@ function App() {
               alt={landingData.alt}
               className="w-full h-auto object-cover rounded-lg"
             />
+              <p>{landingData.alt}</p>
           </div>
           <div className="w-full xl:w-1/2">
             <h2 className="sub-header font-bold mb-4">{landingData.header}</h2>

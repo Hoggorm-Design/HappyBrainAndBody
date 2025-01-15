@@ -1,4 +1,4 @@
-import { FiPhone, FiMail } from 'react-icons/fi';
+import {FiPhone, FiMail, FiInstagram} from 'react-icons/fi';
 import useContact from '../hooks/useContact';
 import useImageByContact from "../hooks/useImageByContact";
 
@@ -17,11 +17,11 @@ const Contact = () => {
                 <br/>
                 <div className="flex flex-col gap-4">
                     <div className="flex items-start">
-                        <p>{contactData?.website1link}</p>
+                        <a>{contactData?.website1link}</a>
                     </div>
                     {contactData?.website2link && (
                         <div className="flex items-start">
-                            <p>{contactData.website2link}</p>
+                            <p>Engelsk nettside: {contactData.website2link}</p>
                         </div>
                     )}
                     <h3 className="font-semibold">Telefon og mail</h3>
@@ -36,7 +36,8 @@ const Contact = () => {
                         </a>
                     </div>
                     <div className="flex items-start">
-                        <FiMail className="mr-4 mt-0 sub-header"/>
+                        <FiMail className="mr-4  mt-0 sub-header"/>
+
                         <a
                             href={`mailto:${contactData?.mail}`}
                             className="underline text"
@@ -44,17 +45,31 @@ const Contact = () => {
                             {contactData?.mail}
                         </a>
                     </div>
-                    </div>
+                </div>
+                <br/>
+                <h3 className="font-semibold">Instagram</h3>
+                <div className="flex items-start">
+                    <FiInstagram className="mr-4 mt-2 sub-header"/>
+
+                    <a
+                        href={""}
+                        className="underline text mt-2"
+                    >
+                        happybrainandbody
+                    </a>
+                </div>
             </article>
             {/* Image Section - Right */}
             {imageData && imageData.mainImage ? (
-                <article className="flex-1 flex items-center justify-center">
+                <article className="flex-1 flex flex-col items-center justify-center">
                     <img
                         src={imageData.mainImage.asset.url}
                         alt={imageData.alt || "Contact Image"}
                         className="rounded-lg shadow-lg max-w-full h-auto"
                     />
+                    <p className="mt-4 text-center">{imageData.alt}</p>
                 </article>
+
             ) : null}
 
         </section>

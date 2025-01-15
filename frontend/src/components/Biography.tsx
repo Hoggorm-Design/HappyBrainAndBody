@@ -22,7 +22,7 @@ export default function Biography() {
                 <img
                     src={post.mainImage?.asset?.url}
                     alt={post.alt}
-                    className="max-h-[200px] max-w-[200px] w-auto h-auto object-contain"
+                    className="max-h-[400px] max-w-[400px] w-auto h-auto object-contain"
                 />
             </div>
             <div className="flex flex-col justify-center gap-5 h-3/5 xl:h-full">
