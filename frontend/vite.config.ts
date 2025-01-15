@@ -10,7 +10,7 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: false,
-    outDir: "dist/client",
+    outDir: "dist",
     sourcemap: true,
     rollupOptions: {
       output: {

@@ -1,67 +1,152 @@
 import useSpotify from "../hooks/useSpotify";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 const Spotify = () => {
   const { spotifyData, loading, error } = useSpotify();
-  const [spotifyError, setSpotifyError] = useState(false);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [iframeError, setIframeError] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
-    if (spotifyData?.link) {
-      checkLink(spotifyData.link);
-    }
-  }, [spotifyData]);
+    if (!iframeLoaded && !iframeError) {
+      const progressInterval = setInterval(() => {
+        setLoadingProgress((prev) => Math.min(prev + 10, 90));
+      }, 1000);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-  if (!spotifyData) {
-    return <p>No Spotify data available.</p>;
-  }
-
-  const checkLink = async (url: string) => {
-    try {
-      const response = await axios.get(url, { timeout: 5000 });
-      if (response.status >= 200 && response.status < 400) {
-        setSpotifyError(true);
-      } else {
-        console.log(`⚠️ URL responded with a status code: ${response.status}`);
-      }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.code === "ECONNABORTED") {
-          console.log("❌ Request timed out.");
-        } else if (error.response) {
-          console.log(
-            `❌ URL responded with error: ${error.response.status} ${error.response.statusText}`,
-          );
-        } else {
-          console.log(`❌ Failed to connect: ${error.message}`);
+      const timeoutId = setTimeout(() => {
+        if (!iframeLoaded) {
+          console.log("Iframe loading timed out after 15 seconds");
+          setIframeError(true);
+          setLoadingProgress(100);
         }
-      } else {
-        console.log(`❌ An unexpected error occurred: ${String(error)}`);
-      }
-      setSpotifyError(true);
+      }, 15000);
+
+      return () => {
+        clearTimeout(timeoutId);
+        clearInterval(progressInterval);
+      };
     }
+  }, [iframeLoaded, iframeError]);
+
+  const handleIframeLoad = () => {
+    console.log("Iframe loaded successfully");
+    setIframeLoaded(true);
+    setIframeError(false);
+    setLoadingProgress(100);
   };
 
+  const handleIframeError = () => {
+    console.log("Iframe failed to load");
+    setIframeError(true);
+    setIframeLoaded(false);
+  };
+
+  const getEpisodeId = (link: string) => {
+    const parts = link.split("/");
+    return parts[parts.length - 1].split("?")[0];
+  };
+
+  let episodeId = "";
+  if (spotifyData?.link) {
+    episodeId = getEpisodeId(spotifyData.link);
+  }
+
+  const embedUrl = `https://open.spotify.com/embed/episode/${episodeId}?utm_source=generator`;
+
+  useEffect(() => {
+    if (embedUrl) {
+      const preloadLink = document.createElement("link");
+      preloadLink.rel = "preload";
+      preloadLink.as = "document";
+      preloadLink.href = embedUrl;
+      document.head.appendChild(preloadLink);
+
+      return () => {
+        document.head.removeChild(preloadLink);
+      };
+    }
+  }, [embedUrl]);
+
+  if (loading) {
+    return (
+      <div className="w-full h-[352px] flex items-center justify-center bg-gray-50">
+        <p>Loading data...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full h-[352px] flex items-center justify-center bg-gray-50">
+        <p>Error: {error}</p>
+      </div>
+    );
+  }
+
+  if (!spotifyData) {
+    return (
+      <div className="w-full h-[352px] flex items-center justify-center bg-gray-50">
+        <p>No Spotify data available.</p>
+      </div>
+    );
+  }
+
   return (
-    <div>
-      {!spotifyError && <p>Spotify episode not available</p>}
+    <div className="w-full bg-white rounded-lg overflow-hidden">
       <div className="flex flex-col gap-5">
-        <div className="flex justify-center items-center overflow-hidden">
-          <iframe
-            src="https://open.spotify.com/embed/episode/0Jis0INFCA33ffLmTxBwm8?utm_source=generator"
-            title="Raushetspodden"
-            width="100%"
-            height="352"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-          ></iframe>
+        <div className="relative w-full h-[352px]">
+          {!iframeLoaded && !iframeError && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50">
+              <p className="mb-2">Loading episode... {loadingProgress}%</p>
+              <div className="w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-blue-500 transition-all duration-300"
+                  style={{ width: `${loadingProgress}%` }}
+                />
+              </div>
+            </div>
+          )}
+
+          {iframeError ? (
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
+              <div className="text-center">
+                <p className="mb-2">Failed to load episode</p>
+                <a
+                  href={spotifyData.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  Listen on Spotify ›
+                </a>
+              </div>
+            </div>
+          ) : (
+            <iframe
+              src={embedUrl}
+              title="Raushetspodden"
+              className="w-full h-full"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="eager" // Changed to eager loading
+              onLoad={handleIframeLoad}
+              onError={handleIframeError}
+              style={{
+                border: "none",
+                display: iframeLoaded ? "block" : "none",
+              }}
+            />
+          )}
         </div>
-        <div className="text-container">
+
+        <div className="text-container p-4">
           <h3 className="sub-header font-bold mb-1">{spotifyData.title}</h3>
-          <p className="text">{spotifyData.body}</p>
-          <a href={spotifyData.link} className="button" target="_blank">
+          <p className="text mb-4">{spotifyData.body}</p>
+          <a
+            href={spotifyData.link}
+            className="button inline-block"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Hør mer ›
           </a>
         </div>
