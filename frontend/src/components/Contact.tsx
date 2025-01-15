@@ -17,11 +17,11 @@ const Contact = () => {
                 <br/>
                 <div className="flex flex-col gap-4">
                     <div className="flex items-start">
-                        <a>{contactData?.website1link}</a>
+                        <a href="https://happybrainandbody.no/" target="_blank" rel="noopener noreferrer">{contactData?.website1link}</a>
                     </div>
                     {contactData?.website2link && (
                         <div className="flex items-start">
-                            <p>Engelsk nettside: {contactData.website2link}</p>
+                            <a href="https://happybrainandbody.com/" target="_blank" rel="noopener noreferrer">Engelsk nettside: {contactData.website2link}</a>
                         </div>
                     )}
                     <h3 className="font-semibold">Telefon og mail</h3>
