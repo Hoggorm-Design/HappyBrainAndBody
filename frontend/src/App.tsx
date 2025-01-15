@@ -39,7 +39,7 @@ function App() {
               <p>{landingData.alt}</p>
           </div>
           <div className="w-full xl:w-1/2">
-            <h2 className="sub-header font-bold mb-4">{landingData.header}</h2>
+            <h2 className="text-2xl font-bold mb-4">{landingData.header}</h2>
             <p className="text-lg">{landingData.introText}</p>
             <p className="text">{landingData.additionalText}</p>
           </div>
