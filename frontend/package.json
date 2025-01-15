@@ -3,18 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-   "scripts": {
-     "dev": "cross-env NODE_ENV=development tsx src/server.ts",
-     "build": "npm run build:client && npm run build:server",
-     "build:client": "vite build --outDir dist/client",
-     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server && vite build --ssr src/server.ts --outDir dist/server",
-     "preview": "cross-env NODE_ENV=production node dist/server/server.js",
-     "start": "cross-env NODE_ENV=production node dist/server/server.js",
-     "ci": "npm ci"
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "ci": "npm ci"
   },
   "dependencies": {
     "@sanity/client": "^6.24.3",
     "@types/history": "^4.7.11",
+    "@vitejs/plugin-react-swc": "^3.7.2",
     "compression": "^1.7.5",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
@@ -23,12 +21,12 @@
     "helmet": "^8.0.0",
     "history": "^5.3.0",
     "html-escaper": "^3.0.3",
+    "next-sitemap": "^4.2.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
     "react-router-dom": "^6.28.1",
-    "vite": "^5.4.8",
-    "@vitejs/plugin-react-swc": "^3.7.2"
+    "vite": "^5.4.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
@@ -42,10 +40,12 @@
     "@types/react-dom": "^18.3.5",
     "autoprefixer": "^10.4.20",
     "cross-env": "^7.0.3",
+    "esbuild": "^0.19.0",
     "eslint": "^9.11.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.12",
     "globals": "^15.9.0",
+    "lightningcss": "^1.22.0",
     "postcss": "^8.4.47",
     "serverless-http": "^3.2.0",
     "tailwindcss": "^3.4.14",
@@ -53,8 +53,6 @@
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.7.0",
-    "esbuild": "^0.19.0",
-    "lightningcss": "^1.22.0"
+    "typescript-eslint": "^8.7.0"
   }
 }

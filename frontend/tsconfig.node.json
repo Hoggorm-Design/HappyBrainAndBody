@@ -18,7 +18,7 @@
   },
   "include": [
     "vite.config.ts",
-    "src/server.ts",
+    "server.ts",
     "src/entry-server.tsx",
     "netlify/functions/**/*"
   ]

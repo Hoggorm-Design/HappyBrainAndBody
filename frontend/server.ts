@@ -75,7 +75,7 @@ async function createServer() {
             "https://*.spotify.com",
           ],
           workerSrc: ["'self'", "blob:"],
-          frameAncestors: ["'self'", "https://*.spotify.com"], // Add spotify
+          frameAncestors: ["'self'", "https://*.spotify.com"],
           objectSrc: ["'none'"],
           manifestSrc: ["'self'"],
           formAction: ["'self'"],
@@ -169,7 +169,7 @@ async function createServer() {
 
       let render: RenderFunction;
       if (isProduction) {
-        const serverEntry = (await import("./entry-server.js")) as ServerEntry;
+        const serverEntry = (await import("./src/entry-server")) as ServerEntry;
         render = serverEntry.render;
       } else {
         if (!vite) throw new Error("Vite server not initialized");
