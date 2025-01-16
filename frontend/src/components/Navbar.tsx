@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
             // Scroll to the section directly if already on the homepage
             const element = document.getElementById(hash);
             if (element) {
-                const yOffset = -50; // Adjust for fixed navbar
+                const yOffset = -80; // Adjust for fixed navbar
                 const yPosition =
                     element.getBoundingClientRect().top + window.scrollY + yOffset;
                 window.scrollTo({ top: yPosition, behavior: "smooth" });
