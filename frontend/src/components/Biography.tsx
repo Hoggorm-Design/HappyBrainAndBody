@@ -19,7 +19,7 @@ export default function Biography() {
     return (
         <section
             id="Var-lege"
-            className="flex flex-col 2xl:flex-row gap-5 items-start justify-around bg-white h-full w-full p-[30px] 2xl:px-[100px] py-36"
+            className="flex flex-col 2xl:flex-row gap-5 items-start justify-around bg-white h-full w-full p-[30px] 2xl:px-[100px] py-10"
         >
             {/* Image Section */}
             <div className="w-full 2xl:w-auto flex justify-start items-start">

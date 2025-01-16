@@ -2,7 +2,7 @@ import {defineField, defineType} from 'sanity'
 
 export default defineType({
     name: 'imageByContact',
-    title: 'Image By Contact',
+    title: 'Bilde ved kontakt',
     type: 'document',
     fields: [
         defineField({

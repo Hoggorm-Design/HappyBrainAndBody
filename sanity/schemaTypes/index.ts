@@ -13,5 +13,5 @@ import header from "./header"
 
 
 export const schemaTypes = [
-    post,post2, post3, post4, event, blog, contact, landing, spotify, blogPage, pictureBottom, header
+    header,landing, post,post2, post3, post4, event, spotify,contact,  pictureBottom, blogPage,blog,
 ];
