@@ -19,10 +19,10 @@ export default function Biography() {
     return (
         <section
             id="Var-lege"
-            className="flex flex-col 2xl:flex-row items-start justify-start bg-white h-full w-full p-[30px] 2xl:px-[100px] py-10 gap-5"
+            className="flex flex-col xl:flex-row items-start justify-start bg-white h-full w-full p-[30px] lg:px-[100px] py-10 gap-5"
         >
             {/* Image Section */}
-            <div className="image-content flex-shrink-0 max-w-[350px]">
+            <div className="image-content flex-shrink-0 max-w-[350px] mx-auto xl:mx-0">
                 <img
                     src={post.mainImage?.asset?.url}
                     alt={post.alt}
