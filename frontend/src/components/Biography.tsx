@@ -19,17 +19,19 @@ export default function Biography() {
     return (
         <section
             id="Var-lege"
-            className="flex flex-col 2xl:flex-row gap-5 items-start justify-around bg-white h-full w-full p-[30px] 2xl:px-[100px] py-10"
+            className="flex flex-col 2xl:flex-row items-start justify-start bg-white h-full w-full p-[30px] 2xl:px-[100px] py-10 gap-5"
         >
             {/* Image Section */}
-            <div className="w-full 2xl:w-auto flex justify-start items-start">
+            <div className="image-content flex-shrink-0 max-w-[350px]">
                 <img
                     src={post.mainImage?.asset?.url}
                     alt={post.alt}
                     className="max-h-[350px] max-w-[350px] w-auto h-auto object-contain"
                 />
             </div>
-            <div className="flex flex-col justify-start gap-5 h-auto">
+
+            {/* Text Section */}
+            <div className="text-content flex-1 flex flex-col justify-start h-auto">
                 <div>
                     <h2 className="header font-semibold">{post.title}</h2>
                     <h3 className="sub-header">{post.profession}</h3>
@@ -42,6 +44,7 @@ export default function Biography() {
                 </div>
             </div>
         </section>
+
 
     );
 }

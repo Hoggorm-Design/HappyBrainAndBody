@@ -47,22 +47,22 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Links for larger screens */}
-            <div className="hidden xl:flex ml-auto flex-1 justify-center space-x-6 text-nowrap">
+            <div className="hidden xl:flex ml-auto flex-1 justify-end text-nowrap">
                 <button
                     onClick={() => handleNavigateToSection("Var-lege")}
-                    className="px-4 py-2 sub-header text-xl lg:text-lg text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+                    className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
                 >
                     Vår lege
                 </button>
                 <button
                     onClick={() => handleNavigateToSection("hva-er-eq")}
-                    className="px-4 py-2 sub-header text-xl lg:text-lg text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+                    className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
                 >
                     Hva er EQ
                 </button>
                 <button
                     onClick={() => handleNavigateToSection("eq-terapi")}
-                    className="px-4 py-2 sub-header text-xl lg:text-lg text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+                    className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
                 >
                     EQ-terapi
                 </button>
@@ -74,19 +74,19 @@ const Navbar: React.FC = () => {
                 </button>
                 <button
                     onClick={() => handleNavigateToSection("eksempler")}
-                    className="px-4 py-2 sub-header text-xl lg:text-lg text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+                    className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
                 >
                     Eksempler
                 </button>
                 <button
                     onClick={() => handleNavigateToSection("kontakt")}
-                    className="px-4 py-2 sub-header text-xl lg:text-lg text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+                    className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
                 >
                     Kontakt
                 </button>
                 <button
                     onClick={() => navigate("/blog")}
-                    className="px-4 py-2 sub-header text-xl lg:text-lg text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+                    className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
                 >
                     Blog
                 </button>
