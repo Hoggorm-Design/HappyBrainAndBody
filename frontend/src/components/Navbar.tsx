@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Header from "./Header";
@@ -10,13 +10,13 @@ const Navbar: React.FC = () => {
     const location = useLocation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { headerData } = useHeader();
+    const navRef = useRef<HTMLDivElement>(null); // Reference to the navbar
 
     const handleNavigateToSection = (hash: string) => {
         setIsMenuOpen(false); // Close the menu
         if (location.pathname !== "/") {
             navigate(`/#${hash}`); // Ensure navigation to the homepage
         } else {
-            // Scroll to the section directly if already on the homepage
             const element = document.getElementById(hash);
             if (element) {
                 const yOffset = -80; // Adjust for fixed navbar
@@ -27,16 +27,44 @@ const Navbar: React.FC = () => {
         }
     };
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                navRef.current &&
+                !navRef.current.contains(event.target as Node)
+            ) {
+                setIsMenuOpen(false); // Close the menu if the click is outside
+            }
+        };
+
+        // Add click event listener
+        document.addEventListener("click", handleClickOutside);
+
+        return () => {
+            // Cleanup event listener
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
+
+    const handleHamburgerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation(); // Stop the click from propagating to the document
+        console.log("Menu toggled:", !isMenuOpen); // Debug state toggle
+        setIsMenuOpen((prevState) => !prevState); // Toggle menu
+    };
+
     return (
-        <nav className="fixed top-0 left-0 right-0 w-full bg-[#5286A4] backdrop-blur-lg z-50 px-6 py-4 flex justify-between items-center shadow-md">
+        <nav
+            ref={navRef} // Attach the reference to the navbar
+            className="fixed top-0 left-0 right-0 w-full bg-[#5286A4] backdrop-blur-lg z-50 px-6 py-4 flex justify-between items-center shadow-md"
+        >
             {/* Logo and Header */}
-            <Header title={headerData?.title || "Happy Brain and Body"} logoSrc={logo} />
+            <Header title={headerData?.title || "happybrainandbody"} logoSrc={logo} />
 
             {/* Hamburger Icon (Visible on small screens) */}
             <div className="xl:hidden text-white z-50">
                 <button
                     className={`hamburger ${isMenuOpen ? "open" : ""}`}
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    onClick={handleHamburgerClick}
                     name="Hamburger-button"
                     aria-label="Navigation-menu"
                 >
@@ -48,6 +76,7 @@ const Navbar: React.FC = () => {
 
             {/* Links for larger screens */}
             <div className="hidden xl:flex ml-auto flex-1 justify-end text-nowrap">
+                {/* Buttons for sections */}
                 <button
                     onClick={() => handleNavigateToSection("Var-lege")}
                     className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
@@ -95,8 +124,8 @@ const Navbar: React.FC = () => {
             {/* Mobile Menu */}
             <div
                 className={`${
-                    isMenuOpen ? "max-h-screen" : "max-h-0"
-                } lg:hidden absolute top-full left-0 w-full bg-[#5286A4] transition-all duration-300 overflow-hidden`}
+                    isMenuOpen ? "max-h-screen overflow-auto" : "max-h-0 overflow-hidden"
+                } xl:hidden absolute top-full left-0 w-full bg-[#5286A4] transition-all duration-300`}
             >
                 <ul className="flex flex-col space-y-4 px-6 py-4">
                     <li>
