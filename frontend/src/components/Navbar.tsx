@@ -47,14 +47,14 @@ const Navbar: React.FC = () => {
     }, []);
 
     const handleHamburgerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation(); // Stop the click from propagating to the document
-        console.log("Menu toggled:", !isMenuOpen); // Debug state toggle
-        setIsMenuOpen((prevState) => !prevState); // Toggle menu
+        e.stopPropagation();
+        console.log("Menu toggled:", !isMenuOpen);
+        setIsMenuOpen((prevState) => !prevState);
     };
 
     return (
         <nav
-            ref={navRef} // Attach the reference to the navbar
+            ref={navRef}
             className="fixed top-0 left-0 right-0 w-full bg-[#5286A4] backdrop-blur-lg z-50 px-6 py-4 flex justify-between items-center shadow-md"
         >
             {/* Logo and Header */}
@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
                 </button>
                 <button
                     onClick={() => handleNavigateToSection("foredrag")}
-                    className="px-4 py-2 sub-header text-xl lg:text-lg text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+                    className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
                 >
                     Foredrag
                 </button>
