@@ -36,11 +36,13 @@ function App() {
               alt={landingData.alt}
               className="w-full h-auto object-cover rounded-lg"
             />
-              <p>{landingData.alt}</p>
+            <p>{landingData.alt}</p>
           </div>
           <div className="w-full xl:w-1/2">
-            <h2 className="text-2xl font-bold mb-4">{landingData.header}</h2>
+            <div className="flex flex-col text-2xl font-bold mb-4">
+              <h2 className="">{landingData.header}</h2>
               <h3>{landingData.subheader}</h3>
+            </div>
             <p className="text-lg">{landingData.introText}</p>
             <p className="text">{landingData.additionalText}</p>
           </div>
@@ -92,7 +94,7 @@ function App() {
         <div id="eksempler" className="relative -mt-[120px] pt-[120px]">
           <h2 className="header font-bold mb-7">Eksempler</h2>
         </div>
-        <div className="grid xl:grid-cols-2 gap-20 grid-cols-1">
+        <div className="grid md:grid-cols-2 gap-20 grid-cols-1">
           {eventData.map((post) => (
             <Example
               key={post.slug.current}

@@ -93,8 +93,8 @@ const Spotify = () => {
 
   return (
     <div className="w-full bg-white rounded-lg overflow-hidden">
-      <div className="flex flex-col gap-5">
-        <div className="relative w-full h-[352px]">
+      <div className="flex flex-col">
+        <div className="max-w-[350px] h-[200px] lg:h-[230px] flex justify-end">
           {!iframeLoaded && !iframeError && (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50">
               <p className="mb-2">Loading episode... {loadingProgress}%</p>
@@ -138,12 +138,12 @@ const Spotify = () => {
           )}
         </div>
 
-        <div className="text-container p-4">
-          <h3 className="sub-header font-bold mb-1">{spotifyData.title}</h3>
-          <p className="text mb-4">{spotifyData.body}</p>
+        <div className="text-container mt-[-15px]">
+          <h3 className="sub-header font-bold">{spotifyData.title}</h3>
+          <p className="text">{spotifyData.body}</p>
           <a
             href={spotifyData.link}
-            className="button inline-block"
+            className=""
             target="_blank"
             rel="noopener noreferrer"
           >
