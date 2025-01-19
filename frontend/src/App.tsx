@@ -40,6 +40,7 @@ function App() {
           </div>
           <div className="w-full xl:w-1/2">
             <h2 className="text-2xl font-bold mb-4">{landingData.header}</h2>
+              <h3>{landingData.subheader}</h3>
             <p className="text-lg">{landingData.introText}</p>
             <p className="text">{landingData.additionalText}</p>
           </div>

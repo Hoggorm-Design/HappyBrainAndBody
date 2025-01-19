@@ -3,6 +3,7 @@ import sanityClient from '../client';
 
 interface LandingData {
     header: string;
+    subheader: string;
     introText: string;
     additionalText: string;
     image: {
@@ -24,6 +25,7 @@ const useLanding = () => {
                 const data: LandingData[] = await sanityClient.fetch(
                     `*[_type == "landing"]{
             header,
+            subheader,
             introText,
             additionalText,
             image{

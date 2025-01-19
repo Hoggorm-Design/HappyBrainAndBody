@@ -27,6 +27,12 @@ export default defineType({
             description:'Here you can add the title of the landing page.',
         }),
         defineField({
+            name: "subheader",
+            title: "Sub header",
+            type: "text",
+            description:'Here you can add the first body part of the landing page.'
+        }),
+        defineField({
             name: "introText",
             title: "Intro Text",
             type: "text",
