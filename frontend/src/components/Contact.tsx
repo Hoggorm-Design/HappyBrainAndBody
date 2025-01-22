@@ -63,7 +63,7 @@ const Contact = () => {
         <div className="flex items-start">
           <FiInstagram className="mr-4 mt-2 sub-header" />
 
-          <a href={""} className="underline text mt-2">
+          <a href={"https://www.instagram.com/happybrainandbody?igsh=b213aTh0eXhjZzBo"} className="underline text mt-2">
             happybrainandbody
           </a>
         </div>
