@@ -61,17 +61,23 @@ const Contact = () => {
         <br />
         <h3 className="font-semibold">Instagram</h3>
         <div className="flex items-start">
-          <FiInstagram className="mr-4 mt-2 sub-header" />
+          <FiInstagram className="mr-4 mt-2 sub-header"/>
 
-          <a href={"https://www.instagram.com/happybrainandbody?igsh=b213aTh0eXhjZzBo"} className="underline text mt-2">
+          <a
+              href="https://www.instagram.com/happybrainandbody?igsh=b213aTh0eXhjZzBo"
+              className="underline text mt-2"
+              target="_blank"
+              rel="noopener noreferrer"
+          >
             happybrainandbody
           </a>
+
         </div>
       </article>
       {/* Image Section - Right */}
       {imageData && imageData.mainImage ? (
-        <article className="flex-1 flex flex-col items-center justify-center">
-          <img
+          <article className="flex-1 flex flex-col items-center justify-center">
+            <img
             src={imageData.mainImage.asset.url}
             alt={imageData.alt || "Contact Image"}
             className="rounded-lg shadow-lg max-w-full h-auto"
