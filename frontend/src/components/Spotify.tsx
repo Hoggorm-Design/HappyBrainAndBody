@@ -138,7 +138,7 @@ const Spotify = () => {
           )}
         </div>
 
-        <div className="text-container mt-[-15px]">
+        <div className="text-container mt-[-15px] max-w-[350px]">
           <h3 className="sub-header font-bold">{spotifyData.title}</h3>
           <p className="text">{spotifyData.body}</p>
           <a
