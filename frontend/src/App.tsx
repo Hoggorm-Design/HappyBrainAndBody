@@ -27,7 +27,7 @@ function App() {
   const fourthPost = post4Data;
 
   const HomePage = () => (
-    <div className="mt-20">
+    <div className="mt-15">
       {landingData && (
         <section className="flex flex-col xl:flex-row items-start justify-between p-[30px] 2xl:px-[100px] pt-[100px] 2xl:pb-16 gap-20">
           <div className="w-full xl:w-1/2">
