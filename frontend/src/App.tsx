@@ -51,46 +51,46 @@ function App() {
 
       <Biography />
 
-      {firstPost && (
-        <ContentWithImage
-          title={firstPost.title}
-          imageSrc={firstPost.mainImage?.asset?.url || placeholderImg}
-          imageAlt={firstPost.alt}
-          reverse={false}
-          bgColour={"white"}
-          id="hva-er-eq"
-        >
-          <p className="text">{firstPost.body}</p>
-        </ContentWithImage>
-      )}
+            {firstPost && (
+                <ContentWithImage
+                    title={firstPost.title}
+                    imageSrc={firstPost.mainImage?.asset?.url || placeholderImg}
+                    imageAlt={firstPost.alt}
+                    reverse={false}
+                    bgColour={"white"}
+                    id="hva-er-eq"
+                >
+                    <p className="text">{firstPost.body}</p>
+                </ContentWithImage>
+            )}
 
-      {secondPost && (
-        <ContentWithImage
-          title={secondPost.title}
-          imageSrc={secondPost.mainImage?.asset?.url || placeholderImg}
-          imageAlt={secondPost.alt}
-          reverse={true}
-          bgColour={"white"}
-          id="eq-terapi"
-        >
-          <p className="text">{secondPost.body}</p>
-        </ContentWithImage>
-      )}
+            {secondPost && (
+                <ContentWithImage
+                    title={secondPost.title}
+                    imageSrc={secondPost.mainImage?.asset?.url || placeholderImg}
+                    imageAlt={secondPost.alt}
+                    reverse={true}
+                    bgColour={"white"}
+                    id="eq-terapi"
+                >
+                    <p className="text">{secondPost.body}</p>
+                </ContentWithImage>
+            )}
 
-      {fourthPost && (
-        <ContentWithImage
-          title={fourthPost.title}
-          imageSrc={fourthPost.mainImage?.asset?.url}
-          imageAlt={fourthPost.alt}
-          reverse={false}
-          bgColour={"white"}
-          id="foredrag"
-        >
-          <p className="text">{fourthPost.body}</p>
-        </ContentWithImage>
-      )}
+            {fourthPost && (
+                <ContentWithImage
+                    title={fourthPost.title}
+                    imageSrc={fourthPost.mainImage?.asset?.url}
+                    imageAlt={fourthPost.alt}
+                    reverse={false}
+                    bgColour={"white"}
+                    id="foredrag"
+                >
+                    <p className="text">{fourthPost.body}</p>
+                </ContentWithImage>
+            )}
 
-      <section className="px-[30px] py-[80px] 2xl:px-[100px] bg-white">
+        <section className="px-[30px] py-[80px] 2xl:px-[100px] bg-white">
         <div id="eksempler" className="relative -mt-[120px] pt-[120px]">
           <h2 className="header font-bold mb-7">Eksempler</h2>
         </div>

@@ -18,7 +18,7 @@ const ContentWithImage = ({title, imageSrc, imageAlt, reverse, bgColour, childre
         <>
             <section
                 id={id}
-                className={`flex content-with-image items-start p-[30px] 2xl:px-[100px]  ${
+                className={`flex content-with-image items-start p-[30px] 2xl:px-[100px] mt-[-100px]  ${
                     reverse ? "reverse" : ""
                 } justify-center`}
                 style={{backgroundColor: bgColour}}
