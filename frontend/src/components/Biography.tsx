@@ -22,7 +22,7 @@ export default function Biography() {
             className="flex flex-col xl:flex-row items-start justify-start bg-white h-full w-full p-[30px] lg:px-[100px] py-10 gap-5 mb-[100px]"
         >
             {/* Image Section */}
-            <div className="image-content flex-shrink-0 max-w-[350px] mx-auto xl:mx-0">
+            <div className="image-content shrink-0 max-w-[350px] mx-auto xl:mx-0">
                 <img
                     src={post.mainImage?.asset?.url}
                     alt={post.alt}

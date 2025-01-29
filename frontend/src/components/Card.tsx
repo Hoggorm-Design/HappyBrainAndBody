@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ({ image, header, text, link, imageDescription
             {/* Image Section */}
 
             {image && (
-                <div className="flex-shrink-0 md:w-1/2">
+                <div className="shrink-0 md:w-1/2">
                     <img
                         className="w-full h-full object-cover"
                         src={image}
