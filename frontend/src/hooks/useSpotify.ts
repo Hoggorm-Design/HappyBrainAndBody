@@ -10,31 +10,42 @@ export interface Spotify {
 
 const useSpotify = () => {
   const [spotifyData, setSpotifyData] = useState<Spotify | null>(null);
-  const { startLoading, stopLoading } = useLoading();
   const [error, setError] = useState<string | null>(null);
 
+  const { setIsLoading } = useLoading();
+
   useEffect(() => {
+    let mounted = true;
+
     const fetchSpotifyData = async () => {
-      startLoading();
+      setIsLoading(true);
+
       try {
         const data: Spotify = await sanityClient.fetch(
-          `*[_type == "spotify"][0]{   // Fetch a single object
-                        title,
-                        body,
-                        link
-                    }`,
+          `*[_type == "spotify"][0]{
+            title,
+            body,
+            link
+          }`,
         );
-        setSpotifyData(data || null);
+
+        if (mounted) {
+          setSpotifyData(data || null);
+        }
       } catch (err) {
         console.error(err);
         setError("Failed to fetch Spotify data");
       } finally {
-        stopLoading();
+        setIsLoading(false);
       }
     };
 
     fetchSpotifyData();
-  }, [startLoading, stopLoading]);
+
+    return () => {
+      mounted = false;
+    };
+  }, [setIsLoading]);
 
   return { spotifyData, error };
 };

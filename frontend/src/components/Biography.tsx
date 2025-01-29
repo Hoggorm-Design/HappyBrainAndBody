@@ -1,9 +1,7 @@
 import useBiography from "../hooks/useBiography";
-import { useLoading } from "../context/LoadingContext";
 
 export default function Biography() {
   const { postData, error } = useBiography();
-  const { isLoading } = useLoading();
 
   if (error) {
     return <p>{error}</p>;
@@ -13,7 +11,7 @@ export default function Biography() {
 
   return (
     <>
-      {!isLoading && post && (
+      {post && (
         <section
           id="Var-lege"
           className="flex flex-col xl:flex-row items-start justify-start bg-white h-full w-full p-[30px] lg:px-[100px] py-10 gap-5 mb-[100px]"

@@ -13,12 +13,12 @@ interface ImageByContact {
 
 const useImageByContact = () => {
   const [imageData, setImageData] = useState<ImageByContact | null>(null);
-  const { startLoading, stopLoading } = useLoading();
+  const { setIsLoading } = useLoading();
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchImage = async () => {
-      startLoading();
+      setIsLoading(true);
       try {
         const data: ImageByContact = await sanityClient.fetch(
           `*[_type == "imageByContact"][0]{
@@ -35,12 +35,12 @@ const useImageByContact = () => {
         console.error(err);
         setError("Failed to fetch image by contact data.");
       } finally {
-        stopLoading();
+        setIsLoading(false);
       }
     };
 
     fetchImage();
-  }, [startLoading, stopLoading]);
+  }, [setIsLoading]);
 
   return { imageData, error };
 };

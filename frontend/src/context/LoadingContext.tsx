@@ -3,15 +3,14 @@ import Spinner from "../components/shared/Spinner";
 
 type LoadingContextType = {
   isLoading: boolean;
-  startLoading: () => void;
-  stopLoading: () => void;
+  setIsLoading: (loading: boolean) => void;
 };
 
 const LoadingContext = createContext<LoadingContextType | undefined>(undefined);
 
 export const useLoading = () => {
   const context = useContext(LoadingContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error("useLoading must be used within a LoadingProvider");
   }
   return context;
@@ -22,25 +21,27 @@ export const LoadingProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [loadingCount, setLoadingCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
 
   useEffect(() => {
-    if (loadingCount > 0) {
+    let timeout: number | undefined;
+
+    if (isLoading) {
       setShowSpinner(true);
     } else {
-      const timeout = setTimeout(() => setShowSpinner(false), 300); // Small delay to prevent flickering
-      return () => clearTimeout(timeout);
+      timeout = window.setTimeout(() => setShowSpinner(false), 0);
     }
-  }, [loadingCount]);
 
-  const startLoading = () => setLoadingCount((prev) => prev + 1);
-  const stopLoading = () => setLoadingCount((prev) => Math.max(0, prev - 1));
+    return () => {
+      if (timeout !== undefined) {
+        window.clearTimeout(timeout);
+      }
+    };
+  }, [isLoading]);
 
   return (
-    <LoadingContext.Provider
-      value={{ isLoading: loadingCount > 0, startLoading, stopLoading }}
-    >
+    <LoadingContext.Provider value={{ isLoading, setIsLoading }}>
       {children}
       {showSpinner && (
         <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-white">

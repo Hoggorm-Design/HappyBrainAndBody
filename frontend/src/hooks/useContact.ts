@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import sanityClient from "../client";
-import { useLoading } from "../context/LoadingContext";
 
 interface Contact {
   header: string;
@@ -12,12 +11,11 @@ interface Contact {
 
 const useContact = () => {
   const [contactData, setContactData] = useState<Contact | null>(null);
-  const { startLoading, stopLoading } = useLoading();
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchContact = async () => {
-      startLoading();
       try {
         const data: Contact[] = await sanityClient.fetch(
           `*[_type=="contact"]{
@@ -33,13 +31,13 @@ const useContact = () => {
         setError("Failed to fetch contact data");
         console.error(err);
       } finally {
-        stopLoading();
+        setLoading(false);
       }
     };
 
     fetchContact();
-  }, [startLoading, stopLoading]);
-  return { contactData, error };
+  }, []);
+  return { contactData, loading, error };
 };
 
 export default useContact;

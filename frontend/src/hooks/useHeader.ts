@@ -8,12 +8,12 @@ interface Header {
 
 const useHeader = () => {
   const [headerData, setHeaderData] = useState<Header | null>(null);
-  const { startLoading, stopLoading } = useLoading();
+  const { setIsLoading } = useLoading();
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchHeader = async () => {
-      startLoading();
+      setIsLoading(true);
       try {
         const data: Header[] = await sanityClient.fetch(
           `*[_type == "header"]{
@@ -29,12 +29,12 @@ const useHeader = () => {
         console.error(err);
         setError("Failed to fetch header data");
       } finally {
-        stopLoading();
+        setIsLoading(false);
       }
     };
 
     fetchHeader();
-  }, [startLoading, stopLoading]);
+  }, [setIsLoading]);
 
   return { headerData, error };
 };
