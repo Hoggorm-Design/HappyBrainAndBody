@@ -1,38 +1,41 @@
-import { useState, useEffect } from 'react';
-import sanityClient from '../client';
+import { useState, useEffect } from "react";
+import sanityClient from "../client";
+import { useLoading } from "../context/LoadingContext";
 
 export interface BlogPage {
-    header: string;
-    text: string;
+  header: string;
+  text: string;
 }
 
 const useBlogPage = () => {
-    const [blogPageData, setBlogPageData] = useState<BlogPage | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+  const [blogPageData, setBlogPageData] = useState<BlogPage | null>(null);
+  const { startLoading, stopLoading } = useLoading();
 
-    useEffect(() => {
-        const fetchBlogPage = async () => {
-            try {
-                const data: BlogPage | null = await sanityClient.fetch(
-                    `*[_type == "blogPage"][0]{
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchBlogPage = async () => {
+      startLoading();
+      try {
+        const data: BlogPage | null = await sanityClient.fetch(
+          `*[_type == "blogPage"][0]{
                         header,
                         text
-                    }`
-                );
-                setBlogPageData(data);
-            } catch (err) {
-                console.error(err);
-                setError('Failed to fetch blog page data');
-            } finally {
-                setLoading(false);
-            }
-        };
+                    }`,
+        );
+        setBlogPageData(data);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to fetch blog page data");
+      } finally {
+        stopLoading();
+      }
+    };
 
-        fetchBlogPage();
-    }, []);
+    fetchBlogPage();
+  }, [startLoading, stopLoading]);
 
-    return { blogPageData, loading, error };
+  return { blogPageData, error };
 };
 
 export default useBlogPage;

@@ -2,11 +2,12 @@ import useSpotify from "../hooks/useSpotify";
 import { useState, useEffect } from "react";
 
 const Spotify = () => {
-  const { spotifyData, loading, error } = useSpotify();
+  const { spotifyData, error } = useSpotify();
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [iframeError, setIframeError] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
 
+  // Only start the progress bar if the iframe is loading
   useEffect(() => {
     if (!iframeLoaded && !iframeError) {
       const progressInterval = setInterval(() => {
@@ -28,6 +29,13 @@ const Spotify = () => {
     }
   }, [iframeLoaded, iframeError]);
 
+  // Ensure progress bar resets if iframe fails
+  useEffect(() => {
+    if (iframeError) {
+      setLoadingProgress(0);
+    }
+  }, [iframeError]);
+
   const handleIframeLoad = () => {
     console.log("Iframe loaded successfully");
     setIframeLoaded(true);
@@ -46,13 +54,12 @@ const Spotify = () => {
     return parts[parts.length - 1].split("?")[0];
   };
 
-  let episodeId = "";
-  if (spotifyData?.link) {
-    episodeId = getEpisodeId(spotifyData.link);
-  }
+  const episodeId = spotifyData?.link ? getEpisodeId(spotifyData.link) : "";
+  const embedUrl = episodeId
+    ? `https://open.spotify.com/embed/episode/${episodeId}?utm_source=generator`
+    : "";
 
-  const embedUrl = `https://open.spotify.com/embed/episode/${episodeId}?utm_source=generator`;
-
+  // Preload Spotify iframe for smoother transition
   useEffect(() => {
     if (embedUrl) {
       const preloadLink = document.createElement("link");
@@ -67,14 +74,6 @@ const Spotify = () => {
     }
   }, [embedUrl]);
 
-  if (loading) {
-    return (
-      <div className="w-full h-[352px] flex items-center justify-center bg-gray-50">
-        <p>Loading data...</p>
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <div className="w-full h-[352px] flex items-center justify-center bg-gray-50">
@@ -84,11 +83,8 @@ const Spotify = () => {
   }
 
   if (!spotifyData) {
-    return (
-      <div className="w-full h-[352px] flex items-center justify-center bg-gray-50">
-        <p>No Spotify data available.</p>
-      </div>
-    );
+    console.warn("Spotify data is empty!");
+    return null;
   }
 
   return (
@@ -122,19 +118,21 @@ const Spotify = () => {
               </div>
             </div>
           ) : (
-            <iframe
-              src={embedUrl}
-              title="Raushetspodden"
-              className="w-full h-full"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="eager" // Changed to eager loading
-              onLoad={handleIframeLoad}
-              onError={handleIframeError}
-              style={{
-                border: "none",
-                display: iframeLoaded ? "block" : "none",
-              }}
-            />
+            episodeId && (
+              <iframe
+                src={embedUrl}
+                title="Raushetspodden"
+                className="w-full h-full"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy" // Optimize performance
+                onLoad={handleIframeLoad}
+                onError={handleIframeError}
+                style={{
+                  border: "none",
+                  display: iframeLoaded ? "block" : "none",
+                }}
+              />
+            )
           )}
         </div>
 

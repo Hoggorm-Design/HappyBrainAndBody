@@ -1,30 +1,32 @@
-import { useState, useEffect } from 'react';
-import sanityClient from '../client';
+import { useState, useEffect } from "react";
+import sanityClient from "../client";
+import { useLoading } from "../context/LoadingContext";
 
 interface Post {
-    title: string;
-    slug: {
-        current: string;
+  title: string;
+  slug: {
+    current: string;
+  };
+  body: string;
+  mainImage: {
+    asset: {
+      url: string;
     };
-    body: string;
-    mainImage: {
-        asset: {
-            url: string;
-        };
-    };
-    alt: string;
+  };
+  alt: string;
 }
 
 const usePost4 = () => {
-    const [postData, setPostData] = useState<Post | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+  const [postData, setPostData] = useState<Post | null>(null);
+  const { startLoading, stopLoading } = useLoading();
+  const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        const fetchPostData = async () => {
-            try {
-                const data: Post = await sanityClient.fetch(
-                    `*[_type == "post4"]{
+  useEffect(() => {
+    const fetchPostData = async () => {
+      startLoading();
+      try {
+        const data: Post = await sanityClient.fetch(
+          `*[_type == "post4"]{
                         title,
                         body,
                         mainImage{
@@ -33,21 +35,21 @@ const usePost4 = () => {
                             }
                         },
                         alt
-                    }[0]`
-                );
-                setPostData(data);
-            } catch (err) {
-                console.error(err);
-                setError('Failed to fetch post data');
-            } finally {
-                setLoading(false);
-            }
-        };
+                    }[0]`,
+        );
+        setPostData(data);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to fetch post data");
+      } finally {
+        stopLoading();
+      }
+    };
 
-        fetchPostData();
-    }, []);
+    fetchPostData();
+  }, [startLoading, stopLoading]);
 
-    return { postData, loading, error };
+  return { postData, error };
 };
 
 export default usePost4;

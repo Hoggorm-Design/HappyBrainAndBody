@@ -4,12 +4,15 @@ import App from "./App";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { SanityProvider } from "./providers/SanityProvider";
+import { LoadingProvider } from "@/context/LoadingContext";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <SanityProvider>
-        <App />
+        <LoadingProvider>
+          <App />
+        </LoadingProvider>
       </SanityProvider>
     </BrowserRouter>
   </StrictMode>,

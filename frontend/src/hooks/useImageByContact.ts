@@ -1,46 +1,48 @@
 import { useState, useEffect } from "react";
 import sanityClient from "../client";
+import { useLoading } from "../context/LoadingContext";
 
 interface ImageByContact {
-    mainImage: {
-        asset: {
-            url: string;
-        };
+  mainImage: {
+    asset: {
+      url: string;
     };
-    alt: string;
+  };
+  alt: string;
 }
 
 const useImageByContact = () => {
-    const [imageData, setImageData] = useState<ImageByContact | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+  const [imageData, setImageData] = useState<ImageByContact | null>(null);
+  const { startLoading, stopLoading } = useLoading();
+  const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        const fetchImage = async () => {
-            try {
-                const data: ImageByContact = await sanityClient.fetch(
-                    `*[_type == "imageByContact"][0]{
+  useEffect(() => {
+    const fetchImage = async () => {
+      startLoading();
+      try {
+        const data: ImageByContact = await sanityClient.fetch(
+          `*[_type == "imageByContact"][0]{
                         mainImage{
                             asset->{
                                 url
                             }
                         },
                         alt
-                    }`
-                );
-                setImageData(data);
-            } catch (err) {
-                console.error(err);
-                setError("Failed to fetch image by contact data.");
-            } finally {
-                setLoading(false);
-            }
-        };
+                    }`,
+        );
+        setImageData(data);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to fetch image by contact data.");
+      } finally {
+        stopLoading();
+      }
+    };
 
-        fetchImage();
-    }, []);
+    fetchImage();
+  }, [startLoading, stopLoading]);
 
-    return { imageData, loading, error };
+  return { imageData, error };
 };
 
 export default useImageByContact;

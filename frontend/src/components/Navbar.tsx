@@ -4,12 +4,14 @@ import logo from "../assets/logo.png";
 import Header from "./Header";
 import "../styles/Hamburger.css";
 import useHeader from "@/hooks/useHeader";
+import { useLoading } from "../context/LoadingContext";
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { headerData } = useHeader();
+  const { isLoading } = useLoading();
   const navRef = useRef<HTMLDivElement>(null); // Reference to the navbar
 
   const handleNavigateToSection = (hash: string) => {
@@ -55,7 +57,12 @@ const Navbar: React.FC = () => {
       className="fixed top-0 left-0 right-0 w-full bg-[#5286A4] backdrop-blur-lg z-50 pr-6 2xl:pl-6 py-4 flex justify-between items-center shadow-md"
     >
       {/* Logo and Header */}
-      <Header title={headerData?.title || "happybrainandbody"} logoSrc={logo} />
+      {!isLoading && (
+        <Header
+          title={headerData ? headerData.title : "happybrainandbody"}
+          logoSrc={logo}
+        />
+      )}
 
       {/* Hamburger Icon (Visible on small screens) */}
       <div className="xl:hidden text-white z-50">

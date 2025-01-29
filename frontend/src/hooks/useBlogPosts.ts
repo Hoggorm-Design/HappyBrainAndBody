@@ -1,35 +1,37 @@
-import { useState, useEffect } from 'react';
-import sanityClient from '../client';
+import { useState, useEffect } from "react";
+import sanityClient from "../client";
+import { useLoading } from "../context/LoadingContext";
 
 interface BlogPost {
-    header: string;
-    text: string;
-    image: {
-        asset: {
-            url: string;
-        };
+  header: string;
+  text: string;
+  image: {
+    asset: {
+      url: string;
     };
-    link: string;
-    alt: string;
-    pdf?: {
-        asset: {
-            url: string;
-        };
+  };
+  link: string;
+  alt: string;
+  pdf?: {
+    asset: {
+      url: string;
     };
-    publishedAt: string;
+  };
+  publishedAt: string;
 }
 
 const useBlogPosts = () => {
-    const [blogPosts, setBlogPosts] = useState<BlogPost[] | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[] | null>(null);
+  const { startLoading, stopLoading } = useLoading();
+  const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        const fetchBlogPosts = async () => {
-            try {
-                // Modify the query to fetch posts ordered by the publish date in descending order
-                const data: BlogPost[] = await sanityClient.fetch(
-                    `*[_type == "blogPost"] | order(publishedAt desc) {
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      startLoading();
+      try {
+        // Modify the query to fetch posts ordered by the publish date in descending order
+        const data: BlogPost[] = await sanityClient.fetch(
+          `*[_type == "blogPost"] | order(publishedAt desc) {
                         header,
                         text,
                         image {
@@ -46,21 +48,21 @@ const useBlogPosts = () => {
                             }
                         },
                         publishedAt
-                    }`
-                );
-                setBlogPosts(data);
-            } catch (err) {
-                setError('Failed to fetch blog posts');
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
+                    }`,
+        );
+        setBlogPosts(data);
+      } catch (err) {
+        setError("Failed to fetch blog posts");
+        console.error(err);
+      } finally {
+        stopLoading();
+      }
+    };
 
-        fetchBlogPosts();
-    }, []);
+    fetchBlogPosts();
+  }, [startLoading, stopLoading]);
 
-    return { blogPosts, loading, error };
+  return { blogPosts, error };
 };
 
 export default useBlogPosts;
