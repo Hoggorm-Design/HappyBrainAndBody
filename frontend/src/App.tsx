@@ -1,30 +1,27 @@
-import "./index.css";
+import placeholderImg from "./assets/placeholder.png";
 import Biography from "./components/Biography";
 import ContentWithImage from "./components/ContentWithImage";
-import placeholderImg from "./assets/placeholder.png";
 import Example from "./components/Example";
 import Spotify from "./components/Spotify";
+import "./index.css";
 
-import Navbar from "./components/Navbar";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Blog from "./components/Blog";
 import Contact from "./components/Contact";
+import Navbar from "./components/Navbar";
 
 import ScrollToAnchor from "./components/ScrollToAnchor";
-import { useLoading } from "./context/LoadingContext";
 
+import GlobalLoading from "./components/shared/GlobalLoading";
 import useHomeData from "./hooks/useHomeData";
 
 function App() {
-  const { isLoading } = useLoading();
-  const { homeData, error } = useHomeData();
-
-  if (isLoading) return null;
+  const { data: homeData, error } = useHomeData();
 
   if (error) {
     return (
       <div className="w-screen h-screen flex justify-center items-center">
-        <p className="text-red-500">{error}</p>
+        {error.message || "Failed to fetch homepage data"}
       </div>
     );
   }
@@ -123,6 +120,8 @@ function App() {
 
   return (
     <main className="relative top-[-5px] w-screen">
+      {/*Display global loader if any query is still fetching*/}
+      <GlobalLoading />
       <Navbar />
       <ScrollToAnchor />
       <Routes>

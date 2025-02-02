@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import sanityClient from "../client";
 
 interface Post {
@@ -14,41 +14,31 @@ interface Post {
   alt: string;
 }
 
+const fetchBiography = async (): Promise<Post[]> => {
+  const data = await sanityClient.fetch(
+    `*[_type=="biography"]{
+      title,
+      mainImage{
+        asset->{
+          _id,
+          url
+        }
+      },
+      alt,
+      profession,
+      body 
+    }`
+  );
+  // Return the fetched data
+  return data;
+};
+
 const useBiography = () => {
-  const [postData, setPostData] = useState<Post[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchBiography = async () => {
-      try {
-        const data: Post[] = await sanityClient.fetch(
-          `*[_type=="biography"]{
-                        title,
-                        mainImage{
-                            asset->{
-                                _id,
-                                url
-                            },
-                        },
-                        alt,
-                        profession,
-                        body 
-                    }`,
-        );
-        setPostData(data);
-      } catch (err) {
-        setError("Failed to fetch data");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBiography();
-  }, []);
-
-  return { postData, loading, error };
+  return useQuery<Post[], Error>({
+    queryKey: ["biography"],
+    queryFn: fetchBiography,
+    staleTime: 1000 * 60 * 5,
+  });
 };
 
 export default useBiography;

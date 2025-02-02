@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import logo from "../assets/logo.png";
-import Header from "./Header";
-import "../styles/Hamburger.css";
 import useHeader from "@/hooks/useHeader";
+import React, { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
+import "../styles/Hamburger.css";
+import Header from "./Header";
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { headerData } = useHeader();
+  const { data } = useHeader();
   const navRef = useRef<HTMLDivElement>(null); // Reference to the navbar
+
+  const headerData = data ? data[0] : null;
 
   const handleNavigateToSection = (hash: string) => {
     setIsMenuOpen(false); // Close the menu

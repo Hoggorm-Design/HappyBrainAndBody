@@ -1,13 +1,13 @@
 import useBiography from "../hooks/useBiography";
 
 export default function Biography() {
-  const { postData, error } = useBiography();
+  const { data, isError, error } = useBiography();
 
-  if (error) {
-    return <p>{error}</p>;
+  const post = data ? data[0] : null;
+
+  if (isError) {
+    return <div>Error: {error?.message || "Failed to fetch biography"}</div>;
   }
-
-  const post = postData[0];
 
   return (
     <>

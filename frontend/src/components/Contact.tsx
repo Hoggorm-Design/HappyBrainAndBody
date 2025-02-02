@@ -1,11 +1,23 @@
-import { FiPhone, FiMail, FiInstagram } from "react-icons/fi";
+import { FiInstagram, FiMail, FiPhone } from "react-icons/fi";
 import useContact from "../hooks/useContact";
 import useImageByContact from "../hooks/useImageByContact";
 
 const Contact = () => {
-  const { contactData } = useContact();
-  const { imageData } = useImageByContact();
+  const { data, isError: contactError } = useContact();
+  const { data: imageData, isError: imageError } = useImageByContact();
 
+  const contactData = data ? data[0] : null;
+
+  if (contactError || imageError) {
+    return (
+      <div className="w-screen h-screen flex justify-center items-center">
+        <p className="text-red-500">
+          Error: {contactError ? "Failed to load contact info" : ""}
+          {imageError ? "Failed to load contact image" : ""}
+        </p>
+      </div>
+    );
+  }
   return (
     <>
       <section

@@ -1,52 +1,26 @@
-// Blog.tsx
-import { useEffect, useState } from "react";
-import Card from "./Card";
-import useBlogPosts from "../hooks/useBlogPosts";
-import useBlogPage from "../hooks/useBlogPage";
+import { useState } from "react";
 import { FiArrowDownCircle } from "react-icons/fi";
-import { useLoading } from "../context/LoadingContext";
+import useBlogPage from "../hooks/useBlogPage";
+import useBlogPosts from "../hooks/useBlogPosts";
+import Card from "./Card";
 
 const Blog = () => {
-  const { setIsLoading, isLoading } = useLoading(); // global spinner
-  const { blogPosts, error: postsError } = useBlogPosts();
-  const { blogPageData, error: pageError } = useBlogPage();
+  const { data: blogPageData, error: pageError } = useBlogPage();
+  const { data: blogPosts, error: postsError } = useBlogPosts();
 
   const [postsToShow, setPostsToShow] = useState(4);
 
-  // 1) Start loading ONCE when Blog mounts
-  useEffect(() => {
-    setIsLoading(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // empty dependency => runs only once on mount
-
-  // 2) Stop loading if data is ready or if there's an error
-  useEffect(() => {
-    if (postsError || pageError) {
-      setIsLoading(false);
-    } else if (blogPosts !== null && blogPageData !== null) {
-      setIsLoading(false);
-    }
-  }, [blogPosts, blogPageData, postsError, pageError, setIsLoading]);
-
-  // 3) If there's an error, show it
   if (postsError || pageError) {
     return (
       <div className="w-screen h-screen flex justify-center items-center">
-        Error: {postsError || pageError}
+        <p className="text-red-500">
+          Error:{" "}
+          {postsError?.message || pageError?.message || "An error occurred"}
+        </p>
       </div>
     );
   }
 
-  // 4) If still loading, optionally show a local fallback
-  if (isLoading) {
-    return (
-      <div className="w-screen h-screen flex justify-center items-center">
-        <p>Loading Blog...</p>
-      </div>
-    );
-  }
-
-  // 5) Normal rendering once loading is false
   const currentPosts = (blogPosts || []).slice(0, postsToShow);
   const handleShowMore = () => setPostsToShow((prev) => prev + 4);
 

@@ -1,5 +1,5 @@
 // useBlogPage.ts
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import sanityClient from "../client";
 
 export interface BlogPage {
@@ -7,33 +7,19 @@ export interface BlogPage {
   text: string;
 }
 
+const fetchBlogPage = async (): Promise<BlogPage> => {
+  const data = await sanityClient.fetch(
+    `*[_type == "blogPage"][0]{ header, text }`
+  );
+  return data;
+};
+
 const useBlogPage = () => {
-  const [blogPageData, setBlogPageData] = useState<BlogPage | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let mounted = true;
-
-    const fetchBlogPage = async () => {
-      try {
-        const data: BlogPage | null = await sanityClient.fetch(
-          `*[_type == "blogPage"][0]{ header, text }`,
-        );
-        if (mounted) setBlogPageData(data || null);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to fetch blog page data");
-      }
-    };
-
-    fetchBlogPage();
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  return { blogPageData, error };
+  return useQuery<BlogPage, Error>({
+    queryKey: ["blogpage"],
+    queryFn: fetchBlogPage,
+    staleTime: 1000 * 60 * 5,
+  });
 };
 
 export default useBlogPage;

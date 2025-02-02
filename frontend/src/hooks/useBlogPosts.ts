@@ -1,5 +1,5 @@
 // useBlogPosts.ts
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import sanityClient from "../client";
 
 interface BlogPost {
@@ -12,39 +12,27 @@ interface BlogPost {
   publishedAt: string;
 }
 
+const fetchBlogPosts = async (): Promise<BlogPost[]> => {
+  const data = await sanityClient.fetch(
+    `*[_type == "blogPost"] | order(publishedAt desc) {
+      header,
+      text,
+      image { asset->{_id, url} },
+      link,
+      alt,
+      pdf { asset->{url} },
+      publishedAt
+    }`
+  );
+  return data;
+};
+
 const useBlogPosts = () => {
-  const [blogPosts, setBlogPosts] = useState<BlogPost[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let mounted = true;
-    const fetchBlogPosts = async () => {
-      try {
-        const data: BlogPost[] = await sanityClient.fetch(
-          `*[_type == "blogPost"] | order(publishedAt desc) {
-            header,
-            text,
-            image { asset->{_id, url} },
-            link,
-            alt,
-            pdf { asset->{url} },
-            publishedAt
-          }`,
-        );
-        if (mounted) setBlogPosts(data || []);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to fetch blog posts");
-      }
-    };
-
-    fetchBlogPosts();
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  return { blogPosts, error };
+  return useQuery<BlogPost[], Error>({
+    queryKey: ["blogposts"],
+    queryFn: fetchBlogPosts,
+    staleTime: 1000 * 60 * 5,
+  });
 };
 
 export default useBlogPosts;

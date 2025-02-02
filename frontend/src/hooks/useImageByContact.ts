@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import sanityClient from "../client";
-import { useLoading } from "../context/LoadingContext";
 
 interface ImageByContact {
   mainImage: {
@@ -11,38 +10,26 @@ interface ImageByContact {
   alt: string;
 }
 
+const fetchImageByContact = async (): Promise<ImageByContact> => {
+  const data: ImageByContact = await sanityClient.fetch(
+    `*[_type == "imageByContact"][0]{
+                  mainImage{
+                      asset->{
+                          url
+                      }
+                  },
+                  alt
+              }`
+  );
+  return data;
+};
+
 const useImageByContact = () => {
-  const [imageData, setImageData] = useState<ImageByContact | null>(null);
-  const { setIsLoading } = useLoading();
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchImage = async () => {
-      setIsLoading(true);
-      try {
-        const data: ImageByContact = await sanityClient.fetch(
-          `*[_type == "imageByContact"][0]{
-                        mainImage{
-                            asset->{
-                                url
-                            }
-                        },
-                        alt
-                    }`,
-        );
-        setImageData(data);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to fetch image by contact data.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchImage();
-  }, [setIsLoading]);
-
-  return { imageData, error };
+  return useQuery<ImageByContact, Error>({
+    queryKey: ["imageByContact"],
+    queryFn: fetchImageByContact,
+    staleTime: 1000 * 60 * 5,
+  });
 };
 
 export default useImageByContact;

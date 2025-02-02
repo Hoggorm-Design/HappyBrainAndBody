@@ -1,11 +1,19 @@
+import { useEffect, useState } from "react";
 import useSpotify from "../hooks/useSpotify";
-import { useState, useEffect } from "react";
 
 const Spotify = () => {
-  const { spotifyData, error } = useSpotify();
+  const { data: spotifyData, isError: spotifyError, error } = useSpotify();
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [iframeError, setIframeError] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
+  const [minDelayPassed, setMinDelayPassed] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMinDelayPassed(true);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (!iframeLoaded && !iframeError) {
@@ -67,10 +75,10 @@ const Spotify = () => {
     }
   }, [embedUrl]);
 
-  if (error) {
+  if (spotifyError) {
     return (
       <div className="w-full h-[352px] flex items-center justify-center bg-gray-50">
-        <p>Error: {error}</p>
+        <p>Error: {error?.message}</p>
       </div>
     );
   }
@@ -86,8 +94,8 @@ const Spotify = () => {
   return (
     <div className="w-full bg-white rounded-lg overflow-hidden">
       <div className="flex flex-col">
-        <div className="max-w-[350px] h-[200px] lg:h-[230px] flex justify-end">
-          {!iframeLoaded && !iframeError && (
+        <div className="relative max-w-[350px] h-[200px] lg:h-[230px] flex justify-end">
+          {(!iframeLoaded || !minDelayPassed) && !iframeError && (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50">
               <p className="mb-2">Loading episode... {loadingProgress}%</p>
               <div className="w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -124,7 +132,8 @@ const Spotify = () => {
               onError={handleIframeError}
               style={{
                 border: "none",
-                display: iframeLoaded ? "block" : "none",
+                // Only show the iframe when both it has loaded and the minimum delay has passed
+                display: iframeLoaded && minDelayPassed ? "block" : "none",
               }}
             />
           )}
@@ -133,12 +142,7 @@ const Spotify = () => {
         <div className="text-container mt-[-15px] max-w-[350px]">
           <h3 className="sub-header font-bold">{spotifyData.title}</h3>
           <p className="text">{spotifyData.body}</p>
-          <a
-            href={spotifyData.link}
-            className=""
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={spotifyData.link} target="_blank" rel="noopener noreferrer">
             Hør mer ›
           </a>
         </div>
