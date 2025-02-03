@@ -37,7 +37,8 @@ const useBiography = () => {
   return useQuery<Post[], Error>({
     queryKey: ["biography"],
     queryFn: fetchBiography,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 10,
+    refetchInterval: 1000 * 60 * 15,
   });
 };
 

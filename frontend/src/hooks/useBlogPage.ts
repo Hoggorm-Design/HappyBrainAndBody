@@ -18,7 +18,8 @@ const useBlogPage = () => {
   return useQuery<BlogPage, Error>({
     queryKey: ["blogpage"],
     queryFn: fetchBlogPage,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 10,
+    refetchInterval: 1000 * 60 * 15,
   });
 };
 

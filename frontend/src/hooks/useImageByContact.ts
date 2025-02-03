@@ -28,7 +28,8 @@ const useImageByContact = () => {
   return useQuery<ImageByContact, Error>({
     queryKey: ["imageByContact"],
     queryFn: fetchImageByContact,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 10,
+    refetchInterval: 1000 * 60 * 15,
   });
 };
 

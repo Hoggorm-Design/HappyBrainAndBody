@@ -22,7 +22,8 @@ const useSpotify = () => {
   return useQuery<Spotify, Error>({
     queryKey: ["spotify"],
     queryFn: fetchSpotify,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 10,
+    refetchInterval: 1000 * 60 * 15,
   });
 };
 
