@@ -43,7 +43,7 @@ interface HomeData {
 const fetchHomeData = async (): Promise<HomeData> => {
   const [post1, post2, post3, landing, events] = await Promise.all([
     sanityClient.fetch(
-      `*[_type == "post2"]{ title, body, mainImage{ asset->{url} }, alt }`
+      `*[_type == "post"]{ title, body, mainImage{ asset->{url} }, alt }`
     ),
     sanityClient.fetch(
       `*[_type == "post3"][0]{ title, body, mainImage{ asset->{url} }, alt }`
