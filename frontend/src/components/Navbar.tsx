@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import logo from "../assets/logo.png";
-import Header from "./Header";
-import "../styles/Hamburger.css";
 import useHeader from "@/hooks/useHeader";
+import React, { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
+import "../styles/Hamburger.css";
+import Header from "./Header";
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { headerData } = useHeader();
+  const { data } = useHeader();
   const navRef = useRef<HTMLDivElement>(null); // Reference to the navbar
+
+  const headerData = data ? data[0] : null;
 
   const handleNavigateToSection = (hash: string) => {
     setIsMenuOpen(false); // Close the menu
@@ -55,7 +57,10 @@ const Navbar: React.FC = () => {
       className="fixed top-0 left-0 right-0 w-full bg-[#5286A4] backdrop-blur-lg z-50 pr-6 2xl:pl-6 py-4 flex justify-between items-center shadow-md"
     >
       {/* Logo and Header */}
-      <Header title={headerData?.title || "happybrainandbody"} logoSrc={logo} />
+      <Header
+        title={headerData ? headerData.title : "happybrainandbody"}
+        logoSrc={logo}
+      />
 
       {/* Hamburger Icon (Visible on small screens) */}
       <div className="xl:hidden text-white z-50">
@@ -76,43 +81,43 @@ const Navbar: React.FC = () => {
         {/* Buttons for sections */}
         <button
           onClick={() => handleNavigateToSection("Var-lege")}
-          className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+          className="px-4 py-2  text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
         >
           Vår lege
         </button>
         <button
           onClick={() => handleNavigateToSection("hva-er-eq")}
-          className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+          className="px-4 py-2  text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
         >
           Hva er EQ
         </button>
         <button
           onClick={() => handleNavigateToSection("eq-terapi")}
-          className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+          className="px-4 py-2  text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
         >
           EQ-terapi
         </button>
         <button
           onClick={() => handleNavigateToSection("foredrag")}
-          className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+          className="px-4 py-2  text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
         >
           Foredrag
         </button>
         <button
           onClick={() => handleNavigateToSection("eksempler")}
-          className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+          className="px-4 py-2  text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
         >
           Eksempler
         </button>
         <button
           onClick={() => handleNavigateToSection("kontakt")}
-          className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+          className="px-4 py-2  text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
         >
           Kontakt
         </button>
         <button
           onClick={() => navigate("/blog")}
-          className="px-4 py-2 sub-header text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
+          className="px-4 py-2  text-xl xl:text-xl text-[#FFFFFF] rounded-full hover:text-[#1A5673] hover:bg-white transition"
         >
           Blog
         </button>
