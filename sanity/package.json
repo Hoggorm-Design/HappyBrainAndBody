@@ -17,6 +17,7 @@
   "dependencies": {
     "@portabletext/react": "^3.1.0",
     "@sanity/vision": "^3.59.1",
+    "happy-brain-and-body": "file:",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sanity": "^3.59.1",
