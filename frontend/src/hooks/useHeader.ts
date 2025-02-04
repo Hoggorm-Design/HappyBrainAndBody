@@ -1,40 +1,26 @@
-import { useState, useEffect } from 'react';
-import sanityClient from '../client';
+import { useQuery } from "@tanstack/react-query";
+import sanityClient from "../client";
 
 interface Header {
-    title: string;
+  title: string;
 }
 
+const fetchHeader = async (): Promise<Header[]> => {
+  const data = await sanityClient.fetch(
+    `*[_type == "header"]{
+                  title
+              }`
+  );
+  return data;
+};
+
 const useHeader = () => {
-    const [headerData, setHeaderData] = useState<Header | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        const fetchHeader = async () => {
-            try {
-                const data: Header[] = await sanityClient.fetch(
-                    `*[_type == "header"]{
-                        title
-                    }`
-                );
-                if (data.length > 0) {
-                    setHeaderData(data[0]);
-                } else {
-                    setHeaderData(null);
-                }
-            } catch (err) {
-                console.error(err);
-                setError('Failed to fetch header data');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchHeader();
-    }, []);
-
-    return { headerData, loading, error };
+  return useQuery<Header[], Error>({
+    queryKey: ["header"],
+    queryFn: fetchHeader,
+    staleTime: 1000 * 60 * 10,
+    refetchInterval: 1000 * 60 * 15,
+  });
 };
 
 export default useHeader;

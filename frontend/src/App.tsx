@@ -1,101 +1,105 @@
-import "./index.css";
+import placeholderImg from "./assets/placeholder.png";
 import Biography from "./components/Biography";
 import ContentWithImage from "./components/ContentWithImage";
-import placeholderImg from "./assets/placeholder.png";
 import Example from "./components/Example";
 import Spotify from "./components/Spotify";
-import usePost2 from "./hooks/useContent1";
-import usePost3 from "./hooks/useContent2";
-import useEvent from "./hooks/useEvent";
-import usePost4 from "./hooks/useContent3";
-import Navbar from "./components/Navbar";
-import { Route, Routes, Navigate } from "react-router-dom";
+import "./index.css";
+
+import { Navigate, Route, Routes } from "react-router-dom";
 import Blog from "./components/Blog";
 import Contact from "./components/Contact";
-import useLanding from "./hooks/useLanding";
+import Navbar from "./components/Navbar";
+
 import ScrollToAnchor from "./components/ScrollToAnchor";
 
-function App() {
-  const { postData: post2Data } = usePost2();
-  const { postData: post3Data } = usePost3();
-  const { landingData } = useLanding();
-  const { eventData } = useEvent();
-  const { postData: post4Data } = usePost4();
+import GlobalLoading from "./components/shared/GlobalLoading";
+import useHomeData from "./hooks/useHomeData";
 
-  const firstPost = post2Data[0];
-  const secondPost = post3Data;
-  const fourthPost = post4Data;
+function App() {
+  const { data: homeData, error } = useHomeData();
+
+  if (error) {
+    return (
+      <div className="w-screen h-screen flex justify-center items-center">
+        {error.message || "Failed to fetch homepage data"}
+      </div>
+    );
+  }
+
+  if (!homeData) return null;
+
+  const { post1, post2, post3, landing, events } = homeData;
 
   const HomePage = () => (
     <div className="mt-20">
-      {landingData && (
+      {landing && (
         <section className="flex flex-col xl:flex-row items-start justify-between p-[30px] 2xl:px-[100px] pt-[100px] 2xl:pb-16 gap-20">
           <div className="w-full xl:w-1/2">
             <img
-              src={landingData.image?.asset?.url || placeholderImg}
-              alt={landingData.alt}
+              src={landing.image?.asset?.url || placeholderImg}
+              alt={landing.alt}
               className="w-full h-auto object-cover rounded-lg"
             />
-            <p>{landingData.alt}</p>
+            <p>{landing.alt}</p>
           </div>
           <div className="w-full xl:w-1/2">
             <div className="flex flex-col text-2xl font-bold mb-4">
-              <h2 className="">{landingData.header}</h2>
-              <h3>{landingData.subheader}</h3>
+              <h2 className="">{landing.header}</h2>
+              <h3>{landing.subheader}</h3>
             </div>
-            <p className="text-lg">{landingData.introText}</p>
-            <p className="text">{landingData.additionalText}</p>
+            <p className="text-lg">{landing.introText}</p>
+            <p className="text">{landing.additionalText}</p>
           </div>
         </section>
       )}
 
       <Biography />
 
-            {firstPost && (
-                <ContentWithImage
-                    title={firstPost.title}
-                    imageSrc={firstPost.mainImage?.asset?.url || placeholderImg}
-                    imageAlt={firstPost.alt}
-                    reverse={false}
-                    bgColour={"white"}
-                    id="hva-er-eq"
-                >
-                    <p className="text">{firstPost.body}</p>
-                </ContentWithImage>
-            )}
+      {post1.length > 0 && (
+        <ContentWithImage
+          title={post1[0].title}
+          imageSrc={post1[0].mainImage?.asset?.url || placeholderImg}
+          imageAlt={post1[0].alt}
+          reverse={false}
+          bgColour="white"
+          id="hva-er-eq"
+        >
+          <p className="text">{post1[0].body}</p>
+        </ContentWithImage>
+      )}
 
-            {secondPost && (
-                <ContentWithImage
-                    title={secondPost.title}
-                    imageSrc={secondPost.mainImage?.asset?.url || placeholderImg}
-                    imageAlt={secondPost.alt}
-                    reverse={true}
-                    bgColour={"white"}
-                    id="eq-terapi"
-                >
-                    <p className="text">{secondPost.body}</p>
-                </ContentWithImage>
-            )}
+      {post2 && (
+        <ContentWithImage
+          title={post2.title}
+          imageSrc={post2.mainImage?.asset?.url || placeholderImg}
+          imageAlt={post2.alt}
+          reverse={true}
+          bgColour="white"
+          id="eq-terapi"
+        >
+          <p className="text">{post2.body}</p>
+        </ContentWithImage>
+      )}
 
-            {fourthPost && (
-                <ContentWithImage
-                    title={fourthPost.title}
-                    imageSrc={fourthPost.mainImage?.asset?.url}
-                    imageAlt={fourthPost.alt}
-                    reverse={false}
-                    bgColour={"white"}
-                    id="foredrag"
-                >
-                    <p className="text">{fourthPost.body}</p>
-                </ContentWithImage>
-            )}
+      {post3 && (
+        <ContentWithImage
+          title={post3.title}
+          imageSrc={post3.mainImage?.asset?.url}
+          imageAlt={post3.alt}
+          reverse={false}
+          bgColour="white"
+          id="foredrag"
+        >
+          <p className="text">{post3.body}</p>
+        </ContentWithImage>
+      )}
 
-        <section className="px-[30px] py-[80px] 2xl:px-[100px] bg-white">
+      <section className="px-[30px] py-[80px] 2xl:px-[100px] bg-white">
         <div id="eksempler" className="relative -mt-[120px] pt-[120px]">
           <h2 className="header font-bold mb-7">Eksempler</h2>
         </div>
         <div className="grid md:grid-cols-2 gap-20 grid-cols-1">
-          {eventData.map((post) => (
+          {events.map((post) => (
             <Example
               key={post.slug.current}
               title={post.title}
@@ -116,12 +120,14 @@ function App() {
 
   return (
     <main className="relative top-[-5px] w-screen">
+      {/*Display global loader if any query is still fetching*/}
+      <GlobalLoading />
       <Navbar />
       <ScrollToAnchor />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="*" element={<Navigate to="/" replace />} />{" "}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </main>
   );
