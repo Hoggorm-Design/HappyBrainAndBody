@@ -9,11 +9,13 @@ const GlobalLoading = () => {
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
     if (isFetching) {
+      // Show loader immediately when fetching starts
       setShowLoader(true);
     } else {
+      // Only add delay when hiding the loader to prevent rapid flickering
       timeoutId = setTimeout(() => {
         setShowLoader(false);
-      }, 500);
+      }, 300); // Reduced delay for better UX
     }
 
     return () => {
