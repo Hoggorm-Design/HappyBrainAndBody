@@ -65,8 +65,11 @@ const useHomeData = () => {
   return useQuery<HomeData, Error>({
     queryKey: ["homeData"],
     queryFn: fetchHomeData,
-    staleTime: 1000 * 60 * 10,
-    refetchInterval: 1000 * 60 * 15,
+    staleTime: 1000 * 60 * 10, // 10 minutes
+    gcTime: 1000 * 60 * 30, // 30 minutes (formerly cacheTime)
+    refetchOnWindowFocus: false, // Prevent refetch on window focus
+    refetchOnMount: false, // Only refetch if data is stale
+    retry: 3, // Retry failed requests
   });
 };
 

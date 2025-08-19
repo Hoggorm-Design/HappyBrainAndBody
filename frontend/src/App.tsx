@@ -16,7 +16,7 @@ import GlobalLoading from "./components/shared/GlobalLoading";
 import useHomeData from "./hooks/useHomeData";
 
 function App() {
-  const { data: homeData, error } = useHomeData();
+  const { data: homeData, error, isLoading } = useHomeData();
 
   if (error) {
     return (
@@ -26,7 +26,14 @@ function App() {
     );
   }
 
-  if (!homeData) return null;
+  // Show GlobalLoading while data is being fetched
+  if (isLoading || !homeData) {
+    return (
+      <main className="relative top-[-5px] w-screen">
+        <GlobalLoading />
+      </main>
+    );
+  }
 
   const { post1, post2, post3, landing, events } = homeData;
 
