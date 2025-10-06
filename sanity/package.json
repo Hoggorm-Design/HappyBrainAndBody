@@ -15,21 +15,21 @@
     "sanity"
   ],
   "dependencies": {
-    "@portabletext/react": "^3.2.1",
-    "@sanity/vision": "^4.5.0",
+    "@portabletext/react": "^4.0.3",
+    "@sanity/vision": "^4.10.2",
     "happy-brain-and-body": "file:",
-    "npm-check-updates": "^18.0.2",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "sanity": "^4.5.0",
+    "npm-check-updates": "^19.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sanity": "^4.10.2",
     "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^5.0.2",
-    "@types/react": "^19.1.10",
-    "eslint": "^9.33.0",
+    "@types/react": "^19.2.0",
+    "eslint": "^9.37.0",
     "prettier": "^3.6.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "prettier": {
     "semi": false,
