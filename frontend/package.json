@@ -17,7 +17,7 @@
     "axios": "^1.13.2",
     "compression": "^1.8.1",
     "express": "^5.2.1",
-    "express-rate-limit": "^8.2.1",
+    "express-rate-limit": "^8.2.2",
     "framer-motion": "^12.23.26",
     "happy-brain-and-body-frontend": "file:",
     "he": "^1.2.0",
